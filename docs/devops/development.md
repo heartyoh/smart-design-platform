@@ -6,7 +6,7 @@
 
 ## 개발 프레임워크
 
-플랫폼 서비스를 위한 어플리케이션 개발은 [Things Framework](../framework/readme.md) 을 기반으로 진행합니다.
+플랫폼 서비스를 위한 어플리케이션 개발은 [Things Framework](../framework) 을 기반으로 진행합니다.
 
 ## 개발 언어
 
