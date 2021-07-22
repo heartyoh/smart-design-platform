@@ -38,7 +38,7 @@
 ### 소스 형상관리
 
 - [github](https://github.com/)
-- 형상관리 클라이언트 도구 : git desktop
+- 형상관리 클라이언트 도구 : [github desktop](https://desktop.github.com/)
 
 ### 배포 도구
 
