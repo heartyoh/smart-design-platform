@@ -15,7 +15,14 @@
 
 ## 개발 프레임워크
 
-플랫폼 서비스를 위한 어플리케이션 개발은 [Things Framework](../framework) 을 기반으로 진행합니다.
+플랫폼 서비스를 위한 어플리케이션 개발은 [Things-Factory Framework](http://www.hatiolab.com/things-factory-doc/ko/intro/framework/) 을 기반으로 진행합니다.
+
+- [Things-Factory Framework 개발가이드](http://www.hatiolab.com/things-factory-doc/ko/intro/framework/) 사이트에 Things-Factory 프레임워크와 관련해서 다음과 같은 내용의 자료가 정리되고 있으니, 참고하시기 바랍니다.
+  - 프레임워크 소개
+  - 개발환경 셋업
+  - 애플리케이션 개발
+  - 따라하기
+  - 애플리케이션 운영
 
 ## 개발 언어
 
