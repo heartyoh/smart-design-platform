@@ -2,8 +2,8 @@
 
 # [세부 실행 목표](./concept.md)
 
-# [개발 및 운영 환경](./devops/readme.md)
+# [개발 및 운영 환경](./devops)
 
-# [개념 검증](./poc/readme.md)
+# [개념 검증](./poc)
 
-# [구축 로드맵](./roadmap/readme.md)
+# [구축 로드맵](./roadmap)
