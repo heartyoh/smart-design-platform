@@ -2,6 +2,6 @@
 
 # 개발 및 운영 환경
 
-## [개발 환경](./development)
+## [개발 환경](./development.md)
 
-## [운영 환경](./operation)
+## [운영 환경](./operation.md)
