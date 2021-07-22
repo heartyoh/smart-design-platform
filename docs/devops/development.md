@@ -22,9 +22,22 @@
 
 ## 개발 도구
 
-- visual studio code
-- git desktop
-- docker desktop
+### 소스 편집 도구
+
+- [visual studio code](https://code.visualstudio.com/)
+
+### 소스 형상관리
+
+- [github](https://github.com/)
+- 형상관리 클라이언트 도구 : git desktop
+
+### 배포 도구
+
+- 모듈 배포
+  - (node module package)[https://www.npmjs.com/]
+- 도커 이미지 배포
+  - [docker hub](https://hub.docker.com/)
+  - 클라이언트 도구 : docker desktop
 
 ## 데이타베이스
 
