@@ -15,4 +15,4 @@
 
 ## [운영 환경](./operation.md)
 
-## [BI 도구](./bi-too.md)
+## [BI 도구](./bi-tool.md)
