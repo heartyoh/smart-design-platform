@@ -4,6 +4,7 @@
 - [개발 및 운영 환경](/docs/devops)
 - [개념 검증](/docs/poc)
 - [구축 로드맵](/docs/roadmap)
+- [산출물](/docs/artifacts)
 
 ---
 

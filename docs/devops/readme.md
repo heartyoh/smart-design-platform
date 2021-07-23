@@ -7,6 +7,7 @@
   - [BI 도구](./bi-tool.md)
 - [개념 검증](/docs/poc)
 - [구축 로드맵](/docs/roadmap)
+- [산출물](/docs/artifacts)
 
 ---
 

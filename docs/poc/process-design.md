@@ -6,6 +6,7 @@
   - [공정 설계](./process-design.md)
   - [기기 설계](./device-design.md)
 - [구축 로드맵](/docs/roadmap)
+- [산출물](/docs/artifacts)
 
 ---
 
