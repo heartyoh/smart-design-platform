@@ -23,7 +23,7 @@ Process Design 모델구조, 모델러 UX 및 실행 엔진 개념 검증
 ### 모델 구성 요소 설계
 
 공정설계 모델은 [블록 다이아그램 모델](https://eleceng.dit.ie/gavin/Control/Block%20Diagrams/General%20Intro.htm)
-또는 Directed Cyclic Graph 모델(Vertex(Node)와 Edge(Link) 로 구성되고, 방향성이 있고 순환이 가능한 모델)로 판단됨
+또는 Directed Cyclic Graph 모델(Vertex/Node와 Edge/Link 로 구성되고, 방향성이 있고 순환이 가능한 모델)로 판단됨
 
 - Nodes
   - 이벤트
