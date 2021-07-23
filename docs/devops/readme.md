@@ -2,6 +2,9 @@
 
 - [세부 실행 목표](/docs/concept.md)
 - [개발 및 운영 환경](/docs/devops)
+  - [개발 환경](./development.md)
+  - [운영 환경](./operation.md)
+  - [BI 도구](./bi-tool.md)
 - [개념 검증](/docs/poc)
 - [구축 로드맵](/docs/roadmap)
 
