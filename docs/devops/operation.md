@@ -17,7 +17,7 @@
 ## 서버 인프라
 
 - 방안 1. 퍼블릭 클라우드
-  - AWS(Amazon Web Services), Azure(Microsoft), GCP(Google Cloud Platform), Naver Cloud Platform 등
+  - [AWS](https://aws.amazon.com/ko/)(Amazon Web Services), Azure(Microsoft), GCP(Google Cloud Platform), Naver Cloud Platform 등
     - AWS가 리더의 포지션이며, 가장 성숙한 서비스를 제공함
   - 장점
     - 수요 변동에 탄력적인 높은 수준의 운영 환경 제공 (운영비용 절감)
@@ -67,5 +67,5 @@
 
 - 파일 시스템
   - On-Premise 환경에서는 File System을 활용
-- AWS S3 서비스
+- [AWS](https://aws.amazon.com/ko/) S3 서비스
   - 클라우드 환경에서는 스토리지 서비스를 활용

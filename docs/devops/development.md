@@ -56,9 +56,9 @@
   - (node module package)[https://www.npmjs.com/]
 - 도커 이미지 배포
   - [docker hub](https://hub.docker.com/)
-  - 클라이언트 도구 : docker desktop
+  - 클라이언트 도구 : [docker desktop](https://www.docker.com/products/docker-desktop)
 
 ## 데이타베이스
 
-- postgresql
-- PGAdmin (postgresql 관리도구)
+- [postgresql](https://www.postgresql.org/)
+- [PGAdmin](https://www.pgadmin.org/) (postgresql 관리도구)
