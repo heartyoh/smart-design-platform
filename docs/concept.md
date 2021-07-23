@@ -1,4 +1,4 @@
-### TOC [HOME](/docs)
+### [TOC] [HOME](/docs)
 
 - [세부 실행 목표](/docs/concept.md)
 - [개발 및 운영 환경](/docs/devops)
