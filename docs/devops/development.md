@@ -54,7 +54,7 @@
 ### 배포 도구
 
 - 모듈 배포
-  - (node module package)[https://www.npmjs.com/]
+  - [node module package](https://www.npmjs.com/)
 - 도커 이미지 배포
   - [docker hub](https://hub.docker.com/)
   - 클라이언트 도구 : [docker desktop](https://www.docker.com/products/docker-desktop)
