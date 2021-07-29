@@ -15,9 +15,13 @@
 
 이 문서는 공정 설계 모델의 명세를 정리합니다.
 
+
 ## 공정 설계 UI 시안
 
-...
+![UItemp](https://user-images.githubusercontent.com/1257178/127439296-87162915-9dd8-4417-84c9-c8db90a25e9c.png)
+- [공정 설계 UI Demo link](https://xd.adobe.com/view/b48de54e-3898-46f9-967f-28eeafef01b7-e1de/)
+
+
 
 ## 공정 설계 모델 명세
 
