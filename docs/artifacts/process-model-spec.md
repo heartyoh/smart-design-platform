@@ -17,6 +17,7 @@
 
 ## 공정 설계 UI 시안
 
+현재는 커뮤니케이션을 위해 만들어진 단순 예시용 시안임을 이해하고 검토해주시기 바랍니다.
 ![UItemp](https://user-images.githubusercontent.com/1257178/127439296-87162915-9dd8-4417-84c9-c8db90a25e9c.png)
 
 - [공정 설계 UI Demo link](https://xd.adobe.com/view/b48de54e-3898-46f9-967f-28eeafef01b7-e1de/)
