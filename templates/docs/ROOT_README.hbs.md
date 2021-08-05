@@ -26,7 +26,7 @@
 | Package | Version | Description |
 | ------- | ------- | ----------- |
 {{#each jsPackages}}
-| [{{name}}](packages/{{name}}) | <a href="https://badge.fury.io/js/%40operato%2F{{name}}"><img src="https://badge.fury.io/js/%40operato%2F{{name}}.svg" width="200px" /></a> | {{{description}}} |
+| [{{name}}](packages/{{name}}) | <a href="https://badge.fury.io/js/%40smart-design-platform%2F{{name}}"><img src="https://badge.fury.io/js/%40smart-design-platform%2F{{name}}.svg" width="200px" /></a> | {{{description}}} |
 {{/each}}
 
 ## Want to contribute?

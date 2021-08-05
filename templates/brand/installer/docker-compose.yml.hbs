@@ -9,7 +9,7 @@ services:
   app:
     build: .
     container_name: {{ name }}
-    image: hatiolab/{{ name }}:latest
+    image: smart-design-platform/{{ name }}:latest
     privileged: true
     volumes:
       - ./logs:/app/logs
