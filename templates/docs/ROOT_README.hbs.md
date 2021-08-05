@@ -21,11 +21,13 @@
 
 ### Package Index
 
-"smart-design-platform" 리파지토리는 ***1***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
+"smart-design-platform" 리파지토리는 ***{{jsPackages.length}}***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
 
 | Package | Version | Description |
 | ------- | ------- | ----------- |
-| [designer](packages/designer) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner.svg" width="200px" /></a> | process designer application |
+{{#each jsPackages}}
+| [{{name}}](packages/{{name}}) | <a href="https://badge.fury.io/js/%40smart-design-platform%2F{{name}}"><img src="https://badge.fury.io/js/%40smart-design-platform%2F{{name}}.svg" width="200px" /></a> | {{{description}}} |
+{{/each}}
 
 ## Want to contribute?
 
