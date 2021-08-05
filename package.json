@@ -33,6 +33,10 @@
     "tophat": "tophat",
     "docs": "lerna run docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "plop": "^2.7.4",
+    "pluralize": "^8.0.0"
+  },
   "devDependencies": {}
 }
