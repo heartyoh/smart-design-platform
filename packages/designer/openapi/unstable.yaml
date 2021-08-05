@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  description: >
+    For the latest release information please check our [release notes](https://developer.designer.com/release_notes).
+    The Designer API exposes integrations endpoint and related functions.
+  version: 'unstable'
+  title: 'Designer'
+  termsOfService: 'https://designer.com/terms/'
+  contact:
+    email: 'heartyoh@hatiolab.com'
+  license:
+    name: MIT
+    url: http://mit-license.org/
+tags:
+  - name: 'designer'
+    description: 'API for read, create and update designers'
+schemes:
+  - 'https'
+  - 'http'
+servers:
+  - url: '/api/unstable'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+security:
+  - basicAuth: []
+  - bearerAuth: []
+responses:
+  UnauthorizedError:
+    description: Unauthorized
+
+externalDocs:
+  description: 'Find out about our release notes'
+  url: 'https://developer.designer.com/release_notes'
