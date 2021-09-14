@@ -62,6 +62,6 @@
     "@things-factory/system-ui": "^3.6.4"
   },
   "devDependencies": {
-    "@things-factory/builder": "^3.6.4"
+    "@things-factory/builder": "^3.6.0"
   }
 }

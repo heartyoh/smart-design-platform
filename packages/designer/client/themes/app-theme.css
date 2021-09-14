@@ -1,18 +1,19 @@
 body {
   /* theme color */
-  --primary-color-rgb: 20, 154, 155;
+  --primary-color-rgb: 8, 52, 127;
   --primary-color: rgb(var(--primary-color-rgb));
-  --secondary-color: #3a5877;
+  --secondary-color-rgb: 8, 52, 127;
+  --secondary-color: rgb(var(--secondary-color-rgb));
   --focus-color: var(--theme-white-color);
   --primary-background-color: var(--secondary-color);
   --secondary-background-color: #283644;
-  --main-section-background-color: #f4f7fb;
+  --main-section-background-color: #f1f4f6;
   --theme-white-color: #fff;
   --theme-black-color: rgba(0, 0, 0, 0.9);
 
-  --focus-background-color: var(--primary-color);
-  --primary-text-color: var(--theme-black-color);
-  --secondary-text-color: #017e7f;
+  --focus-background-color: #5bc7ff;
+  --primary-text-color: #333;
+  --secondary-text-color: #08347f;
 
   --opacity-dark-color: rgba(0, 0, 0, 0.4);
   --opacity-light-color: rgba(255, 255, 255, 0.8);
@@ -77,6 +78,8 @@ body {
   --mdc-theme-primary: var(--primary-color);
   --mdc-theme-on-secondary: white;
   --mdc-theme-secondary: var(--primary-color);
+  --mdc-danger-button-primary-color: var(--status-danger-color);
+  --mdc-button-outline-color: rgba(var(--primary-color-rgb), 0.8);
 
   /* button style */
   --button-background-color: #fafbfc;
