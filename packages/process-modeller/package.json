@@ -1,0 +1,48 @@
+{
+  "name": "@smart-design-platform/process-modeller",
+  "version": "0.0.7",
+  "main": "dist-server/index.js",
+  "browser": "client/index.js",
+  "things-factory": true,
+  "license": "MIT",
+  "author": "",
+  "description": "Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard.",
+  "publishConfig": {
+    "access": "public",
+    "@smart-design-platform:registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hatiolab/smart-design-platform.git",
+    "directory": "packages/process-modeller"
+  },
+  "scripts": {
+    "build": "tsc --p tsconfig.json",
+    "build:server": "npm run clean:server && tsc",
+    "clean:server": "rm -rf dist-server",
+    "clean": "npm run clean:server",
+    "migration:create": "node ../../node_modules/typeorm/cli.js migration:create -d ./server/migrations"
+  },
+  "dependencies": {
+    "@material/mwc-list": "^0.22.1",
+    "@material/mwc-select": "^0.22.1",
+    "@polymer/iron-icon": "^3.0.1",
+    "@polymer/iron-icons": "^3.0.1",
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-dialog": "^3.0.1",
+    "@polymer/paper-dialog-scrollable": "^3.0.1",
+    "@polymer/paper-dropdown-menu": "^3.0.1",
+    "@polymer/paper-icon-button": "^3.0.2",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
+    "@polymer/paper-menu-button": "^3.0.1",
+    "@polymer/paper-slider": "^3.0.1",
+    "@things-factory/barcode-base": "4.0.0-beta.2",
+    "@things-factory/grist-ui": "4.0.0-beta.2",
+    "@things-factory/help": "4.0.0-beta.2",
+    "@things-factory/i18n-base": "4.0.0-beta.2",
+    "@things-factory/modeller-ui": "4.0.0-beta.2",
+    "file-saver": "^2.0.2",
+    "sortablejs": "^1.10.2"
+  }
+}

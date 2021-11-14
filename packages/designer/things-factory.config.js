@@ -1,12 +1,16 @@
-import route from './client/route'
 import bootstrap from './client/bootstrap'
+import route from './client/route'
 
 export default {
   route,
   routes: [
     {
-      tagname: 'designer-main',
-      page: 'designer-main'
+      tagname: 'process-list',
+      page: 'process-list'
+    },
+    {
+      tagname: 'process-modeller',
+      page: 'process-modeller'
     }
   ],
   bootstrap
