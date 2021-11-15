@@ -45,7 +45,10 @@ export class ProcessModellerPage extends connect(store)(PageView) {
     })
 
     this.boardName = ''
-    this.model = null
+    this.model = {
+      width: 1920,
+      height: 1080
+    }
     this.baseUrl = ''
     this.selected = []
     this.mode = 1
@@ -142,7 +145,10 @@ export class ProcessModellerPage extends connect(store)(PageView) {
   async refresh() {
     if (!this.boardId) {
       this.board = null
-      this.model = null
+      this.model = {
+        width: 1920,
+        height: 1080
+      }
 
       return
     }
@@ -252,7 +258,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
             ${this.renderBrandingZone()}
           </process-edit-toolbar>
 
-          <process-board-modeller
+          <process-modeller
             .mode=${this.mode}
             @mode-changed=${e => {
               this.mode = e.detail.value
@@ -277,7 +283,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
             .propertyEditor=${this.propertyEditor}
             .hideProperty=${this.hideProperty}
           >
-          </process-board-modeller>
+          </process-modeller>
           <oops-spinner ?show=${this._showSpinner}></oops-spinner>
         `
 
