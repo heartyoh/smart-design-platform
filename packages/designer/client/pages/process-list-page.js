@@ -1,12 +1,10 @@
-import '@operato/mini-popup'
+import '@operato/popup'
 import '@operato/data-grist'
 
 import { css, html } from 'lit-element'
-import { getEditor, getRenderer } from '@operato/data-grist'
-import { i18next, localize } from '@things-factory/i18n-base'
 
+import { i18next, localize } from '@things-factory/i18n-base'
 import { PageView } from '@things-factory/shell'
-import { isMobileDevice } from '@things-factory/utils'
 
 class ProcessListPage extends localize(i18next)(PageView) {
   static get styles() {

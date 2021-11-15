@@ -6,9 +6,5 @@ export default function route(page) {
     case 'process-list':
       import('./pages/process-list-page')
       return page
-
-    case 'process-modeller':
-      import('./pages/process-modeller-page')
-      return page
   }
 }

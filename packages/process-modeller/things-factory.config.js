@@ -10,7 +10,7 @@ export default {
     },
     {
       tagname: 'process-modeller-page',
-      page: 'process-modeller'
+      page: 'process-modeller-page'
     }
   ],
   bootstrap

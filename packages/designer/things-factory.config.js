@@ -7,10 +7,6 @@ export default {
     {
       tagname: 'process-list',
       page: 'process-list'
-    },
-    {
-      tagname: 'process-modeller',
-      page: 'process-modeller'
     }
   ],
   bootstrap

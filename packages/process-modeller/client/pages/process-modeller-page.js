@@ -2,18 +2,18 @@ import '../board-modeller/process-modeller'
 import '../board-modeller/edit-toolbar'
 import './things-scene-components.import'
 
-import { PageView, client, store } from '@things-factory/shell'
+import { saveAs } from 'file-saver'
+import gql from 'graphql-tag'
 import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
+
+import { ADD_MODELLER_EDITORS } from '@things-factory/modeller-ui'
+import { client, gqlContext, PageView, store } from '@things-factory/shell'
 import { isMacOS, togglefullscreen } from '@things-factory/utils'
 
 import { ADD_BOARD_COMPONENTS } from '../actions/board'
-import { ADD_MODELLER_EDITORS } from '@things-factory/modeller-ui'
-import components from './things-scene-components-with-tools.import'
-import { connect } from 'pwa-helpers/connect-mixin.js'
-import gql from 'graphql-tag'
-import { gqlContext } from '@things-factory/shell'
 import { provider } from '../board-provider'
-import { saveAs } from 'file-saver'
+import components from './things-scene-components-with-tools.import'
 
 const NOOP = () => {}
 
@@ -208,7 +208,11 @@ export class ProcessModellerPage extends connect(store)(PageView) {
       this.bindShortcutEvent()
     } else {
       this.boardId = null
-      this.model = null
+      this.model = {
+        width: 1280,
+        height: 1020,
+        components: []
+      }
       this.modeller.close()
       this.unbindShortcutEvent()
     }

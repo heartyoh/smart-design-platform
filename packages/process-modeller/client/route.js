@@ -4,7 +4,7 @@ export default function route(page) {
       import('./pages/process-viewer-page')
       return page
 
-    case 'process-modeller':
+    case 'process-modeller-page':
       import('./pages/process-modeller-page')
       return page
   }

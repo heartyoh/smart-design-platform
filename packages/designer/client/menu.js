@@ -18,7 +18,7 @@ export function getMenuTemplate() {
     },
     {
       name: '공정 그룹 생성',
-      path: 'process-modeller',
+      path: 'process-modeller-page',
       icon: 'apps'
     }
   ]
