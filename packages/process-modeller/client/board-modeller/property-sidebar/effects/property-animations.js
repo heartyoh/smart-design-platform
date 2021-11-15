@@ -3,10 +3,10 @@
  */
 
 import '@things-factory/i18n-base'
-import './process-property-animation'
+import './property-animation'
 import '@material/mwc-icon'
 
-import { LitElement, css, html } from 'lit-element'
+import { css, html, LitElement } from 'lit-element'
 
 import { PropertySharedStyle } from '../property-shared-style'
 import { convert } from './value-converter'

@@ -3,9 +3,8 @@
  */
 
 import '@things-factory/i18n-base'
-import '../../editors/things-editor-process-selector'
 
-import { LitElement, html } from 'lit-element'
+import { html, LitElement } from 'lit-element'
 
 import { EffectsSharedStyle } from './effects-shared-style'
 import { convert } from './value-converter'
@@ -58,33 +57,6 @@ class PropertyEventTap extends LitElement {
       </select>
 
       <label> <i18n-msg msgid="label.target">target</i18n-msg> </label>
-
-      ${action == 'goto' || action == 'popup'
-        ? html`
-            <things-editor-process-selector
-              value-key="target"
-              .value=${target}
-              custom-editor
-            ></things-editor-process-selector>
-          `
-        : html`
-            <input
-              value-key="target"
-              .value=${target}
-              list="target-list"
-              .placeholder="${this._getPlaceHoder(action)}"
-            />
-
-            <datalist id="target-list">
-              ${this._getTargetList(action).map(item => html` <option .value=${item}></option> `)}
-            </datalist>
-          `}
-      ${action == 'data-set' || action == 'value-set'
-        ? html`
-            <label> <i18n-msg msgid="label.value">value</i18n-msg> </label>
-            <things-editor-data value-key="value" .value=${value} custom-editor fullwidth></things-editor-data>
-          `
-        : html``}
     `
   }
 

@@ -37,11 +37,11 @@
     "@polymer/paper-listbox": "^3.0.1",
     "@polymer/paper-menu-button": "^3.0.1",
     "@polymer/paper-slider": "^3.0.1",
-    "@things-factory/barcode-base": "4.0.0-beta.2",
-    "@things-factory/grist-ui": "4.0.0-beta.2",
-    "@things-factory/help": "4.0.0-beta.2",
-    "@things-factory/i18n-base": "4.0.0-beta.2",
-    "@things-factory/modeller-ui": "4.0.0-beta.2",
+    "@things-factory/barcode-base": "^4.0.0",
+    "@things-factory/grist-ui": "^4.0.0",
+    "@things-factory/help": "^4.0.0",
+    "@things-factory/i18n-base": "^4.0.0",
+    "@things-factory/modeller-ui": "^4.0.0",
     "file-saver": "^2.0.2",
     "sortablejs": "^1.10.2"
   }
