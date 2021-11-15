@@ -38,6 +38,7 @@ body {
   --grid-record-odd-background-color: rgba(255, 255, 255, 0.4);
   --grid-record-padding: var(--padding-default) 0 var(--padding-default) var(--padding-default);
   --grid-record-color: var(--secondary-color);
+  --grid-record-color-hover: var(--primary-color);
   --grid-record-wide-fontsize: var(--fontsize-small);
   --grid-record-selected-background-color: #f1f8e9;
   --grid-record-selected-color: var(--grid-record-color);
@@ -89,6 +90,8 @@ body {
   --data-card-background-color: var(--main-section-background-color);
   --data-card-record-card-background-color: var(--theme-white-color);
   --data-card-record-card-border: var(--border-dark-color);
+  --data-card-record-card-border-hover: 1px solid var(--primary-color);
+  --data-card-record-card-boxshadow-hover: 1px 1px 2px 1px rgba(0, 0, 0, 0.15);
   --data-card-record-card-selected-border: 1px solid var(--primary-color);
   --data-card-record-card-border-radius: var(--border-radius);
   --data-card-item-margin: var(--margin-default) 0 var(--margin-default) var(--margin-wide);
@@ -115,6 +118,7 @@ body {
   --data-card-fab-shadow: var(--box-shadow);
   --data-card-template: repeat(3, minmax(auto, 100%));
   --data-card-thumbnail-height: 140px;
+  --data-card-thumbnail-border-bottom: var(--border-dark-color);
   --data-card-attachimg-height: 70px;
 
   --record-view-background-color: var(--main-section-background-color);
