@@ -163,10 +163,11 @@ class ProcessListPage extends localize(i18next)(PageView) {
             name: idx % 2 ? `냉온수 히트펌프 공정` : `흡수식 냉동기/냉온수기`,
             description: idx % 2 ? `냉온수 히트펌프 공정` : `흡수식 냉동기/냉온수기 공정`,
             active: Math.round(Math.random() * 2) % 2 ? true : false,
-            image:
-              idx % 2
-                ? `http://www.hatiolab.com/assets/img/operato-biz3.png`
-                : `http://www.hatiolab.com/assets/img/thingsboard-30.png`,
+            image: [
+              `/assets/images/sample-thumb1.png`,
+              `/assets/images/sample-thumb2.png`,
+              `/assets/images/sample-thumb3.png`
+            ][idx % 3],
             createdAt: Date.now(),
             updatedAt: Date.now()
           }
