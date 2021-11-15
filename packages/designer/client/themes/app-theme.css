@@ -2,7 +2,7 @@ body {
   /* theme color */
   --primary-color-rgb: 8, 52, 127;
   --primary-color: rgb(var(--primary-color-rgb));
-  --secondary-color-rgb: 8, 52, 127;
+  --secondary-color-rgb: 39, 65, 109;
   --secondary-color: rgb(var(--secondary-color-rgb));
   --focus-color: var(--theme-white-color);
   --primary-background-color: var(--secondary-color);
@@ -13,7 +13,7 @@ body {
 
   --focus-background-color: #5bc7ff;
   --primary-text-color: #333;
-  --secondary-text-color: #08347f;
+  --secondary-text-color: #3266be;
 
   --opacity-dark-color: rgba(0, 0, 0, 0.4);
   --opacity-light-color: rgba(255, 255, 255, 0.8);

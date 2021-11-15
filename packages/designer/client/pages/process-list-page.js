@@ -29,11 +29,10 @@ class ProcessListPage extends localize(i18next)(PageView) {
       #headroom {
         display: flex;
         flex-direction: column;
-        background-color: var(--primary-color);
-        height: 200px;
         align-items: center;
         justify-content: center;
-        color: var(--theme-white-color);
+        padding: var(--padding-default);
+        border-bottom: 3px solid var(--primary-color);
       }
 
       #modes > * {
@@ -43,7 +42,7 @@ class ProcessListPage extends localize(i18next)(PageView) {
       }
 
       #modes > mwc-icon[active] {
-        border: 1px solid var(--status-warning-color);
+        border: 1px solid var(--focus-background-color);
         border-radius: 9px;
         background-color: rgba(0, 0, 0, 0.3);
         opacity: 1;
@@ -82,10 +81,9 @@ class ProcessListPage extends localize(i18next)(PageView) {
     return html`
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler}>
         <div slot="headroom" id="headroom">
-          <h1>Process List Search</h1>
           <div id="modes">
-            <mwc-icon @click=${() => (this.mode = 'GRID')} ?active=${mode == 'GRID'}>view_list</mwc-icon>
-            <mwc-icon @click=${() => (this.mode = 'LIST')} ?active=${mode == 'LIST'}>menu</mwc-icon>
+            <mwc-icon @click=${() => (this.mode = 'GRID')} ?active=${mode == 'GRID'}>grid_on</mwc-icon>
+            <mwc-icon @click=${() => (this.mode = 'LIST')} ?active=${mode == 'LIST'}>format_list_bulleted</mwc-icon>
             <mwc-icon @click=${() => (this.mode = 'CARD')} ?active=${mode == 'CARD'}>apps</mwc-icon>
           </div>
 
@@ -196,7 +194,7 @@ class ProcessListPage extends localize(i18next)(PageView) {
         {
           type: 'gutter',
           gutterName: 'button',
-          icon: 'favorite',
+          icon: 'star_border',
           handlers: {
             click: 'record-view'
           }
@@ -204,7 +202,7 @@ class ProcessListPage extends localize(i18next)(PageView) {
         {
           type: 'gutter',
           gutterName: 'button',
-          icon: 'edit',
+          icon: 'drive_file_rename_outline',
           handlers: {
             click: 'record-view'
           }
