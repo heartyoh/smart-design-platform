@@ -120,7 +120,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
 
   get context() {
     return {
-      title: this.board ? this.boardName : this._showSpinner ? 'Fetching board...' : 'Board Not Found',
+      title: this.board ? this.boardName : this._showSpinner ? 'Fetching process...' : 'Process Not Found',
       help: 'board-modeller/modeller',
       widebleed: true
     }
@@ -129,8 +129,8 @@ export class ProcessModellerPage extends connect(store)(PageView) {
   get oopsNote() {
     return {
       icon: 'color_lens',
-      title: 'EMPTY BOARD',
-      description: 'There are no board to be designed'
+      title: 'EMPTY PROCESS',
+      description: 'There are no process to be designed'
     }
   }
 
@@ -174,7 +174,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
 
       if (!board) {
         this._board = null
-        throw 'board not found'
+        throw 'process not found'
       }
 
       this.board = {

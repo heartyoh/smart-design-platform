@@ -1,12 +1,13 @@
 import '../board-viewer/board-viewer'
 import './things-scene-components.import'
 
-import { PageView, client, gqlContext, store } from '@things-factory/shell'
+import gql from 'graphql-tag'
 import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { buildLabelPrintCommand } from '@things-factory/barcode-base'
-import { connect } from 'pwa-helpers/connect-mixin.js'
-import gql from 'graphql-tag'
+import { client, gqlContext, PageView, store } from '@things-factory/shell'
+
 import { provider } from '../board-provider'
 
 const NOOP = () => {}
@@ -75,7 +76,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
       /* can set the page title with the 'title' parameter. */
       title:
         this.lifecycle.params['title'] ||
-        (this._board ? this._board.name : this._showSpinner ? 'Fetching board...' : 'Board Not Found')
+        (this._board ? this._board.name : this._showSpinner ? 'Fetching process...' : 'Process Not Found')
     }
   }
 
@@ -146,7 +147,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
 
       if (!board) {
         this._board = null
-        throw 'board not found'
+        throw 'process not found'
       }
 
       this._board = {
