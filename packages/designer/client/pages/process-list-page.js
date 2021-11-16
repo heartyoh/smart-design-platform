@@ -28,31 +28,61 @@ class ProcessListPage extends localize(i18next)(PageView) {
 
       #headroom {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
         padding: var(--padding-default);
-        border-bottom: 3px solid var(--primary-color);
+        border-top: 2px solid rgba(0, 0, 0, 0.2);
+        background-color: var(--theme-white-color);
+        box-shadow: var(--box-shadow);
+      }
+
+      #filters {
+        flex: 1;
+      }
+      #mode {
+        width: 100px;
+      }
+      #add {
+        width: 55px;
+        text-align: center;
       }
 
       #modes > * {
         padding: var(--padding-narrow);
-        font-size: 1.5em;
-        opacity: 0.7;
+        font-size: 1em;
+        opacity: 0.5;
+        color: var(--primary-text-color);
+        cursor: pointer;
       }
 
       #modes > mwc-icon[active] {
-        border: 1px solid var(--focus-background-color);
         border-radius: 9px;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(var(--primary-color-rgb), 0.05);
         opacity: 1;
+        color: var(--secondary-text-color);
+        cursor: default;
+      }
+      #modes > mwc-icon:hover {
+        opacity: 1;
+        color: var(--secondary-text-color);
       }
 
-      #filters {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-        width: calc(100% - 20px);
+      #add button {
+        background-color: var(--status-success-color);
+        border: 0;
+        border-radius: 50%;
+        padding: 5px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+      }
+      #add button:hover {
+        background-color: var(--focus-background-color);
+        box-shadow: var(--box-shadow);
+      }
+      #add button mwc-icon {
+        font-size: 2em;
+        color: var(--theme-white-color);
       }
     `
   }
@@ -81,12 +111,6 @@ class ProcessListPage extends localize(i18next)(PageView) {
     return html`
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler}>
         <div slot="headroom" id="headroom">
-          <div id="modes">
-            <mwc-icon @click=${() => (this.mode = 'GRID')} ?active=${mode == 'GRID'}>grid_on</mwc-icon>
-            <mwc-icon @click=${() => (this.mode = 'LIST')} ?active=${mode == 'LIST'}>format_list_bulleted</mwc-icon>
-            <mwc-icon @click=${() => (this.mode = 'CARD')} ?active=${mode == 'CARD'}>apps</mwc-icon>
-          </div>
-
           <div id="filters">
             <mwc-icon
               @click=${e => {
@@ -139,6 +163,16 @@ class ProcessListPage extends localize(i18next)(PageView) {
                 <mwc-icon slot="icon" style="width: 20px;height: 20px;"></mwc-icon>
               </popup-menuitem>
             </popup-menu>
+          </div>
+
+          <div id="modes">
+            <mwc-icon @click=${() => (this.mode = 'GRID')} ?active=${mode == 'GRID'}>grid_on</mwc-icon>
+            <mwc-icon @click=${() => (this.mode = 'LIST')} ?active=${mode == 'LIST'}>format_list_bulleted</mwc-icon>
+            <mwc-icon @click=${() => (this.mode = 'CARD')} ?active=${mode == 'CARD'}>apps</mwc-icon>
+          </div>
+
+          <div id="add">
+            <button><mwc-icon>add</mwc-icon></button>
           </div>
         </div>
       </ox-grist>

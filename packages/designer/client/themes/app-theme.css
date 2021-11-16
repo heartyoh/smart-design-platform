@@ -19,7 +19,7 @@ body {
   --opacity-light-color: rgba(255, 255, 255, 0.8);
 
   /* status color */
-  --status-success-color: #35a24a;
+  --status-success-color: #42b959;
   --status-warning-color: #ee8d03;
   --status-danger-color: #d14946;
   --status-info-color: #267ac0;
