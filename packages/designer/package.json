@@ -42,7 +42,7 @@
     "@smart-design-platform/process-modeller": "^0.0.7",
     "@things-factory/api": "^4.0.0",
     "@things-factory/apptool-ui": "^4.0.0",
-    "@things-factory/auth-ui": "^4.0.0",
+    "@things-factory/auth-ui": "^4.0.2",
     "@things-factory/board-service": "^4.0.0",
     "@things-factory/context-ui": "^4.0.0",
     "@things-factory/export-ui": "^4.0.0",
