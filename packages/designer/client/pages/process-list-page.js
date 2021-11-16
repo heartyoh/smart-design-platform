@@ -1,12 +1,27 @@
 import '@operato/popup'
 import '@operato/data-grist'
+import '@smart-design-platform/process-modeller'
+import '../viewparts/board-info'
 
 import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
 
-import { i18next, localize } from '@things-factory/i18n-base'
-import { PageView } from '@things-factory/shell'
+import { i18next } from '@things-factory/i18n-base'
+import { openOverlay, openPopup } from '@things-factory/layout-base'
+import { InfiniteScrollable, navigate, PageView, store } from '@things-factory/shell'
+import { sleep } from '@things-factory/utils'
 
-class ProcessListPage extends localize(i18next)(PageView) {
+import {
+  createBoard,
+  deleteBoard,
+  fetchBoardList,
+  fetchFavoriteBoardList,
+  fetchGroupList,
+  updateBoard
+} from '../graphql'
+import { notify } from '../utils/notify'
+
+class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   static get styles() {
     return css`
       :host {
@@ -84,6 +99,18 @@ class ProcessListPage extends localize(i18next)(PageView) {
         font-size: 2em;
         color: var(--theme-white-color);
       }
+
+      oops-spinner {
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      oops-spinner[show] {
+        display: block;
+      }
     `
   }
 
@@ -91,8 +118,24 @@ class ProcessListPage extends localize(i18next)(PageView) {
     return {
       config: Object,
       data: Object,
-      mode: String
+      mode: String,
+      groupId: String,
+      groups: Array,
+      boards: Array,
+      favorites: Array,
+      _page: Number,
+      _total: Number,
+      _showSpinner: Boolean
     }
+  }
+
+  constructor() {
+    super()
+
+    this._page = 1
+    this._total = 0
+
+    this._infiniteScrollOptions.limit = 30
   }
 
   get context() {
@@ -109,7 +152,7 @@ class ProcessListPage extends localize(i18next)(PageView) {
     const mode = this.mode || 'CARD'
 
     return html`
-      <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler}>
+      <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
         <div slot="headroom" id="headroom">
           <div id="filters">
             <mwc-icon
@@ -172,46 +215,34 @@ class ProcessListPage extends localize(i18next)(PageView) {
           </div>
 
           <div id="add">
-            <button><mwc-icon>add</mwc-icon></button>
+            <button><mwc-icon @click=${e => this.onCreateBoard()}>add</mwc-icon></button>
           </div>
         </div>
       </ox-grist>
+
+      <oops-spinner ?show=${this._showSpinner}></oops-spinner>
     `
   }
 
   async fetchHandler({ page, limit, sorters = [] }) {
-    var total = 120993
-    var start = (page - 1) * limit
-
-    await new Promise(resolve => setTimeout(resolve, 500))
-
+    const { items: records, total } = await this.getBoards({ page, limit, sorters })
     return {
       total,
-      records: Array(limit * page > total ? total % limit : limit)
-        .fill()
-        .map((item, idx) => {
-          return {
-            id: idx,
-            name: idx % 2 ? `냉온수 히트펌프 공정` : `흡수식 냉동기/냉온수기`,
-            description: idx % 2 ? `냉온수 히트펌프 공정` : `흡수식 냉동기/냉온수기 공정`,
-            active: Math.round(Math.random() * 2) % 2 ? true : false,
-            image: [
-              `/assets/images/sample-thumb1.png`,
-              `/assets/images/sample-thumb2.png`,
-              `/assets/images/sample-thumb3.png`
-            ][idx % 3],
-            createdAt: Date.now(),
-            updatedAt: Date.now()
-          }
-        })
+      records
     }
   }
 
   get gristConfig() {
+    const images = [
+      `/assets/images/sample-thumb1.png`,
+      `/assets/images/sample-thumb2.png`,
+      `/assets/images/sample-thumb3.png`
+    ]
+
     return {
       list: {
         thumbnail: function (record, rowIndex) {
-          return html` <img src=${record.image} style="width: 100%; height: 100%;" /> `
+          return html` <img src=${images[rowIndex % 3]} style="width: 100%; height: 100%;" /> `
         },
         fields: ['name', 'description'],
         details: ['updatedAt']
@@ -230,7 +261,9 @@ class ProcessListPage extends localize(i18next)(PageView) {
           gutterName: 'button',
           icon: 'star_border',
           handlers: {
-            click: 'record-view'
+            click: (columns, data, column, record, rowIndex) => {
+              this.onInfoBoard(record.id)
+            }
           }
         },
         {
@@ -238,7 +271,9 @@ class ProcessListPage extends localize(i18next)(PageView) {
           gutterName: 'button',
           icon: 'drive_file_rename_outline',
           handlers: {
-            click: 'record-view'
+            click: (columns, data, column, record, rowIndex) => {
+              this.onInfoBoard(record.id)
+            }
           }
         },
         {
@@ -254,7 +289,8 @@ class ProcessListPage extends localize(i18next)(PageView) {
             editable: true,
             align: 'left'
           },
-          width: 200
+          width: 200,
+          sortable: true
         },
         {
           type: 'string',
@@ -313,24 +349,21 @@ class ProcessListPage extends localize(i18next)(PageView) {
           multiple: true
         },
         handlers: {
-          click: 'select-row-toggle'
+          // click: 'select-row-toggle'
         },
         classifier: function (record, rowIndex) {
-          const rate = record['rate']
-          const emphasized =
-            rate < 10 ? ['black', 'white'] : rate < 25 ? ['yellow', 'blue'] : rate < 40 ? ['cyan', 'red'] : undefined
-          return {
-            emphasized
-          }
+          // const rate = record['rate']
+          // const emphasized =
+          //   rate < 10 ? ['black', 'white'] : rate < 25 ? ['yellow', 'blue'] : rate < 40 ? ['cyan', 'red'] : undefined
+          // return {
+          //   emphasized
+          // }
         }
       },
       sorters: [
         {
           name: 'name',
-          desc: true
-        },
-        {
-          name: 'email'
+          desc: false
         }
       ],
       pagination: {
@@ -350,6 +383,161 @@ class ProcessListPage extends localize(i18next)(PageView) {
 
     this.page = 1
     this.limit = 50
+  }
+
+  async onInfoBoard(boardId) {
+    openOverlay('viewpart-info', {
+      template: html`
+        <board-info
+          .boardId=${boardId}
+          .groupId=${this.groupId}
+          @update-board=${e => this.onUpdateBoard(e.detail)}
+          @delete-board=${e => this.onDeleteBoard(e.detail)}
+          @join-playgroup=${e => this.onJoinPlayGroup(e.detail)}
+          @leave-playgroup=${e => this.onLeavePlayGroup(e.detail)}
+        ></board-info>
+      `
+    })
+  }
+
+  async onCreateBoard(board) {
+    if (this.popup) {
+      delete this.popup
+    }
+
+    /*
+     * 기존 설정된 이미지가 선택된 상태가 되게 하기 위해서는 selector에 value를 전달해줄 필요가 있음.
+     * 주의. value는 object일 수도 있고, string일 수도 있다.
+     * string인 경우에는 해당 보드의 id로 해석한다.
+     */
+    var template = html`
+      <process-creation-popup
+        .defaultGroup=${this.defaultGroup}
+        .groups=${this.groups}
+        @create-process=${async e => {
+          try {
+            var { name, description, groupId } = e.detail
+            var board = {
+              name,
+              description,
+              groupId
+            }
+
+            if (!board.model) {
+              board.model = {
+                width: 800,
+                height: 600
+              }
+            }
+
+            const { createBoard: created } = await createBoard(board)
+
+            this.popup && this.popup.close()
+
+            await sleep(100)
+
+            navigate(`process-modeller-page/${created.id}`)
+
+            notify('info', 'new process created')
+          } catch (ex) {
+            console.error(ex)
+            notify('error', ex, ex)
+          }
+        }}
+      ></process-creation-popup>
+    `
+
+    this.popup = openPopup(template, {
+      backdrop: true,
+      size: 'large',
+      title: i18next.t('title.create-process')
+    })
+  }
+
+  async onUpdateBoard(board) {
+    try {
+      await updateBoard(board)
+      notify('info', 'saved')
+    } catch (ex) {
+      notify('error', ex, ex)
+    }
+
+    this.refreshBoards()
+  }
+
+  async onDeleteBoard(boardId) {
+    try {
+      await deleteBoard(boardId)
+      notify('info', 'deleted')
+    } catch (ex) {
+      notify('error', ex, ex)
+    }
+
+    this.refreshBoards()
+  }
+
+  async refresh() {
+    this.groups = (await fetchGroupList()).groups.items
+
+    if (this.groups) {
+      await this.refreshBoards()
+    }
+  }
+
+  async getBoards({ page = 1, limit = this._infiniteScrollOptions.limit, sorters = [] } = {}) {
+    if (this.groupId && this.groupId == 'favor')
+      return await this.getFavoriteBoards({
+        page,
+        limit
+      })
+
+    var listParam = {
+      filters: this.groupId
+        ? [
+            {
+              name: 'group_id',
+              operator: 'eq',
+              value: this.groupId
+            }
+          ]
+        : [],
+      sortings: sorters,
+      pagination: {
+        page,
+        limit
+      }
+    }
+
+    return (await fetchBoardList(listParam)).boards
+  }
+
+  async getFavoriteBoards({ page = 1, limit = this._infiniteScrollOptions.limit } = {}) {
+    var listParam = {
+      pagination: {
+        page,
+        limit
+      }
+    }
+
+    return (await fetchFavoriteBoardList(listParam)).favoriteBoards
+  }
+
+  async refreshBoards() {
+    if (!this.groups) {
+      await this.refresh()
+      return
+    }
+
+    this._showSpinner = true
+
+    var { items: boards, total } = await this.getBoards()
+    this.boards = boards
+    this._page = 1
+    this._total = total
+
+    this.updateContext()
+
+    this._showSpinner = false
   }
 }
 

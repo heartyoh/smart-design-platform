@@ -121,7 +121,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
   get context() {
     return {
       title: this.board ? this.boardName : this._showSpinner ? 'Fetching process...' : 'Process Not Found',
-      help: 'board-modeller/modeller',
+      help: 'process-modeller/modeller',
       widebleed: true
     }
   }

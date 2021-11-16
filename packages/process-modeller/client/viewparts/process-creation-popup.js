@@ -4,7 +4,8 @@ import '@material/mwc-select'
 import '@material/mwc-list/mwc-list-item'
 import '@material/mwc-button'
 
-import { LitElement, css, html } from 'lit-element'
+import { css, html, LitElement } from 'lit-element'
+
 import { i18next, localize } from '@things-factory/i18n-base'
 
 export class BoardCreationPopup extends localize(i18next)(LitElement) {
@@ -78,7 +79,7 @@ export class BoardCreationPopup extends localize(i18next)(LitElement) {
     }
 
     this.dispatchEvent(
-      new CustomEvent('create-board', {
+      new CustomEvent('create-process', {
         detail: {
           name,
           description,

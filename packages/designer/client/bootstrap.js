@@ -1,17 +1,18 @@
 import '@things-factory/notification' /* for notification-badge */
 import '@things-factory/auth-ui' /* for domain-switch */
 
-import { TOOL_POSITION, VIEWPART_POSITION, appendViewpart, toggleOverlay } from '@things-factory/layout-base'
-import { navigate, store } from '@things-factory/shell'
-import { setupMenuPart, updateMenuTemplate } from '@things-factory/lite-menu'
+import { html } from 'lit-html'
 
-import { ADD_MORENDA } from '@things-factory/more-base'
-import { ADD_SETTING } from '@things-factory/setting-base'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 import { auth } from '@things-factory/auth-base'
-import { getMenuTemplate } from './menu'
-import { html } from 'lit-html'
 import { setAuthManagementMenus } from '@things-factory/auth-ui'
+import { appendViewpart, toggleOverlay, TOOL_POSITION, VIEWPART_POSITION } from '@things-factory/layout-base'
+import { setupMenuPart, updateMenuTemplate } from '@things-factory/lite-menu'
+import { ADD_MORENDA } from '@things-factory/more-base'
+import { ADD_SETTING } from '@things-factory/setting-base'
+import { navigate, store } from '@things-factory/shell'
+
+import { getMenuTemplate } from './menu'
 
 console.log(
   `%c
@@ -118,6 +119,17 @@ export default function bootstrap() {
         `,
         position: TOOL_POSITION.REAR
       }
+    })
+
+    /* append viewpart anchor to asidebar */
+    appendViewpart({
+      name: 'viewpart-info',
+      viewpart: {
+        show: false,
+        hovering: 'edge',
+        backdrop: true
+      },
+      position: VIEWPART_POSITION.ASIDEBAR
     })
 
     appendViewpart({
