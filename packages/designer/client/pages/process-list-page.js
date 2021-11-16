@@ -121,21 +121,9 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       mode: String,
       groupId: String,
       groups: Array,
-      boards: Array,
       favorites: Array,
-      _page: Number,
-      _total: Number,
       _showSpinner: Boolean
     }
-  }
-
-  constructor() {
-    super()
-
-    this._page = 1
-    this._total = 0
-
-    this._infiniteScrollOptions.limit = 30
   }
 
   get context() {
@@ -225,7 +213,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   }
 
   async fetchHandler({ page, limit, sorters = [] }) {
+    this._showSpinner = true
+
     const { items: records, total } = await this.getBoards({ page, limit, sorters })
+
+    this._showSpinner = false
+
     return {
       total,
       records
@@ -314,12 +307,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           record: {
             editable: true
           },
-          handlers: {
-            dblclick: () => {
-              const grist = document.querySelector('ox-grist')
-              console.log(grist.dirtyRecords)
-            }
-          },
           sortable: true,
           width: 60
         },
@@ -348,17 +335,8 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         selectable: {
           multiple: true
         },
-        handlers: {
-          // click: 'select-row-toggle'
-        },
-        classifier: function (record, rowIndex) {
-          // const rate = record['rate']
-          // const emphasized =
-          //   rate < 10 ? ['black', 'white'] : rate < 25 ? ['yellow', 'blue'] : rate < 40 ? ['cyan', 'red'] : undefined
-          // return {
-          //   emphasized
-          // }
-        }
+        handlers: {},
+        classifier: function (record, rowIndex) {}
       },
       sorters: [
         {
@@ -400,7 +378,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     })
   }
 
-  async onCreateBoard(board) {
+  async onCreateBoard() {
     if (this.popup) {
       delete this.popup
     }
@@ -484,7 +462,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     }
   }
 
-  async getBoards({ page = 1, limit = this._infiniteScrollOptions.limit, sorters = [] } = {}) {
+  async getBoards({ page = 1, limit = 30, sorters = [] } = {}) {
     if (this.groupId && this.groupId == 'favor')
       return await this.getFavoriteBoards({
         page,
@@ -511,7 +489,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     return (await fetchBoardList(listParam)).boards
   }
 
-  async getFavoriteBoards({ page = 1, limit = this._infiniteScrollOptions.limit } = {}) {
+  async getFavoriteBoards({ page = 1, limit = 30 } = {}) {
     var listParam = {
       pagination: {
         page,
@@ -528,16 +506,9 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       return
     }
 
-    this._showSpinner = true
-
-    var { items: boards, total } = await this.getBoards()
-    this.boards = boards
-    this._page = 1
-    this._total = total
+    this.grist.fetch()
 
     this.updateContext()
-
-    this._showSpinner = false
   }
 }
 
