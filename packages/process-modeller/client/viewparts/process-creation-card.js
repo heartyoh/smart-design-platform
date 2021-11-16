@@ -1,9 +1,9 @@
 import '@material/mwc-icon'
 import './process-creation-popup'
 
-import { LitElement, css, html } from 'lit-element'
-import { i18next, localize } from '@things-factory/i18n-base'
+import { css, html, LitElement } from 'lit-element'
 
+import { i18next, localize } from '@things-factory/i18n-base'
 import { openPopup } from '@things-factory/layout-base'
 
 export class BoardCreationCard extends localize(i18next)(LitElement) {
@@ -84,7 +84,7 @@ export class BoardCreationCard extends localize(i18next)(LitElement) {
     this.popup = openPopup(template, {
       backdrop: true,
       size: 'large',
-      title: i18next.t('title.create-board')
+      title: i18next.t('title.create-process')
     })
   }
 

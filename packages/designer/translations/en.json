@@ -1,3 +1,17 @@
 {
-  "title.create-process": "Create Process"
+  "label.information": "information",
+  "label.play-group": "play group",
+  "label.board": "board",
+  "label.player": "player",
+  "label.connection": "connection",
+  "label.font": "font",
+  "error.license token not valid": "Your license token data is not valid!",
+  "error.count over license limit": "Your board or domain count over license limit!",
+  "error.your license is not valid in this host": "Your license is not valid in this host!",
+  "error.your license is expired! expired date is [x]": "Your license is expired! Expired date is [{x}]",
+  "error.license key is empty": "License Key is empty!",
+  "error.license key is not certified": "License Key is not certified!",
+  "error.invalid license key": "Invalid license key!",
+  "error.license expiration notice": "License Expiration Notice",
+  "error.your license due date is x, please renewal your license!": "Your license due date is {x}, please renewal your license!"
 }
