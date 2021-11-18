@@ -45,7 +45,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: var(--padding-default);
+        padding: var(--padding-default) var(--padding-wide);
         border-top: 2px solid rgba(0, 0, 0, 0.2);
         background-color: var(--theme-white-color);
         box-shadow: var(--box-shadow);
@@ -53,13 +53,14 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
 
       #filters {
         flex: 1;
+        --mdc-icon-size: 20px;
       }
       #mode {
         width: 100px;
       }
       #add {
-        width: 55px;
-        text-align: center;
+        width: 50px;
+        text-align: right;
       }
 
       #modes > * {
@@ -98,6 +99,25 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       #add button mwc-icon {
         font-size: 2em;
         color: var(--theme-white-color);
+      }
+      #filters [type='text'] {
+        background-color: transparent;
+        border: 0;
+        border-bottom: var(--border-dark-color);
+        margin-left: -35px;
+        padding: var(--padding-narrow) var(--padding-narrow) 7px 25px;
+        font-size: var(--fontsize-large);
+      }
+      #filters [type='text']:focus {
+        outline: none;
+      }
+      #filters mwc-icon {
+        position: relative;
+        top: 3px;
+        color: var(--secondary-color);
+      }
+      #filters * {
+        margin-right: var(--margin-default);
       }
 
       oops-spinner {
@@ -143,6 +163,8 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
         <div slot="headroom" id="headroom">
           <div id="filters">
+            <mwc-icon>search</mwc-icon>
+            <input type="text" />
             <mwc-icon
               @click=${e => {
                 const target = e.currentTarget
