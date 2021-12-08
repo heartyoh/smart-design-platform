@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import BURNER_IMAGE from '../assets/icon-burner-big.png'
+import PLC_IMAGE from '../assets/icon-plc-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Burner extends RectPath(Shape) {
+export default class Plc extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Burner.IMAGE) {
-      Burner.IMAGE = new Image()
-      Burner.IMAGE.src = BURNER_IMAGE
+    if (!Plc.IMAGE) {
+      Plc.IMAGE = new Image()
+      Plc.IMAGE.src = PLC_IMAGE
     }
 
-    return Burner.IMAGE
+    return Plc.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Burner extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Burner.image, 0, 0, width, height)
+    this.drawImage(ctx, Plc.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('burner', Burner)
+Component.register('plc', Plc)

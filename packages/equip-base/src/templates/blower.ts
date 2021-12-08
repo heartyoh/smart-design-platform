@@ -1,13 +1,13 @@
-import icon from '../assets/icon-pump.png'
+import icon from '../../assets/icon-blower.png';
 
 export default {
-  type: 'pump',
-  description: 'pump',
+  type: 'blower',
+  description: 'blower',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'pump',
+    type: 'blower',
     left: 10,
     top: 10,
     width: 100,

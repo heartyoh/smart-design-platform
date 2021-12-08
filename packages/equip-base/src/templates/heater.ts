@@ -1,13 +1,13 @@
-import icon from '../assets/icon-plc.png'
+import icon from '../../assets/icon-heater.png';
 
 export default {
-  type: 'plc',
-  description: 'plc',
+  type: 'heater',
+  description: 'heater',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'plc',
+    type: 'heater',
     left: 10,
     top: 10,
     width: 100,

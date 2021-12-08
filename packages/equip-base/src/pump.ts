@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import HPUMP_IMAGE from '../assets/icon-hpump-big.png'
+import PUMP_IMAGE from '../assets/icon-pump-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Hpump extends RectPath(Shape) {
+export default class Pump extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Hpump.IMAGE) {
-      Hpump.IMAGE = new Image()
-      Hpump.IMAGE.src = HPUMP_IMAGE
+    if (!Pump.IMAGE) {
+      Pump.IMAGE = new Image()
+      Pump.IMAGE.src = PUMP_IMAGE
     }
 
-    return Hpump.IMAGE
+    return Pump.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Hpump extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Hpump.image, 0, 0, width, height)
+    this.drawImage(ctx, Pump.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('hpump', Hpump)
+Component.register('pump', Pump)

@@ -1,13 +1,13 @@
-import icon from '../assets/icon-dryer.png'
+import icon from '../../assets/icon-burner.png';
 
 export default {
-  type: 'dryer',
-  description: 'dryer',
+  type: 'burner',
+  description: 'burner',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'dryer',
+    type: 'burner',
     left: 10,
     top: 10,
     width: 100,

@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 import { css, html } from 'lit-element'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
-import { ADD_MODELLER_EDITORS } from '@things-factory/modeller-ui'
+import { OxPropertyEditor } from '@operato/property-editor'
 import { client, gqlContext, PageView, store } from '@things-factory/shell'
 import { isMacOS, togglefullscreen } from '@things-factory/utils'
 
@@ -39,10 +39,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
         })
     }
 
-    store.dispatch({
-      type: ADD_MODELLER_EDITORS,
-      editors: addedEditors
-    })
+    OxPropertyEditor.register(addedEditors)
 
     this.boardName = ''
     this.model = {
@@ -58,7 +55,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
     this.componentGroupList = []
     this.fonts = []
     this.board = null
-    this.propertyEditor = []
   }
 
   static get properties() {
@@ -75,7 +71,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
       scene: Object,
       componentGroupList: Array,
       fonts: Array,
-      propertyEditor: Array,
       _showSpinner: Boolean
     }
   }
@@ -226,7 +221,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
 
   stateChanged(state) {
     this.baseUrl = state.route.rootPath
-    this.propertyEditor = state.modeller.editors
 
     this.componentGroupList = state.board.templates
     this.fonts = state.font
@@ -280,7 +274,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
             @save-model=${e => this.saveBoard()}
             .componentGroupList=${this.componentGroupList}
             .fonts=${this.fonts}
-            .propertyEditor=${this.propertyEditor}
             .hideProperty=${this.hideProperty}
           >
           </process-modeller>

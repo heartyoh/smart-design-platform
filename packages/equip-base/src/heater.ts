@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import DRYER_IMAGE from '../assets/icon-dryer-big.png'
+import HEATER_IMAGE from '../assets/icon-heater-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Dryer extends RectPath(Shape) {
+export default class Heater extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Dryer.IMAGE) {
-      Dryer.IMAGE = new Image()
-      Dryer.IMAGE.src = DRYER_IMAGE
+    if (!Heater.IMAGE) {
+      Heater.IMAGE = new Image()
+      Heater.IMAGE.src = HEATER_IMAGE
     }
 
-    return Dryer.IMAGE
+    return Heater.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Dryer extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Dryer.image, 0, 0, width, height)
+    this.drawImage(ctx, Heater.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('dryer', Dryer)
+Component.register('heater', Heater)

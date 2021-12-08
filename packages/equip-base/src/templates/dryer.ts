@@ -1,13 +1,13 @@
-import icon from '../assets/icon-hx.png'
+import icon from '../../assets/icon-dryer.png';
 
 export default {
-  type: 'hx',
-  description: 'hx',
+  type: 'dryer',
+  description: 'dryer',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'hx',
+    type: 'dryer',
     left: 10,
     top: 10,
     width: 100,

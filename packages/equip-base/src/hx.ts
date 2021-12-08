@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import FURNACE_IMAGE from '../assets/icon-furnace-big.png'
+import HX_IMAGE from '../assets/icon-hx-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Furnace extends RectPath(Shape) {
+export default class Hx extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Furnace.IMAGE) {
-      Furnace.IMAGE = new Image()
-      Furnace.IMAGE.src = FURNACE_IMAGE
+    if (!Hx.IMAGE) {
+      Hx.IMAGE = new Image()
+      Hx.IMAGE.src = HX_IMAGE
     }
 
-    return Furnace.IMAGE
+    return Hx.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Furnace extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Furnace.image, 0, 0, width, height)
+    this.drawImage(ctx, Hx.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('furnace', Furnace)
+Component.register('hx', Hx)

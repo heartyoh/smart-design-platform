@@ -1,13 +1,13 @@
-import icon from '../assets/icon-burner.png'
+import icon from '../../assets/icon-hpump.png';
 
 export default {
-  type: 'burner',
-  description: 'burner',
+  type: 'hpump',
+  description: 'hpump',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'burner',
+    type: 'hpump',
     left: 10,
     top: 10,
     width: 100,

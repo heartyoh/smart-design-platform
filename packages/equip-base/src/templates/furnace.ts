@@ -1,13 +1,13 @@
-import icon from '../assets/icon-blower.png'
+import icon from '../../assets/icon-furnace.png';
 
 export default {
-  type: 'blower',
-  description: 'blower',
+  type: 'furnace',
+  description: 'furnace',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'blower',
+    type: 'furnace',
     left: 10,
     top: 10,
     width: 100,

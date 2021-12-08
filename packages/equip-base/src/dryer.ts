@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import BLOWER_IMAGE from '../assets/icon-blower-big.png'
+import DRYER_IMAGE from '../assets/icon-dryer-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Blower extends RectPath(Shape) {
+export default class Dryer extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Blower.IMAGE) {
-      Blower.IMAGE = new Image()
-      Blower.IMAGE.src = BLOWER_IMAGE
+    if (!Dryer.IMAGE) {
+      Dryer.IMAGE = new Image()
+      Dryer.IMAGE.src = DRYER_IMAGE
     }
 
-    return Blower.IMAGE
+    return Dryer.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Blower extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Blower.image, 0, 0, width, height)
+    this.drawImage(ctx, Dryer.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('blower', Blower)
+Component.register('dryer', Dryer)

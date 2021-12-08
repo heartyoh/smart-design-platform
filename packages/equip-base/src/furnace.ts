@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene'
+import { Component, RectPath, Shape } from '@hatiolab/things-scene';
 
-import HEATER_IMAGE from '../assets/icon-heater-big.png'
+import FURNACE_IMAGE from '../assets/icon-furnace-big.png';
 
 const NATURE = {
   mutable: false,
@@ -13,21 +13,23 @@ const NATURE = {
   properties: []
 }
 
-export default class Heater extends RectPath(Shape) {
+export default class Furnace extends RectPath(Shape) {
+  static IMAGE: HTMLImageElement
+  
   static get nature() {
     return NATURE
   }
 
   static get image() {
-    if (!Heater.IMAGE) {
-      Heater.IMAGE = new Image()
-      Heater.IMAGE.src = HEATER_IMAGE
+    if (!Furnace.IMAGE) {
+      Furnace.IMAGE = new Image()
+      Furnace.IMAGE.src = FURNACE_IMAGE
     }
 
-    return Heater.IMAGE
+    return Furnace.IMAGE
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     var { left, top, width, height } = this.bounds
 
     ctx.translate(left, top)
@@ -44,12 +46,14 @@ export default class Heater extends RectPath(Shape) {
     this.drawFill(ctx)
 
     ctx.beginPath()
-    this.drawImage(ctx, Heater.image, 0, 0, width, height)
+    this.drawImage(ctx, Furnace.image, 0, 0, width, height)
 
     ctx.translate(-left, -top)
   }
 
-  get controls() {}
+  get controls() {
+    return []
+  }
 }
 
-Component.register('heater', Heater)
+Component.register('furnace', Furnace)

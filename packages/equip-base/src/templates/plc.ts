@@ -1,13 +1,13 @@
-import icon from '../assets/icon-hpump.png'
+import icon from '../../assets/icon-plc.png';
 
 export default {
-  type: 'hpump',
-  description: 'hpump',
+  type: 'plc',
+  description: 'plc',
   group: 'shape',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
   icon,
   model: {
-    type: 'hpump',
+    type: 'plc',
     left: 10,
     top: 10,
     width: 100,
