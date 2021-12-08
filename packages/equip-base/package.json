@@ -16,6 +16,6 @@
     "directory": "packages/equip-base"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^3.0.0-beta.0"
+    "@hatiolab/things-scene": "^3.0.0-beta.1"
   }
 }
