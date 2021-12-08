@@ -1,3 +1,5 @@
+outsources/
+
 packages/**/dist/
 packages/**/dist-client/
 packages/**/dist-server/

@@ -1,11 +1,11 @@
 import '@material/mwc-fab'
 import '@polymer/paper-dialog/paper-dialog'
-import '../board-viewer/board-viewer'
+import '@operato/board' // ox-board-viewer
 import './scene-viewer/process-scene-viewer'
 import './component-toolbar/component-toolbar'
 import './property-sidebar/property-sidebar'
 
-import { LitElement, css, html } from 'lit-element'
+import { css, html, LitElement } from 'lit-element'
 
 export class BoardModeller extends LitElement {
   constructor() {
@@ -189,7 +189,7 @@ export class BoardModeller extends LitElement {
      * https://github.com/PolymerElements/paper-dialog/issues/152
      **/
 
-    var preview = document.createElement('board-viewer')
+    var preview = document.createElement('ox-board-viewer')
 
     preview.style.width = '100%'
     preview.style.height = '100%'

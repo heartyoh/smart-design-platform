@@ -2,7 +2,8 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "outsources/*"
   ],
   "repository": {
     "type": "git",
@@ -27,16 +28,20 @@
     "release": "yarn lint:changelogs && lerna publish",
     "release:force": "yarn lint:changelogs && lerna publish --force-publish=*",
     "release-beta": "lerna publish --dist-tag beta",
-    "clean": "rimraf './packages/*/dist*'",
+    "clean": "rimraf './{packages, outsources}/*/dist*' './{packages, outsources}/**/*.tsbuildinfo'",
     "generate": "plop",
     "generate:package": "plop package && yarn plop docs && prettier --write \"./packages/tsconfig.json\"",
     "tophat": "tophat",
     "docs": "lerna run docs"
   },
   "dependencies": {
+    "@hatiolab/things-scene": "^3.0.0-beta.1",
     "lodash": "^4.17.21",
     "plop": "^2.7.4",
     "pluralize": "^8.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "@hatiolab/things-scene": "^3.0.0-beta.1"
+  }
 }

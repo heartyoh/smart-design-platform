@@ -1,4 +1,4 @@
-import '../board-viewer/board-viewer'
+import '@operato/board'
 import './things-scene-components.import'
 
 import gql from 'graphql-tag'
@@ -36,7 +36,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
           position: relative;
         }
 
-        board-viewer {
+        ox-board-viewer {
           flex: 1;
         }
 
@@ -93,14 +93,14 @@ export class ProcessViewerPage extends connect(store)(PageView) {
           ></oops-note>
         `
       : html`
-          <board-viewer .board=${this._board} .provider=${provider}></board-viewer>
+          <ox-board-viewer .board=${this._board} .provider=${provider}></ox-board-viewer>
           <oops-spinner ?show=${this._showSpinner}></oops-spinner>
         `
   }
 
   updated(changes) {
     if (changes.has('_boardId')) {
-      var boardViewerElement = this.shadowRoot.querySelector('board-viewer')
+      var boardViewerElement = this.shadowRoot.querySelector('ox-board-viewer')
       boardViewerElement && boardViewerElement.closeScene()
       this.refresh()
     }
@@ -111,7 +111,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
       this._boardId = lifecycle.resourceId
     } else {
       this._boardId = null
-      let boardViewer = this.shadowRoot.querySelector('board-viewer')
+      let boardViewer = this.shadowRoot.querySelector('ox-board-viewer')
       boardViewer && boardViewer.closeScene()
     }
   }
@@ -173,7 +173,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
   async getGrf() {
     var { labelRotation } = this._board.model
 
-    var { width, height, data } = (await this.shadowRoot.querySelector('board-viewer').getSceneImageData()) || {}
+    var { width, height, data } = (await this.shadowRoot.querySelector('ox-board-viewer').getSceneImageData()) || {}
     if (!width) {
       throw 'Cannot get SceneImageData...'
     }
@@ -182,7 +182,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
   }
 
   async printTrick(image) {
-    await this.renderRoot.querySelector('board-viewer').printTrick(image)
+    await this.renderRoot.querySelector('ox-board-viewer').printTrick(image)
   }
 }
 
