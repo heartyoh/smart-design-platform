@@ -1,11 +1,12 @@
 import '@material/mwc-fab'
-import '@polymer/paper-dialog/paper-dialog'
 import '@operato/board' // ox-board-viewer
 import './scene-viewer/process-scene-viewer'
 import './component-toolbar/component-toolbar'
 import './property-sidebar/property-sidebar'
 
-import { css, html, LitElement } from 'lit-element'
+import { LitElement, css, html } from 'lit-element'
+
+import { OxPopup } from '@operato/popup'
 
 export class BoardModeller extends LitElement {
   constructor() {
@@ -63,6 +64,7 @@ export class BoardModeller extends LitElement {
           flex-direction: row;
           height: 100%;
           overflow: hidden;
+          position: relative;
         }
 
         #scene-wrap {
@@ -83,6 +85,26 @@ export class BoardModeller extends LitElement {
           position: absolute;
           right: 15px;
           bottom: 15px;
+        }
+
+        ox-popup {
+          width: 90%;
+          height: 90%;
+          left: 50%;
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          background: var(--secondary-color, black);
+
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        ox-board-viewer {
+          width: 98%;
+          height: 98%;
+          margin: auto;
+          padding: 0;
         }
       `
     ]
@@ -182,45 +204,15 @@ export class BoardModeller extends LitElement {
   }
 
   preview() {
-    this.previewModel = this.scene?.model ? JSON.parse(JSON.stringify(this.scene.model)) : null
-
-    /*
-     * paper-dialog appears behind backdrop when inside a <app-header-layout ..
-     * https://github.com/PolymerElements/paper-dialog/issues/152
-     **/
-
-    var preview = document.createElement('ox-board-viewer')
-
-    preview.style.width = '100%'
-    preview.style.height = '100%'
-    preview.style.margin = '0'
-    preview.style.padding = '0'
-    preview.style.flex = 1
-    preview.provider = this.provider
-    preview.board = {
+    const board = {
       id: 'preview',
-      model: this.previewModel
+      model: this.scene?.model ? JSON.parse(JSON.stringify(this.scene.model)) : null
     }
-    preview.baseUrl = this.baseUrl
 
-    var dialog = document.createElement('paper-dialog')
-
-    dialog.style.width = '100%'
-    dialog.style.height = '100%'
-    dialog.style.display = 'flex'
-    dialog.style['flex-direction'] = 'column'
-    dialog.setAttribute('with-backdrop', true)
-    dialog.setAttribute('auto-fit-on-attach', true)
-    dialog.setAttribute('always-on-top', true)
-    dialog.addEventListener('iron-overlay-closed', () => {
-      preview.board = null
-      dialog.parentNode.removeChild(dialog)
+    OxPopup.open({
+      template: html` <ox-board-viewer .provider=${this.provider} .board=${board}></ox-board-viewer> `,
+      parent: this.renderRoot
     })
-
-    dialog.appendChild(preview)
-    document.body.appendChild(dialog)
-
-    dialog.open()
 
     requestAnimationFrame(() => {
       dispatchEvent(new Event('resize'))
