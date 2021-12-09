@@ -35,13 +35,13 @@
     "docs": "lerna run docs"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^3.0.0-beta.1",
+    "@hatiolab/things-scene": "^3.0.0-beta.2",
     "lodash": "^4.17.21",
     "plop": "^2.7.4",
     "pluralize": "^8.0.0"
   },
   "devDependencies": {},
   "resolutions": {
-    "@hatiolab/things-scene": "^3.0.0-beta.1"
+    "@hatiolab/things-scene": "^3.0.0-beta.2"
   }
 }

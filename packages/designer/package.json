@@ -37,8 +37,8 @@
     "docker:run": "docker run -it -p 4000:3000 hatiolab/designer:latest"
   },
   "dependencies": {
-    "@operato/data-grist": "^0.2.43",
-    "@operato/popup": "^0.2.43",
+    "@operato/data-grist": "^0.2.44",
+    "@operato/popup": "^0.2.44",
     "@smart-design-platform/process-modeller": "^0.0.7",
     "@smart-design-platform/equip-base": "^0.0.7",
     "@things-factory/api": "^4.0.12",
