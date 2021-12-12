@@ -1,19 +1,15 @@
-import '../board-modeller/process-modeller'
-import '../board-modeller/edit-toolbar'
 import './things-scene-components.import'
+import '@operato/board/dist/src/ox-board-modeller.js'
 
-import { saveAs } from 'file-saver'
-import gql from 'graphql-tag'
+import { PageView, client, gqlContext, store } from '@things-factory/shell'
 import { css, html } from 'lit-element'
-import { connect } from 'pwa-helpers/connect-mixin.js'
-
-import { OxPropertyEditor } from '@operato/property-editor'
-import { client, gqlContext, PageView, store } from '@things-factory/shell'
-import { isMacOS, togglefullscreen } from '@things-factory/utils'
 
 import { ADD_BOARD_COMPONENTS } from '../actions/board'
-import { provider } from '../board-provider'
+import { OxPropertyEditor } from '@operato/property-editor'
 import components from './things-scene-components-with-tools.import'
+import { connect } from 'pwa-helpers/connect-mixin.js'
+import gql from 'graphql-tag'
+import { provider } from '../board-provider'
 
 const NOOP = () => {}
 
@@ -65,7 +61,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
       baseUrl: String,
       selected: Array,
       mode: Number,
-      // provider: Object,
       hideProperty: Boolean,
       overlay: String,
       scene: Object,
@@ -127,10 +122,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
       title: 'EMPTY PROCESS',
       description: 'There are no process to be designed'
     }
-  }
-
-  get editToolbar() {
-    return this.renderRoot.querySelector('#edittoolbar')
   }
 
   get modeller() {
@@ -206,7 +197,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
   pageUpdated(changes, lifecycle) {
     if (this.active) {
       this.boardId = lifecycle.resourceId
-      this.bindShortcutEvent()
     } else {
       this.boardId = null
       this.model = {
@@ -214,8 +204,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
         height: 1020,
         components: []
       }
-      this.modeller.close()
-      this.unbindShortcutEvent()
+      this.modeller?.close()
     }
   }
 
@@ -239,20 +228,7 @@ export class ProcessModellerPage extends connect(store)(PageView) {
           ></oops-note>
         `
       : html`
-          <process-edit-toolbar
-            id="edittoolbar"
-            .scene=${this.scene}
-            .board=${this.board}
-            .selected=${this.selected}
-            @hide-property-changed=${e => (this.hideProperty = e.detail.value)}
-            @open-preview=${e => this.onOpenPreview(e)}
-            @download-model=${e => this.onDownloadModel(e)}
-            @modeller-fullscreen=${e => this.onFullscreen(e)}
-          >
-            ${this.renderBrandingZone()}
-          </process-edit-toolbar>
-
-          <process-modeller
+          <ox-board-modeller
             .mode=${this.mode}
             @mode-changed=${e => {
               this.mode = e.detail.value
@@ -276,31 +252,11 @@ export class ProcessModellerPage extends connect(store)(PageView) {
             .fonts=${this.fonts}
             .hideProperty=${this.hideProperty}
           >
-          </process-modeller>
+          </ox-board-modeller>
           <oops-spinner ?show=${this._showSpinner}></oops-spinner>
         `
 
     return html``
-  }
-
-  renderBrandingZone() {
-    return html``
-  }
-
-  onOpenPreview() {
-    this.modeller.preview()
-  }
-
-  onDownloadModel() {
-    if (!this.scene) return
-
-    var model = JSON.stringify(this.model, null, 2)
-    var filename = (this.boardName || 'NONAME') + '-' + Date.now() + '.json'
-    saveAs(new Blob([model], { type: 'application/octet-stream' }), filename)
-  }
-
-  onFullscreen() {
-    togglefullscreen(this)
   }
 
   async updateBoard() {
@@ -352,31 +308,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
 
   async saveBoard() {
     await this.updateBoard()
-  }
-
-  bindShortcutEvent() {
-    var isMac = isMacOS()
-
-    // TODO: Global Hotkey에 대한 정의를 edit-toolbar에서 가져올 수 있도록 수정해야 함.
-    const GLOBAL_HOTKEYS = ['Digit1', 'Digit2', 'F11', 'KeyD', 'KeyP', 'KeyS']
-
-    this._shortcutHandler = e => {
-      var tagName = e.composedPath()[0].tagName
-      var isInput = tagName.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA'
-      var isGlobalHotkey = GLOBAL_HOTKEYS.includes(e.code)
-
-      if (!isGlobalHotkey && isInput) return
-      if (!this.editToolbar.onShortcut(e, isMac)) this.modeller.onShortcut(e, isMac)
-    }
-
-    document.addEventListener('keydown', this._shortcutHandler)
-  }
-
-  unbindShortcutEvent() {
-    if (this._shortcutHandler) {
-      document.removeEventListener('keydown', this._shortcutHandler)
-      delete this._shortcutHandler
-    }
   }
 }
 

@@ -1,7 +1,5 @@
 export * from './actions/board'
 
-export * from './board-modeller/process-modeller'
-export * from './board-modeller/edit-toolbar'
 export * from './board-provider'
 export * from './viewparts/process-selector'
 export * from './viewparts/process-creation-card'
