@@ -1,4 +1,4 @@
-import icon from '../../assets/icon-pump.png';
+import icon from '../../assets/icon-pump.png'
 
 export default {
   type: 'pump',
@@ -13,5 +13,6 @@ export default {
     width: 100,
     height: 100,
     fillStyle: '#08347f'
-  }
+  },
+  about: '/helps/board-modeller/effects/shadow.md'
 }

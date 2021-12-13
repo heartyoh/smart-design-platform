@@ -1,4 +1,4 @@
-import icon from '../../assets/icon-burner.png';
+import icon from '../../assets/icon-burner.png'
 
 export default {
   type: 'burner',
@@ -13,5 +13,6 @@ export default {
     width: 100,
     height: 100,
     fillStyle: '#08347f'
-  }
+  },
+  about: '/helps/board-modeller/effects/animation.md'
 }
