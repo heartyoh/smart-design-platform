@@ -9,8 +9,7 @@
 
 이 프로젝트는 열에너지 다소비 산업설비 스마트 설계 플랫폼 구축 사업 중 아이티메이트와 하티오랩에 의해서 수행되는 시스템 개발과 관련한 전반적인 내용을 다룹니다.
 ![smartDesignPlatform](https://user-images.githubusercontent.com/1257178/134644084-b35b2bbe-29ce-4bf1-ad90-3fb8b09ba7e6.png)
-
-
+- [공정 설계 UI Demo link](https://xd.adobe.com/view/40eb8487-d805-47d9-9b23-08c7ac71b904-15b8/)
 ## [세부 실행 목표](./docs/concept.md)
 
 ## [개발 및 운영 환경](./docs/devops)
@@ -23,11 +22,13 @@
 
 ### Package Index
 
-"smart-design-platform" 리파지토리는 ***1***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
+"smart-design-platform" 리파지토리는 ***3***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
 
 | Package | Version | Description |
 | ------- | ------- | ----------- |
 | [designer](packages/designer) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner.svg" width="200px" /></a> | process designer application |
+| [equip-base](packages/equip-base) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fequip-base"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fequip-base.svg" width="200px" /></a> | Equipment components for things-scene |
+| [process-modeller](packages/process-modeller) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
 
 ## Want to contribute?
 
