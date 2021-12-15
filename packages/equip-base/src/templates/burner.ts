@@ -14,5 +14,5 @@ export default {
     height: 100,
     fillStyle: '#08347f'
   },
-  about: '/helps/board-modeller/effects/animation.md'
+  about: '/helps/board-modeller/effects/burner.md'
 }
