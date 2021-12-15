@@ -1,15 +1,15 @@
 {
-  "name": "@things-factory/equip-base",
+  "name": "@smart-design-platform/equip-base",
   "description": "Equipment components for things-scene",
   "license": "MIT",
   "author": "heartyoh",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "things-scene": true,
   "publishConfig": {
     "access": "public",
-    "@things-factory:registry": "https://registry.npmjs.org"
+    "@smart-design-platform:registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",

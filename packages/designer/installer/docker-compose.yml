@@ -1,7 +1,7 @@
 version: '3'
 services:
   nginx:
-    image: hatiolab/operato-nginx:latest
+    image: hatiolab/sdp:latest
     ports:
       - ${HostPort}:80
     depends_on:
@@ -14,6 +14,7 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./config.production.js:/app/config.production.js
+      - ./tsconfig-base.json:/tsconfig-base.json
     ports:
       - 4000:3000
     depends_on:

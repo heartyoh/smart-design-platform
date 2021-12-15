@@ -1,1 +1,1 @@
-docker exec -it designer npm run migration -- --mode=production
+docker exec -it sdp npm run migration -- --mode=production
