@@ -1,5 +1,6 @@
+
 # Use an official node image
-FROM node:12.16.2-stretch
+FROM node:14.18
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -20,13 +21,13 @@ RUN apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 l
 RUN apt update
 RUN apt-get install -y ghostscript
 RUN apt-get install -y curl
+RUN apt-get install -y git
+
 
 # install chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 RUN rm google-chrome-stable_current_amd64.deb
-
-
 
 # make oracle path
 RUN mkdir -p /opt/oracle
@@ -40,6 +41,8 @@ RUN wget https://download.oracle.com/otn_software/linux/instantclient/instantcli
     rm -f *jdbc* *occi* *mysql* *mql1* *ipc1* *jar uidrvci genezi adrci && \
     echo /opt/oracle/instantclient* > /etc/ld.so.conf.d/oracle-instantclient.conf &&\
     ldconfig
+
+RUN apt install -y build-essential
 
 # Set the working directory to /app
 WORKDIR /app
