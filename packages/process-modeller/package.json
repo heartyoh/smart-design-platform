@@ -1,5 +1,5 @@
 {
-  "name": "@smart-design-platform/process-modeller",
+  "name": "@things-factory/process-modeller",
   "version": "0.0.7",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
@@ -9,7 +9,7 @@
   "description": "Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard.",
   "publishConfig": {
     "access": "public",
-    "@smart-design-platform:registry": "https://registry.npmjs.org"
+    "@things-factory:registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",

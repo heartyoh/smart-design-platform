@@ -1,6 +1,3 @@
-# Use an official ubuntu image
-FROM ubuntu:18.04
-
 # Use an official node image
 FROM node:12.16.2-stretch
 
@@ -18,7 +15,7 @@ RUN apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y chromium
 RUN apt-get install -y libcups2-dev 
 RUN apt-get install -y libavahi-compat-libdnssd-dev 
-RUN apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils libaio1
+RUN apt-get install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libnss3 lsb-release xdg-utils libaio1
 
 RUN apt update
 RUN apt-get install -y ghostscript

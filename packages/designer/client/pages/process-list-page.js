@@ -1,6 +1,6 @@
 import '@operato/popup'
 import '@operato/data-grist'
-import '@smart-design-platform/process-modeller'
+import '@things-factory/process-modeller'
 import '../viewparts/board-info'
 
 import { css, html } from 'lit-element'

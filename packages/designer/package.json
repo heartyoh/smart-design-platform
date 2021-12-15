@@ -1,5 +1,5 @@
 {
-  "name": "@smart-design-platform/designer",
+  "name": "@things-factory/designer",
   "version": "0.0.7",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
@@ -9,7 +9,7 @@
   "description": "process designer application",
   "publishConfig": {
     "access": "public",
-    "@smart-design-platform:registry": "https://registry.npmjs.org"
+    "@things-factory:registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,10 @@
     "directory": "packages/designer"
   },
   "scripts": {
-    "serve": "things-factory designer",
-    "serve:dev": "npm run build:server && things-factory-dev designer",
+    "serve": "things-factory sdp",
+    "serve:dev": "npm run build:server && things-factory-dev sdp",
     "build": "tsc --p tsconfig.json",
-    "build:client": "npm run clean:client && webpack --config ../../node_modules/things-factory/builder/webpack.config.js",
+    "build:client": "npm run clean:client && webpack --config ../../node_modules/@things-factory/builder/webpack.config.js",
     "build:server": "npm run clean:server && tsc",
     "clean:server": "rm -rf dist-server",
     "clean:client": "rm -rf dist-client",
@@ -32,15 +32,16 @@
     "migration:run": "node ../../node_modules/typeorm/cli.js migration:run",
     "migration:revert": "node ../../node_modules/typeorm/cli.js migration:revert",
     "stop:dev": "kill $(lsof -t -i:3000,3001)",
-    "stop": "things-factory-stop designer",
-    "docker": "things-factory-dockerize hatiolab/designer:latest",
-    "docker:run": "docker run -it -p 4000:3000 hatiolab/designer:latest"
+    "stop": "things-factory-stop sdp",
+    "docker": "things-factory-dockerize hatiolab/sdp:latest hatiolab/sdp:$npm_package_version",
+    "docker:push": "docker image push hatiolab/sdp:latest && docker image push hatiolab/sdp:$npm_package_version",
+    "docker:run": "docker run -it -p 4000:3000 hatiolab/sdp:latest"
   },
   "dependencies": {
     "@operato/data-grist": "^0.2.49",
     "@operato/popup": "^0.2.49",
-    "@smart-design-platform/equip-base": "^0.0.7",
-    "@smart-design-platform/process-modeller": "^0.0.7",
+    "@things-factory/process-modeller": "^0.0.7",
+    "@things-factory/equip-base": "^0.0.7",
     "@things-factory/api": "^4.0.18",
     "@things-factory/apptool-ui": "^4.0.18",
     "@things-factory/auth-ui": "^4.0.18",

@@ -525,7 +525,7 @@ function getPackages(type = 'js') {
     if (existsSync(packageJSONPath)) {
       const { name, description } = require(packageJSONPath)
 
-      acc.push({ name: name.replace('@smart-design-platform/', ''), description })
+      acc.push({ name: name.replace('@things-factory/', ''), description })
     }
 
     return acc
@@ -534,8 +534,8 @@ function getPackages(type = 'js') {
 
 function validatePackageName(name) {
   return (
-    /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/g.test(`@smart-design-platform/${name}`) ||
-    `Your package name (@smart-design-platform/${name}) does not confirm to npm rules!`
+    /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/g.test(`@things-factory/${name}`) ||
+    `Your package name (@things-factory/${name}) does not confirm to npm rules!`
   )
 }
 
