@@ -1,5 +1,5 @@
 {
-  "name": "@things-factory/designer",
+  "name": "@smart-design-platform/designer",
   "version": "0.0.8",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
@@ -9,7 +9,7 @@
   "description": "process designer application",
   "publishConfig": {
     "access": "public",
-    "@things-factory:registry": "https://registry.npmjs.org"
+    "@smart-design-platform:registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
@@ -40,12 +40,13 @@
   "dependencies": {
     "@operato/data-grist": "^0.2.49",
     "@operato/popup": "^0.2.49",
+    "@smart-design-platform/equip-base": "^0.0.8",
+    "@smart-design-platform/process-modeller": "^0.0.8",
     "@things-factory/api": "^4.0.18",
     "@things-factory/apptool-ui": "^4.0.18",
     "@things-factory/auth-ui": "^4.0.18",
     "@things-factory/board-service": "^4.0.18",
     "@things-factory/context-ui": "^4.0.18",
-    "@things-factory/equip-base": "^0.0.8",
     "@things-factory/export-ui": "^4.0.18",
     "@things-factory/export-ui-excel": "^4.0.18",
     "@things-factory/grist-ui": "^4.0.18",
@@ -57,7 +58,6 @@
     "@things-factory/notification": "^4.0.18",
     "@things-factory/oauth2-client": "^4.0.18",
     "@things-factory/print-ui": "^4.0.18",
-    "@things-factory/process-modeller": "^0.0.8",
     "@things-factory/resource-ui": "^4.0.18",
     "@things-factory/setting-base": "^4.0.18",
     "@things-factory/setting-ui": "^4.0.18",
