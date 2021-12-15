@@ -1,12 +1,19 @@
 {
-  "packages": ["packages/*", "outsources/*"],
+  "packages": [
+    "packages/*",
+    "outsources/*"
+  ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "command": {
     "publish": {
       "skipNpm": false,
-      "ignoreChanges": ["**/*.md", "**/tests/**", "**/test/**"]
+      "ignoreChanges": [
+        "**/*.md",
+        "**/tests/**",
+        "**/test/**"
+      ]
     }
   }
 }
