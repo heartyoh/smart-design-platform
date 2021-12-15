@@ -39,8 +39,8 @@
   "dependencies": {
     "@operato/data-grist": "^0.2.49",
     "@operato/popup": "^0.2.49",
-    "@smart-design-platform/process-modeller": "^0.0.7",
     "@smart-design-platform/equip-base": "^0.0.7",
+    "@smart-design-platform/process-modeller": "^0.0.7",
     "@things-factory/api": "^4.0.18",
     "@things-factory/apptool-ui": "^4.0.18",
     "@things-factory/auth-ui": "^4.0.18",
@@ -64,6 +64,7 @@
     "@things-factory/system-ui": "^4.0.18"
   },
   "devDependencies": {
-    "@things-factory/builder": "^4.0.18"
+    "@things-factory/builder": "^4.0.18",
+    "@types/codemirror": "^5.60.5"
   }
 }
