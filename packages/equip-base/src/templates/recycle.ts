@@ -12,7 +12,7 @@ export default {
     top: 10,
     width: 100,
     height: 100,
-    fillStyle: '#08347f'
+    fontColor: 'red'
   },
   about: '/helps/board-modeller/effects/shadow.md'
 }
