@@ -1,6 +1,6 @@
 {
   "name": "@smart-design-platform/designer",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -40,8 +40,8 @@
   "dependencies": {
     "@operato/data-grist": "^0.2.50",
     "@operato/popup": "^0.2.50",
-    "@smart-design-platform/equip-base": "^0.0.10",
-    "@smart-design-platform/process-modeller": "^0.0.10",
+    "@smart-design-platform/equip-base": "^0.0.11",
+    "@smart-design-platform/process-modeller": "^0.0.11",
     "@things-factory/api": "^4.0.23",
     "@things-factory/apptool-ui": "^4.0.23",
     "@things-factory/auth-ui": "^4.0.23",
