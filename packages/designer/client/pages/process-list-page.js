@@ -101,11 +101,13 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         font-size: 2em;
         color: var(--theme-white-color);
       }
+      #filters {
+        position: relative;
+      }
       #filters [type='text'] {
         background-color: transparent;
         border: 0;
         border-bottom: var(--border-dark-color);
-        margin-left: -35px;
         padding: var(--padding-narrow) var(--padding-narrow) 7px 25px;
         font-size: var(--fontsize-large);
       }
@@ -113,7 +115,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         outline: none;
       }
       #filters mwc-icon {
-        position: relative;
+        position: absolute;
         top: 3px;
         color: var(--secondary-color);
       }
@@ -131,6 +133,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
 
       oops-spinner[show] {
         display: block;
+      }
+
+      @media only screen and (max-width: 460px) {
+        #modes {
+          display: none;
+        }
       }
     `
   }
@@ -166,27 +174,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           <div id="filters">
             <mwc-icon>search</mwc-icon>
             <input type="text" />
-
-            <popup-menu>
-              <popup-menuitem
-                label="click me to toggle"
-                @click=${function (e) {
-                  const icon = e.currentTarget.querySelector('mwc-icon')
-                  icon.innerHTML = icon.innerHTML == 'check' ? '' : 'check'
-                }}
-              >
-                <mwc-icon slot="icon" style="width: 20px;height: 20px;"></mwc-icon>
-              </popup-menuitem>
-              <popup-menuitem
-                label="click me to toggle"
-                @click=${function (e) {
-                  const icon = e.currentTarget.querySelector('mwc-icon')
-                  icon.innerHTML = icon.innerHTML == 'check' ? '' : 'check'
-                }}
-              >
-                <mwc-icon slot="icon" style="width: 20px;height: 20px;"></mwc-icon>
-              </popup-menuitem>
-            </popup-menu>
           </div>
 
           <div id="modes">
