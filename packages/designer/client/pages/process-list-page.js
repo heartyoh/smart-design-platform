@@ -165,36 +165,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           <div id="filters">
             <mwc-icon>search</mwc-icon>
             <input type="text" />
-            <mwc-icon
-              @click=${e => {
-                const target = e.currentTarget
-                this.renderRoot.querySelector('popup-menu').open({
-                  left: target.offsetLeft,
-                  top: target.offsetTop + target.offsetHeight
-                })
-              }}
-              >sort</mwc-icon
-            >
-            <mwc-icon
-              @click=${e => {
-                const target = e.currentTarget
-                this.renderRoot.querySelector('popup-menu').open({
-                  left: target.offsetLeft,
-                  top: target.offsetTop + target.offsetHeight
-                })
-              }}
-              >more_horiz</mwc-icon
-            >
-            <mwc-icon
-              @click=${e => {
-                const target = e.currentTarget
-                this.renderRoot.querySelector('popup-menu').open({
-                  left: target.offsetLeft,
-                  top: target.offsetTop + target.offsetHeight
-                })
-              }}
-              >sort</mwc-icon
-            >
 
             <popup-menu>
               <popup-menuitem
