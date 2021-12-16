@@ -1,1 +1,5 @@
-export default function bootstrap() {}
+import { registerProcessGroups } from './component'
+
+export default function bootstrap() {
+  registerProcessGroups()
+}

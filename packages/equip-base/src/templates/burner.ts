@@ -3,8 +3,7 @@ import icon from '../../assets/icon-burner.png'
 export default {
   type: 'burner',
   description: 'burner',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'burner',
   icon,
   model: {
     type: 'burner',
@@ -14,5 +13,5 @@ export default {
     height: 100,
     fillStyle: '#08347f'
   },
-  about: '/helps/board-modeller/effects/burner.md'
+  about: '/helps/equip-base/burner/burner.md'
 }

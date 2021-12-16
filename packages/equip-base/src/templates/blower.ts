@@ -3,8 +3,7 @@ import icon from '../../assets/icon-blower.png'
 export default {
   type: 'blower',
   description: 'blower',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'common',
   icon,
   model: {
     type: 'blower',

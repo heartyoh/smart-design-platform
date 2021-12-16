@@ -3,8 +3,7 @@ import icon from '../../assets/icon-hx.png'
 export default {
   type: 'hx',
   description: 'hx',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'hx',
   icon,
   model: {
     type: 'hx',

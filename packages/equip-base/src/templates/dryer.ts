@@ -3,8 +3,7 @@ import icon from '../../assets/icon-dryer.png'
 export default {
   type: 'dryer',
   description: 'dryer',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'dryer',
   icon,
   model: {
     type: 'dryer',

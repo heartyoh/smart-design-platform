@@ -3,8 +3,7 @@ import icon from '../../assets/icon-plc.png'
 export default {
   type: 'plc',
   description: 'plc',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'common',
   icon,
   model: {
     type: 'plc',
@@ -14,5 +13,5 @@ export default {
     height: 100,
     fillStyle: '#08347f'
   },
-  about: '/helps/board-modeller/effects/animation.md'
+  about: '/helps/equip-base/common/plc.md'
 }

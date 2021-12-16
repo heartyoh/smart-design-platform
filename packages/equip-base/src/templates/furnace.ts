@@ -3,8 +3,7 @@ import icon from '../../assets/icon-furnace.png'
 export default {
   type: 'furnace',
   description: 'furnace',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'furnace',
   icon,
   model: {
     type: 'furnace',
@@ -14,5 +13,5 @@ export default {
     height: 100,
     fillStyle: '#08347f'
   },
-  about: '/helps/board-modeller/effects/shadow.md'
+  about: '/helps/equip-base/furnace/furnace.md'
 }
