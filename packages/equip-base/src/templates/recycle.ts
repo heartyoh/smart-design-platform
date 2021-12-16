@@ -3,8 +3,7 @@ import icon from '../../assets/icon-recycle.png'
 export default {
   type: 'recycle',
   description: 'recycle',
-  group: 'shape',
-  /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
+  group: 'common',
   icon,
   model: {
     type: 'recycle',
@@ -14,5 +13,5 @@ export default {
     height: 100,
     fontColor: 'red'
   },
-  about: '/helps/board-modeller/effects/shadow.md'
+  about: '/helps/equip-base/common/recycle.md'
 }
