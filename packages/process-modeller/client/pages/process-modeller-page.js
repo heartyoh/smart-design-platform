@@ -1,15 +1,16 @@
 import './things-scene-components.import'
 import '@operato/board/dist/src/ox-board-modeller.js'
 
-import { PageView, client, gqlContext, store } from '@things-factory/shell'
-import { css, html } from 'lit-element'
-
-import { ADD_BOARD_COMPONENTS } from '../actions/board'
-import { OxPropertyEditor } from '@operato/property-editor'
-import components from './things-scene-components-with-tools.import'
-import { connect } from 'pwa-helpers/connect-mixin.js'
 import gql from 'graphql-tag'
+import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
+
+import { BoardModeller } from '@operato/board/dist/src/ox-board-modeller.js'
+import { OxPropertyEditor } from '@operato/property-editor'
+import { client, gqlContext, PageView, store } from '@things-factory/shell'
+
 import { provider } from '../board-provider'
+import components from './things-scene-components-with-tools.import'
 
 const NOOP = () => {}
 
@@ -17,9 +18,8 @@ export class ProcessModellerPage extends connect(store)(PageView) {
   constructor() {
     super()
 
-    store.dispatch({
-      type: ADD_BOARD_COMPONENTS,
-      components
+    components.forEach(component => {
+      BoardModeller.registerTemplate(component.templates)
     })
 
     /* 컴포넌트에서 정의된 에디터들을 MODELLER_EDITORS에 등록 */
@@ -48,9 +48,9 @@ export class ProcessModellerPage extends connect(store)(PageView) {
     this.hideProperty = false
     this.overlay = null
     this.scene = null
-    this.componentGroupList = []
     this.fonts = []
     this.board = null
+    this.componentGroupList = BoardModeller.groups
   }
 
   static get properties() {
@@ -210,8 +210,6 @@ export class ProcessModellerPage extends connect(store)(PageView) {
 
   stateChanged(state) {
     this.baseUrl = state.route.rootPath
-
-    this.componentGroupList = state.board.templates
     this.fonts = state.font
   }
 
