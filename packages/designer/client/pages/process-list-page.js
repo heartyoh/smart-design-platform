@@ -2,6 +2,7 @@ import '@operato/popup'
 import '@operato/data-grist'
 import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
+import '../viewparts/process-report'
 
 import { css, html } from 'lit-element'
 import { connect } from 'pwa-helpers/connect-mixin.js'
@@ -247,7 +248,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           icon: 'star_border',
           handlers: {
             click: (columns, data, column, record, rowIndex) => {
-              this.onInfoBoard(record.id)
+              this.onShowReport(record.id)
             }
           }
         },
@@ -367,6 +368,21 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           @leave-playgroup=${e => this.onLeavePlayGroup(e.detail)}
         ></board-info>
       `
+    })
+  }
+
+  async onShowReport(boardId) {
+    /*
+     * 기존 설정된 이미지가 선택된 상태가 되게 하기 위해서는 selector에 value를 전달해줄 필요가 있음.
+     * 주의. value는 object일 수도 있고, string일 수도 있다.
+     * string인 경우에는 해당 보드의 id로 해석한다.
+     */
+    var template = html` <process-report .boardId=${boardId}></process-report> `
+
+    openPopup(template, {
+      backdrop: true,
+      size: 'large',
+      title: i18next.t('title.process-report')
     })
   }
 

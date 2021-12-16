@@ -13,5 +13,6 @@
   "error.license key is not certified": "[ms] License Key is not certified!",
   "error.invalid license key": "[ms] Invalid license key!",
   "error.license expiration notice": "[ms] License Expiration Notice",
-  "error.your license due date is x, please renewal your license!": "[ms] Your license due date is {x}, please renewal your license!"
+  "error.your license due date is x, please renewal your license!": "[ms] Your license due date is {x}, please renewal your license!",
+  "title.process-report": "[zh] process report"
 }

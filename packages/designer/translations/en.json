@@ -13,5 +13,6 @@
   "error.license key is not certified": "License Key is not certified!",
   "error.invalid license key": "Invalid license key!",
   "error.license expiration notice": "License Expiration Notice",
-  "error.your license due date is x, please renewal your license!": "Your license due date is {x}, please renewal your license!"
+  "error.your license due date is x, please renewal your license!": "Your license due date is {x}, please renewal your license!",
+  "title.process-report": "process report"
 }

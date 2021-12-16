@@ -13,5 +13,6 @@
   "error.license key is not certified": "라이센스가 인증되지 않았습니다!",
   "error.invalid license key": "라이센스가 유효하지 않습니다!",
   "error.license expiration notice": "라이선스 만료예정 알림",
-  "error.your license due date is x, please renewal your license!": "라이센스 기한은 {x}입니다. 라이센스를 갱신하십시오!"
+  "error.your license due date is x, please renewal your license!": "라이센스 기한은 {x}입니다. 라이센스를 갱신하십시오!",
+  "title.process-report": "프로세스 리포트"
 }
