@@ -178,7 +178,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
             <select
               @change=${e => {
                 this.groupId = e.currentTarget.value
-                this.requestUpdate()
               }}
             >
               <option value="">*</option>
@@ -344,6 +343,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     }
   }
 
+  updated(changes) {
+    if (changes.has('groupId')) {
+      this.refresh()
+    }
+  }
+
   pageUpdated(changes, lifecycle) {
     if (this.active) {
       this.grist.fetch()
@@ -355,6 +360,8 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
 
     this.page = 1
     this.limit = 50
+
+    this.refresh()
   }
 
   async onInfoBoard(boardId) {
