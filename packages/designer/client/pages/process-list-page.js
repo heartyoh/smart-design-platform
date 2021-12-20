@@ -4,14 +4,7 @@ import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
 
-import { css, html } from 'lit-element'
-import { connect } from 'pwa-helpers/connect-mixin.js'
-
-import { i18next } from '@things-factory/i18n-base'
-import { openOverlay, openPopup } from '@things-factory/layout-base'
-import { InfiniteScrollable, navigate, PageView, store } from '@things-factory/shell'
-import { sleep } from '@things-factory/utils'
-
+import { InfiniteScrollable, PageView, navigate, store } from '@things-factory/shell'
 import {
   createBoard,
   deleteBoard,
@@ -20,7 +13,13 @@ import {
   fetchGroupList,
   updateBoard
 } from '../graphql'
+import { css, html } from 'lit-element'
+import { openOverlay, openPopup } from '@things-factory/layout-base'
+
+import { connect } from 'pwa-helpers/connect-mixin.js'
+import { i18next } from '@things-factory/i18n-base'
 import { notify } from '../utils/notify'
+import { sleep } from '@things-factory/utils'
 
 class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   static get styles() {
@@ -167,6 +166,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
 
   render() {
     const mode = this.mode || 'CARD'
+    const groups = this.groups || []
 
     return html`
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
@@ -174,6 +174,20 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           <div id="filters">
             <mwc-icon>search</mwc-icon>
             <input type="text" />
+
+            <select
+              @change=${e => {
+                this.groupId = e.currentTarget.value
+                this.requestUpdate()
+              }}
+            >
+              <option value="">*</option>
+              <option value="favor">favorite</option>
+              ${groups.map(
+                group =>
+                  html` <option value=${group.id} ?selected=${group.id === this.groupId}>${group.description}</option> `
+              )}
+            </select>
           </div>
 
           <div id="modes">
