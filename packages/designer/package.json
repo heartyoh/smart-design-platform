@@ -38,8 +38,8 @@
     "docker:run": "docker run -it -p 4000:3000 hatiolab/sdp:latest"
   },
   "dependencies": {
-    "@operato/data-grist": "^0.2.51",
-    "@operato/popup": "^0.2.51",
+    "@operato/data-grist": "^0.2.52",
+    "@operato/popup": "^0.2.52",
     "@smart-design-platform/equip-base": "^0.0.11",
     "@smart-design-platform/process-modeller": "^0.0.11",
     "@things-factory/api": "^4.0.24",
