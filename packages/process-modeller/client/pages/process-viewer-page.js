@@ -1,12 +1,13 @@
-import '@operato/board/dist/src/ox-board-viewer.js'
+import '@operato/board/ox-board-viewer.js'
 import './things-scene-components.import'
 
-import { PageView, client, gqlContext, store } from '@things-factory/shell'
+import gql from 'graphql-tag'
 import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { buildLabelPrintCommand } from '@things-factory/barcode-base'
-import { connect } from 'pwa-helpers/connect-mixin.js'
-import gql from 'graphql-tag'
+import { client, gqlContext, PageView, store } from '@things-factory/shell'
+
 import { provider } from '../board-provider'
 
 const NOOP = () => {}

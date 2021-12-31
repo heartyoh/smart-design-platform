@@ -1,11 +1,11 @@
 import './things-scene-components.import'
-import '@operato/board/dist/src/ox-board-modeller.js'
+import '@operato/board/ox-board-modeller.js'
 
 import gql from 'graphql-tag'
 import { css, html } from 'lit-element'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
-import { BoardModeller } from '@operato/board/dist/src/ox-board-modeller.js'
+import { BoardModeller } from '@operato/board/ox-board-modeller.js'
 import { OxPropertyEditor } from '@operato/property-editor'
 import { client, gqlContext, PageView, store } from '@things-factory/shell'
 

@@ -1,10 +1,16 @@
-import '@operato/popup'
 import '@operato/data-grist'
 import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
 
-import { InfiniteScrollable, PageView, navigate, store } from '@things-factory/shell'
+import { css, html } from 'lit-element'
+import { connect } from 'pwa-helpers/connect-mixin.js'
+
+import { i18next } from '@things-factory/i18n-base'
+import { openOverlay, openPopup } from '@things-factory/layout-base'
+import { InfiniteScrollable, navigate, PageView, store } from '@things-factory/shell'
+import { sleep } from '@things-factory/utils'
+
 import {
   createBoard,
   deleteBoard,
@@ -13,13 +19,7 @@ import {
   fetchGroupList,
   updateBoard
 } from '../graphql'
-import { css, html } from 'lit-element'
-import { openOverlay, openPopup } from '@things-factory/layout-base'
-
-import { connect } from 'pwa-helpers/connect-mixin.js'
-import { i18next } from '@things-factory/i18n-base'
 import { notify } from '../utils/notify'
-import { sleep } from '@things-factory/utils'
 
 class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   static get styles() {

@@ -1,4 +1,4 @@
-import { BoardModeller } from '@operato/board/dist/src/ox-board-modeller'
+import { BoardModeller } from '@operato/board/ox-board-modeller.js'
 
 import { burner } from './burner'
 import { common } from './common'
