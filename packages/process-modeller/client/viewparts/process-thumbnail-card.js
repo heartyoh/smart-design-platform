@@ -1,4 +1,5 @@
-import { LitElement, css, html } from 'lit-element'
+import { css, html, LitElement } from 'lit'
+
 import { i18next, localize } from '@things-factory/i18n-base'
 
 export class BoardThumbnailCard extends localize(i18next)(LitElement) {

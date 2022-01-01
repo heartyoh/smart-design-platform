@@ -4,7 +4,7 @@ import '@material/mwc-select'
 import '@material/mwc-list/mwc-list-item'
 import '@material/mwc-button'
 
-import { css, html, LitElement } from 'lit-element'
+import { css, html, LitElement } from 'lit'
 
 import { i18next, localize } from '@things-factory/i18n-base'
 

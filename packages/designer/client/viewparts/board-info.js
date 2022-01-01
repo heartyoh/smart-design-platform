@@ -1,7 +1,7 @@
 import '@material/mwc-icon'
 
 import gql from 'graphql-tag'
-import { css, html, LitElement } from 'lit-element'
+import { css, html, LitElement } from 'lit'
 
 import { i18next } from '@things-factory/i18n-base'
 import { client, navigate } from '@things-factory/shell'

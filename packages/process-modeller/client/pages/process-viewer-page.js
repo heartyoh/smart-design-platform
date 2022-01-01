@@ -2,7 +2,7 @@ import '@operato/board/ox-board-viewer.js'
 import './things-scene-components.import'
 
 import gql from 'graphql-tag'
-import { css, html } from 'lit-element'
+import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { buildLabelPrintCommand } from '@things-factory/barcode-base'

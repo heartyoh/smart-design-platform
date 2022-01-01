@@ -1,7 +1,7 @@
 import '@material/mwc-icon'
 import './process-creation-popup'
 
-import { css, html, LitElement } from 'lit-element'
+import { css, html, LitElement } from 'lit'
 
 import { i18next, localize } from '@things-factory/i18n-base'
 import { openPopup } from '@things-factory/layout-base'

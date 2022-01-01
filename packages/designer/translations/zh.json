@@ -14,5 +14,6 @@
   "error.invalid license key": "无效的许可证密钥！",
   "error.license expiration notice": "许可证到期提醒",
   "error.your license due date is x, please renewal your license!": "您的许可证到期日期为{x}，请续订您的许可证！",
+  "text.select-group": "[zh] select process group",
   "title.process-report": "[zh] process report"
 }

@@ -2,7 +2,7 @@ import './things-scene-components.import'
 import '@operato/board/ox-board-modeller.js'
 
 import gql from 'graphql-tag'
-import { css, html } from 'lit-element'
+import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { BoardModeller } from '@operato/board/ox-board-modeller.js'

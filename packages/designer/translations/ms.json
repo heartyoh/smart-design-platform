@@ -14,5 +14,6 @@
   "error.invalid license key": "[ms] Invalid license key!",
   "error.license expiration notice": "[ms] License Expiration Notice",
   "error.your license due date is x, please renewal your license!": "[ms] Your license due date is {x}, please renewal your license!",
-  "title.process-report": "[zh] process report"
+  "text.select-group": "[ms] select process group",
+  "title.process-report": "[ms] process report"
 }

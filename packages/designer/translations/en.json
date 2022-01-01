@@ -14,5 +14,6 @@
   "error.invalid license key": "Invalid license key!",
   "error.license expiration notice": "License Expiration Notice",
   "error.your license due date is x, please renewal your license!": "Your license due date is {x}, please renewal your license!",
+  "text.select-group": "select process group",
   "title.process-report": "process report"
 }

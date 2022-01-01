@@ -1,7 +1,7 @@
 import '@material/mwc-icon'
 
 import gql from 'graphql-tag'
-import { css, html, LitElement } from 'lit-element'
+import { css, html, LitElement } from 'lit'
 
 import { ScrollbarStyles } from '@operato/styles'
 import { client } from '@things-factory/shell'

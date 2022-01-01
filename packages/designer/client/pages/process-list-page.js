@@ -3,7 +3,7 @@ import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
 
-import { css, html } from 'lit-element'
+import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { i18next } from '@things-factory/i18n-base'
@@ -122,6 +122,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         margin-right: var(--margin-default);
       }
 
+      select {
+        border: 0;
+        outline: none;
+        text-align: right;
+      }
+
       oops-spinner {
         display: none;
         position: absolute;
@@ -180,7 +186,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
                 this.groupId = e.currentTarget.value
               }}
             >
-              <option value="">*</option>
+              <option value="">${i18next.t('text.select-group')}</option>
               <option value="favor">favorite</option>
               ${groups.map(
                 group =>
