@@ -334,7 +334,9 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         selectable: {
           multiple: true
         },
-        handlers: {},
+        handlers: {
+          click: 'select-row-toggle'
+        },
         classifier: function (record, rowIndex) {}
       },
       sorters: [
