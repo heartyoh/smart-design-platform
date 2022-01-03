@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene';
+import { Component, RectPath, Shape } from '@hatiolab/things-scene'
 
-import DRYER_IMAGE from '../assets/icon-dryer-big.png';
+const DRYER_IMAGE = new URL('../icons/icon-dryer-big.png', import.meta.url).href
 
 const NATURE = {
   mutable: false,
@@ -15,7 +15,7 @@ const NATURE = {
 
 export default class Dryer extends RectPath(Shape) {
   static IMAGE: HTMLImageElement
-  
+
   static get nature() {
     return NATURE
   }

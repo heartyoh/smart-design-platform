@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene';
+import { Component, RectPath, Shape } from '@hatiolab/things-scene'
 
-import HPUMP_IMAGE from '../assets/icon-hpump-big.png';
+const HPUMP_IMAGE = new URL('../icons/icon-hpump-big.png', import.meta.url).href
 
 const NATURE = {
   mutable: false,
@@ -15,7 +15,7 @@ const NATURE = {
 
 export default class Hpump extends RectPath(Shape) {
   static IMAGE: HTMLImageElement
-  
+
   static get nature() {
     return NATURE
   }

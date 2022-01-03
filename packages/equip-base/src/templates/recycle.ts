@@ -1,4 +1,4 @@
-import icon from '../../assets/icon-recycle.png'
+const icon = new URL('../../icons/icon-recycle.png', import.meta.url).href
 
 export default {
   type: 'recycle',

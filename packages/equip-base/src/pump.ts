@@ -4,7 +4,7 @@
 
 import { Component, RectPath, Shape } from '@hatiolab/things-scene'
 
-import PUMP_IMAGE from '../assets/icon-pump-big.png'
+const PUMP_IMAGE = new URL('../icons/icon-pump-big.png', import.meta.url).href
 
 const NATURE = {
   mutable: false,

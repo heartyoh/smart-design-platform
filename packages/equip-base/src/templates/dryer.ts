@@ -1,4 +1,4 @@
-import icon from '../../assets/icon-dryer.png'
+const icon = new URL('../../icons/icon-dryer.png', import.meta.url).href
 
 export default {
   type: 'dryer',

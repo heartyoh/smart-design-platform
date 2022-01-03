@@ -2,9 +2,9 @@
  * Copyright © HatioLab Inc. All rights reserved.
  */
 
-import { Component, RectPath, Shape } from '@hatiolab/things-scene';
+import { Component, RectPath, Shape } from '@hatiolab/things-scene'
 
-import HX_IMAGE from '../assets/icon-hx-big.png';
+const HX_IMAGE = new URL('../icons/icon-hx-big.png', import.meta.url).href
 
 const NATURE = {
   mutable: false,
@@ -15,7 +15,7 @@ const NATURE = {
 
 export default class Hx extends RectPath(Shape) {
   static IMAGE: HTMLImageElement
-  
+
   static get nature() {
     return NATURE
   }

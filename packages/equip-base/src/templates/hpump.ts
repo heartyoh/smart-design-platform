@@ -1,4 +1,4 @@
-import icon from '../../assets/icon-hpump.png'
+const icon = new URL('../../icons/icon-hpump.png', import.meta.url).href
 
 export default {
   type: 'hpump',
