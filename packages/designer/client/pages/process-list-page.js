@@ -6,9 +6,10 @@ import '../viewparts/process-report'
 import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
+import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
 import { i18next } from '@things-factory/i18n-base'
 import { openOverlay, openPopup } from '@things-factory/layout-base'
-import { InfiniteScrollable, navigate, PageView, store } from '@things-factory/shell'
+import { navigate, PageView, store } from '@things-factory/shell'
 import { sleep } from '@things-factory/utils'
 
 import {

@@ -5,8 +5,9 @@ import gql from 'graphql-tag'
 import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
+import { client, gqlContext } from '@operato/graphql'
 import { buildLabelPrintCommand } from '@things-factory/barcode-base'
-import { client, gqlContext, PageView, store } from '@things-factory/shell'
+import { PageView, store } from '@things-factory/shell'
 
 import { provider } from '../board-provider'
 

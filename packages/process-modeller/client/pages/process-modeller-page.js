@@ -6,8 +6,9 @@ import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { BoardModeller } from '@operato/board/ox-board-modeller.js'
+import { client, gqlContext } from '@operato/graphql'
 import { OxPropertyEditor } from '@operato/property-editor'
-import { client, gqlContext, PageView, store } from '@things-factory/shell'
+import { PageView, store } from '@things-factory/shell'
 
 import { provider } from '../board-provider'
 import components from './things-scene-components-with-tools.import'

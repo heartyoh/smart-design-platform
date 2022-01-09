@@ -3,8 +3,9 @@ import './process-creation-card'
 import gql from 'graphql-tag'
 import { css, html, LitElement } from 'lit'
 
+import { client, gqlContext } from '@operato/graphql'
+import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
 import { i18next, localize } from '@things-factory/i18n-base'
-import { client, gqlContext, InfiniteScrollable } from '@things-factory/shell'
 import { ScrollbarStyles } from '@things-factory/styles'
 import { gqlBuilder } from '@things-factory/utils'
 

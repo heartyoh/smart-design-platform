@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
-import { client, gqlContext } from '@things-factory/shell'
-import { ReferenceMap, create, error } from '@hatiolab/things-scene'
+
+import { create, error, ReferenceMap } from '@hatiolab/things-scene'
+import { client, gqlContext } from '@operato/graphql'
 
 export function createBoardProvider() {
   var _provider = new ReferenceMap(
