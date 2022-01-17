@@ -234,9 +234,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
 
     return {
       list: {
-        thumbnail: function (record, rowIndex) {
-          return html` <img src=${images[rowIndex % 3]} style="width: 100%; height: 100%;" /> `
-        },
+        thumbnail: 'thumbnail',
         fields: ['name', 'description'],
         details: ['updatedAt']
       },
@@ -309,6 +307,17 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           },
           sortable: true,
           width: 60
+        },
+        {
+          type: 'image',
+          name: 'thumbnail',
+          hidden: true,
+          record: {
+            editable: false,
+            renderer: function (value, column, record, rowIndex, owner) {
+              return html` <img src=${images[rowIndex % 3]} style="width: 100%; height: 100%;" /> `
+            }
+          }
         },
         {
           type: 'datetime',
