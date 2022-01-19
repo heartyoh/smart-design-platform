@@ -1,5 +1,8 @@
 import '@material/mwc-icon'
 import '@operato/data-grist'
+import '@operato/input/ox-select.js'
+import '@operato/popup/ox-popup-list.js'
+import '@operato/data-grist/sorters-control.js'
 import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
@@ -53,14 +56,13 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         box-shadow: var(--box-shadow);
       }
 
-      #filters {
-        flex: 1;
-        --mdc-icon-size: 20px;
-      }
-
       #add {
         width: 50px;
         text-align: right;
+      }
+
+      #modes {
+        margin-left: auto;
       }
 
       #modes > * {
@@ -101,8 +103,11 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         font-size: 2em;
         color: var(--theme-white-color);
       }
+
       #filters {
+        display: flex;
         position: relative;
+        align-items: center;
       }
       #filters [type='text'] {
         background-color: transparent;
@@ -119,14 +124,37 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         top: 3px;
         color: var(--secondary-color);
       }
+
       #filters * {
         margin-right: var(--margin-default);
       }
 
-      select {
+      #search {
+        display: flex;
+        position: relative;
+        align-items: center;
+
+        --mdc-icon-size: 20px;
+      }
+
+      #search [type='text'] {
+        flex: 1;
+        background-color: transparent;
+        border: 0;
+        border-bottom: var(--border-dark-color);
+        padding: var(--padding-narrow) var(--padding-narrow) 7px 25px;
+        font-size: var(--fontsize-large);
+        outline: none;
+      }
+
+      #search mwc-icon {
+        position: absolute;
+        color: var(--secondary-color);
+      }
+
+      ox-select {
         border: 0;
         outline: none;
-        text-align: right;
       }
 
       @media only screen and (max-width: 460px) {
@@ -166,21 +194,44 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
         <div slot="headroom" id="headroom">
           <div id="filters">
-            <mwc-icon>search</mwc-icon>
-            <input type="text" />
+            <div id="search">
+              <mwc-icon>search</mwc-icon>
+              <input type="text" />
+            </div>
 
-            <select
+            <ox-select
+              placeholder="${i18next.t('text.select-group')}"
               @change=${e => {
                 this.groupId = e.currentTarget.value
               }}
             >
-              <option value="">${i18next.t('text.select-group')}</option>
-              <option value="favor">favorite</option>
-              ${groups.map(
-                group =>
-                  html` <option value=${group.id} ?selected=${group.id === this.groupId}>${group.description}</option> `
-              )}
-            </select>
+              <ox-popup-list>
+                <div option value="">&nbsp;</div>
+                <div option value="favor">favorite</div>
+                ${groups.map(
+                  group =>
+                    html`
+                      <div option value=${group.id} ?selected=${group.id === this.groupId}>${group.description}</div>
+                    `
+                )}
+              </ox-popup-list>
+            </ox-select>
+          </div>
+
+          <div>
+            <mwc-icon
+              @click=${e => {
+                const target = e.currentTarget
+                this.renderRoot.querySelector('#sorter-control').open({
+                  left: target.offsetLeft,
+                  top: target.offsetTop + target.offsetHeight
+                })
+              }}
+              >sort</mwc-icon
+            >
+            <ox-popup id="sorter-control">
+              <ox-sorters-control> </ox-sorters-control>
+            </ox-popup>
           </div>
 
           <div id="modes">

@@ -40,6 +40,7 @@
   "dependencies": {
     "@operato/data-grist": "^0.3.16",
     "@operato/graphql": "^0.3.16",
+    "@operato/input": "^0.3.16",
     "@operato/popup": "^0.3.16",
     "@operato/utils": "^0.3.16",
     "@smart-design-platform/equip-base": "^0.0.13",
