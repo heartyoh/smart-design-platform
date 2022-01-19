@@ -129,18 +129,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         text-align: right;
       }
 
-      oops-spinner {
-        display: none;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      oops-spinner[show] {
-        display: block;
-      }
-
       @media only screen and (max-width: 460px) {
         #modes {
           display: none;
@@ -156,8 +144,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       mode: String,
       groupId: String,
       groups: Array,
-      favorites: Array,
-      _showSpinner: Boolean
+      favorites: Array
     }
   }
 
@@ -207,17 +194,11 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           </div>
         </div>
       </ox-grist>
-
-      <oops-spinner ?show=${this._showSpinner}></oops-spinner>
     `
   }
 
   async fetchHandler({ page, limit, sorters = [] }) {
-    this._showSpinner = true
-
     const { items: records, total } = await this.getBoards({ page, limit, sorters })
-
-    this._showSpinner = false
 
     return {
       total,
