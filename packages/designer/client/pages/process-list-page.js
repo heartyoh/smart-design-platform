@@ -1,3 +1,4 @@
+import '@material/mwc-icon'
 import '@operato/data-grist'
 import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
@@ -56,9 +57,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         flex: 1;
         --mdc-icon-size: 20px;
       }
-      #mode {
-        width: 100px;
-      }
+
       #add {
         width: 50px;
         text-align: right;
@@ -79,6 +78,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         color: var(--secondary-text-color);
         cursor: default;
       }
+
       #modes > mwc-icon:hover {
         opacity: 1;
         color: var(--secondary-text-color);
