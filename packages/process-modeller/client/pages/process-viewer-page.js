@@ -6,7 +6,6 @@ import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { client, gqlContext } from '@operato/graphql'
-import { buildLabelPrintCommand } from '@things-factory/barcode-base'
 import { PageView, store } from '@things-factory/shell'
 
 import { provider } from '../board-provider'
@@ -169,21 +168,6 @@ export class ProcessViewerPage extends connect(store)(PageView) {
       this._showSpinner = false
       this.updateContext()
     }
-  }
-
-  async getGrf() {
-    var { labelRotation } = this._board.model
-
-    var { width, height, data } = (await this.shadowRoot.querySelector('ox-board-viewer').getSceneImageData()) || {}
-    if (!width) {
-      throw 'Cannot get SceneImageData...'
-    }
-
-    return buildLabelPrintCommand(data, width, height, labelRotation)
-  }
-
-  async printTrick(image) {
-    await this.renderRoot.querySelector('ox-board-viewer').printTrick(image)
   }
 }
 
