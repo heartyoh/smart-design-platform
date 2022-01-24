@@ -27,12 +27,12 @@
     "@hatiolab/things-scene": "^3.0.0-beta.7",
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
-    "@operato/board": "^0.3.17",
-    "@operato/graphql": "^0.3.17",
-    "@operato/popup": "^0.3.17",
-    "@operato/utils": "^0.3.17",
-    "@things-factory/help": "^4.0.37",
-    "@things-factory/i18n-base": "^4.0.37",
-    "@things-factory/modeller-ui": "^4.0.37"
+    "@operato/board": "^0.3.18",
+    "@operato/graphql": "^0.3.18",
+    "@operato/popup": "^0.3.18",
+    "@operato/utils": "^0.3.18",
+    "@things-factory/help": "^4.0.38",
+    "@things-factory/i18n-base": "^4.0.38",
+    "@things-factory/modeller-ui": "^4.0.38"
   }
 }

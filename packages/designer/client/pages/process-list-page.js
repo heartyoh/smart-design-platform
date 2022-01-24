@@ -129,29 +129,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
         margin-right: var(--margin-default);
       }
 
-      #search {
-        display: flex;
-        position: relative;
-        align-items: center;
-
-        --mdc-icon-size: 20px;
-      }
-
-      #search [type='text'] {
-        flex: 1;
-        background-color: transparent;
-        border: 0;
-        border-bottom: var(--border-dark-color);
-        padding: var(--padding-narrow) var(--padding-narrow) 7px 25px;
-        font-size: var(--fontsize-large);
-        outline: none;
-      }
-
-      #search mwc-icon {
-        position: absolute;
-        color: var(--secondary-color);
-      }
-
       ox-select {
         border: 0;
         outline: none;
@@ -186,6 +163,10 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     return this.shadowRoot.querySelector('ox-grist')
   }
 
+  get filtersForm() {
+    return this.renderRoot.querySelector('ox-filters-form')
+  }
+
   render() {
     const mode = this.mode || 'CARD'
     const groups = this.groups || []
@@ -194,10 +175,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
         <div slot="headroom" id="headroom">
           <div id="filters">
-            <div id="search">
-              <mwc-icon>search</mwc-icon>
-              <input type="text" />
-            </div>
+            <ox-filters-form @change=${e => this.grist.fetch()}> </ox-filters-form>
 
             <ox-select
               placeholder="${i18next.t('text.select-group')}"
@@ -249,7 +227,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   }
 
   async fetchHandler({ page, limit, sorters = [] }) {
-    const { items: records, total } = await this.getBoards({ page, limit, sorters })
+    const { items: records, total } = await this.getBoards({
+      filters: await this.filtersForm.getQueryFilters(),
+      page,
+      limit,
+      sorters
+    })
 
     return {
       total,
@@ -313,6 +296,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
             align: 'left'
           },
           width: 200,
+          filter: 'search',
           sortable: true
         },
         {
@@ -328,7 +312,8 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
             dblclick: (columns, data, column, record, rowIndex) => {
               alert(`${column.name} ${record[column.name]}, row : ${rowIndex}`)
             }
-          }
+          },
+          filter: 'search'
         },
         {
           type: 'boolean',
@@ -528,9 +513,10 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     }
   }
 
-  async getBoards({ page = 1, limit = 30, sorters = [] } = {}) {
+  async getBoards({ filters = [], page = 1, limit = 30, sorters = [] } = {}) {
     if (this.groupId && this.groupId == 'favor')
       return await this.getFavoriteBoards({
+        filters,
         page,
         limit
       })
@@ -538,13 +524,14 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     var listParam = {
       filters: this.groupId
         ? [
+            ...filters,
             {
               name: 'group_id',
               operator: 'eq',
               value: this.groupId
             }
           ]
-        : [],
+        : filters,
       sortings: sorters,
       pagination: {
         page,
