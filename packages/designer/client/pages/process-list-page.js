@@ -11,10 +11,10 @@ import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { i18next } from '@operato/i18n'
+import { navigate, PageView, store } from '@operato/shell'
+import { sleep } from '@operato/utils'
 import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
 import { openOverlay, openPopup } from '@things-factory/layout-base'
-import { navigate, PageView, store } from '@things-factory/shell'
-import { sleep } from '@things-factory/utils'
 
 import {
   createBoard,

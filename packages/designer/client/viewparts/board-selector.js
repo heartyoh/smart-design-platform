@@ -3,16 +3,15 @@ import './process-creation-card'
 import gql from 'graphql-tag'
 import { css, html, LitElement } from 'lit'
 
-import { client, gqlContext } from '@operato/graphql'
+import { buildArgs, client, gqlContext } from '@operato/graphql'
 import { i18next, localize } from '@operato/i18n'
+import { ScrollbarStyles } from '@operato/styles'
 import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
-import { ScrollbarStyles } from '@things-factory/styles'
-import { gqlBuilder } from '@things-factory/utils'
 
 const FETCH_BOARD_LIST_GQL = listParam => {
   return gql`
   {
-    boards(${gqlBuilder.buildArgs(listParam)}) {
+    boards(${buildArgs(listParam)}) {
       items {
         id
         name

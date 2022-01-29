@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-import { client } from '@things-factory/shell'
+import { client } from '@operato/graphql'
 
 export async function fetchGroup(id) {
   const response = await client.query({
@@ -56,7 +56,7 @@ export async function updateGroup(group) {
 export async function deleteGroup(id) {
   const response = await client.mutate({
     mutation: gql`
-      mutation($id: String!) {
+      mutation ($id: String!) {
         deleteGroup(id: $id)
       }
     `,

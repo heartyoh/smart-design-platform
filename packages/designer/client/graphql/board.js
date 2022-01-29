@@ -1,13 +1,12 @@
 import gql from 'graphql-tag'
 
-import { client } from '@things-factory/shell'
-import { gqlBuilder } from '@things-factory/utils'
+import { buildArgs, client } from '@operato/graphql'
 
 export async function fetchBoardList(listParam = {}) {
   const response = await client.query({
     query: gql`
       {
-        boards(${gqlBuilder.buildArgs(listParam)}) {
+        boards(${buildArgs(listParam)}) {
           items {
             id
             name
@@ -131,7 +130,7 @@ export async function updateBoard(board) {
 export async function deleteBoard(id) {
   const response = await client.mutate({
     mutation: gql`
-      mutation($id: String!) {
+      mutation ($id: String!) {
         deleteBoard(id: $id)
       }
     `,

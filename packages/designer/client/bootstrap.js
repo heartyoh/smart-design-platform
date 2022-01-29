@@ -3,6 +3,7 @@ import '@things-factory/auth-ui' /* for domain-switch */
 
 import { html } from 'lit-html'
 
+import { navigate, store } from '@operato/shell'
 import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
 import { auth } from '@things-factory/auth-base'
 import { setAuthManagementMenus } from '@things-factory/auth-ui'
@@ -10,7 +11,6 @@ import { appendViewpart, toggleOverlay, TOOL_POSITION, VIEWPART_POSITION } from 
 import { setupMenuPart, updateMenuTemplate } from '@things-factory/lite-menu'
 import { ADD_MORENDA } from '@things-factory/more-base'
 import { ADD_SETTING } from '@things-factory/setting-base'
-import { navigate, store } from '@things-factory/shell'
 
 import { getMenuTemplate } from './menu'
 

@@ -31,6 +31,7 @@
     "@operato/graphql": "^0.3.21",
     "@operato/i18n": "^0.3.21",
     "@operato/popup": "^0.3.21",
+    "@operato/shell": "^0.3.21",
     "@operato/utils": "^0.3.21",
     "@things-factory/help": "^4.0.41",
     "@things-factory/modeller-ui": "^4.0.41"

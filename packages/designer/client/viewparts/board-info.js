@@ -3,8 +3,9 @@ import '@material/mwc-icon'
 import gql from 'graphql-tag'
 import { css, html, LitElement } from 'lit'
 
+import { client } from '@operato/graphql'
 import { i18next } from '@operato/i18n'
-import { client, navigate } from '@things-factory/shell'
+import { navigate } from '@operato/shell'
 
 export class BoardInfo extends LitElement {
   static get properties() {

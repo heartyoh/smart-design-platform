@@ -3,8 +3,8 @@ import '@material/mwc-icon'
 import gql from 'graphql-tag'
 import { css, html, LitElement } from 'lit'
 
+import { client } from '@operato/graphql'
 import { ScrollbarStyles } from '@operato/styles'
-import { client } from '@things-factory/shell'
 
 export class ProcessReport extends LitElement {
   static get properties() {

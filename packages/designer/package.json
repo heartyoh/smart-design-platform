@@ -43,6 +43,7 @@
     "@operato/i18n": "^0.3.21",
     "@operato/input": "^0.3.21",
     "@operato/popup": "^0.3.21",
+    "@operato/shell": "^0.3.21",
     "@operato/utils": "^0.3.21",
     "@smart-design-platform/equip-base": "^0.0.13",
     "@smart-design-platform/process-modeller": "^0.0.13",
