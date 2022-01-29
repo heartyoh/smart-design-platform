@@ -3,7 +3,7 @@ import '@material/mwc-icon'
 import gql from 'graphql-tag'
 import { css, html, LitElement } from 'lit'
 
-import { i18next } from '@things-factory/i18n-base'
+import { i18next } from '@operato/i18n'
 import { client, navigate } from '@things-factory/shell'
 
 export class BoardInfo extends LitElement {

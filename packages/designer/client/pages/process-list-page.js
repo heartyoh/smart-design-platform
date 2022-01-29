@@ -10,8 +10,8 @@ import '../viewparts/process-report'
 import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
+import { i18next } from '@operato/i18n'
 import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
-import { i18next } from '@things-factory/i18n-base'
 import { openOverlay, openPopup } from '@things-factory/layout-base'
 import { navigate, PageView, store } from '@things-factory/shell'
 import { sleep } from '@things-factory/utils'
@@ -316,16 +316,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           filter: 'search'
         },
         {
-          type: 'boolean',
-          name: 'active',
-          header: 'active',
-          record: {
-            editable: true
-          },
-          sortable: true,
-          width: 60
-        },
-        {
           type: 'image',
           name: 'thumbnail',
           hidden: true,
@@ -353,7 +343,6 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           record: {
             editable: true
           },
-          sortable: true,
           width: 180
         }
       ],
