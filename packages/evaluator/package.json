@@ -1,8 +1,8 @@
 {
-  "name": "@smart-design-platform/process-modeller",
+  "name": "@smart-design-platform/evaluator",
   "version": "0.0.13",
   "main": "dist-server/index.js",
-  "browser": "client/index.js",
+  "browser": "dist-client/index.js",
   "things-factory": true,
   "license": "MIT",
   "author": "",
@@ -14,27 +14,30 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hatiolab/smart-design-platform.git",
-    "directory": "packages/process-modeller"
+    "directory": "packages/evaluator"
   },
   "scripts": {
-    "build": "tsc --p tsconfig.json",
-    "build:server": "npm run clean:server && tsc",
+    "build": "npm run build:server && npm run build:client",
+    "build:client": "tsc --p tsconfig.client.json",
+    "build:server": "tsc --p tsconfig.server.json",
+    "clean:client": "rm -rf dist-client",
     "clean:server": "rm -rf dist-server",
-    "clean": "npm run clean:server",
+    "clean": "npm run clean:server && npm run clean:client",
     "migration:create": "node ../../node_modules/typeorm/cli.js migration:create -d ./server/migrations"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^3.0.0-beta.7",
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
     "@operato/board": "^0.3.26",
     "@operato/graphql": "^0.3.26",
-    "@operato/help": "^0.3.26",
     "@operato/i18n": "^0.3.26",
     "@operato/layout": "^0.3.26",
     "@operato/popup": "^0.3.26",
     "@operato/shell": "^0.3.26",
     "@operato/utils": "^0.3.26",
-    "@things-factory/modeller-ui": "^4.0.43"
+    "@things-factory/board-service": "^4.0.43",
+    "@things-factory/env": "^4.0.43",
+    "@things-factory/fav-base": "^4.0.43",
+    "@things-factory/shell": "^4.0.43"
   }
 }

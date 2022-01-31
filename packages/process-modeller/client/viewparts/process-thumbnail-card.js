@@ -168,7 +168,7 @@ export class BoardThumbnailCard extends localize(i18next)(LitElement) {
   }
 
   reset() {
-    var form = this.shadowRoot.querySelector('form')
+    var form = this.renderRoot.querySelector('form')
     if (form) {
       form.reset()
     }

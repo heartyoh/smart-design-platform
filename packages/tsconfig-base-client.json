@@ -1,0 +1,24 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "lib": ["dom", "esnext.asynciterable", "es2017"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node"],
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "typeRoots": ["../node_modules/@types"]
+}

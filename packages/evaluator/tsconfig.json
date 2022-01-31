@@ -4,6 +4,6 @@
     "outDir": "./dist-server",
     "baseUrl": "./"
   },
-  "include": ["./server/**/*"],
+  "include": ["./server/**/*", "./client/**/*"],
   "exclude": ["**/*.spec.ts"]
 }

@@ -100,7 +100,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
 
   updated(changes) {
     if (changes.has('_boardId')) {
-      var boardViewerElement = this.shadowRoot.querySelector('ox-board-viewer')
+      var boardViewerElement = this.renderRoot.querySelector('ox-board-viewer')
       boardViewerElement && boardViewerElement.closeScene()
       this.refresh()
     }
@@ -111,7 +111,7 @@ export class ProcessViewerPage extends connect(store)(PageView) {
       this._boardId = lifecycle.resourceId
     } else {
       this._boardId = null
-      let boardViewer = this.shadowRoot.querySelector('ox-board-viewer')
+      let boardViewer = this.renderRoot.querySelector('ox-board-viewer')
       boardViewer && boardViewer.closeScene()
     }
   }

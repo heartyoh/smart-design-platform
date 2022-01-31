@@ -4,7 +4,7 @@ import './process-creation-popup'
 import { css, html, LitElement } from 'lit'
 
 import { i18next, localize } from '@operato/i18n'
-import { openPopup } from '@things-factory/layout-base'
+import { openPopup } from '@operato/layout'
 
 export class BoardCreationCard extends localize(i18next)(LitElement) {
   static get properties() {

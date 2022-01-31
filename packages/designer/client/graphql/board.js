@@ -1,12 +1,12 @@
 import gql from 'graphql-tag'
 
-import { buildArgs, client } from '@operato/graphql'
+import { client } from '@operato/graphql'
 
-export async function fetchBoardList(listParam = {}) {
+export async function fetchBoardList({ filters, page, limit, sortings = [] }) {
   const response = await client.query({
     query: gql`
-      {
-        boards(${buildArgs(listParam)}) {
+      query ($filters: [Filter!], $pagination: Pagination, $sortings: [Sorting!]) {
+        boards(filters: $filters, pagination: $pagination, sortings: $sortings) {
           items {
             id
             name
@@ -18,7 +18,12 @@ export async function fetchBoardList(listParam = {}) {
           total
         }
       }
-    `
+    `,
+    variables: {
+      filters,
+      pagination: { page, limit },
+      sortings
+    }
   })
 
   return response.data

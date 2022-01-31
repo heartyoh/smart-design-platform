@@ -256,7 +256,7 @@ export class BoardSelector extends InfiniteScrollable(localize(i18next)(LitEleme
     var boards = await this.getBoards()
     this.boards = [...boards]
 
-    var creationCard = this.shadowRoot.querySelector('process-creation-card')
+    var creationCard = this.renderRoot.querySelector('process-creation-card')
     if (creationCard) {
       creationCard.reset()
     }

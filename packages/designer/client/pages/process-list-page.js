@@ -7,14 +7,14 @@ import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
 
-import { css, html } from 'lit'
+import { html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { i18next } from '@operato/i18n'
+import { openOverlay, openPopup } from '@operato/layout'
 import { navigate, PageView, store } from '@operato/shell'
 import { sleep } from '@operato/utils'
 import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
-import { openOverlay, openPopup } from '@things-factory/layout-base'
 
 import {
   createBoard,
@@ -25,121 +25,11 @@ import {
   updateBoard
 } from '../graphql'
 import { notify } from '../utils/notify'
+import { CommonListStyle } from './common-list-style'
 
 class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   static get styles() {
-    return css`
-      :host {
-        display: flex;
-
-        width: 100%;
-
-        --grid-record-emphasized-background-color: red;
-        --grid-record-emphasized-color: yellow;
-      }
-
-      ox-grist {
-        flex: 1;
-        overflow-y: auto;
-
-        --grid-record-emphasized-background-color: red;
-        --grid-record-emphasized-color: yellow;
-      }
-
-      #headroom {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: var(--padding-default) var(--padding-wide);
-        border-top: 2px solid rgba(0, 0, 0, 0.2);
-        background-color: var(--theme-white-color);
-        box-shadow: var(--box-shadow);
-      }
-
-      #add {
-        width: 50px;
-        text-align: right;
-      }
-
-      #modes {
-        margin-left: auto;
-      }
-
-      #modes > * {
-        padding: var(--padding-narrow);
-        font-size: 1em;
-        opacity: 0.5;
-        color: var(--primary-text-color);
-        cursor: pointer;
-      }
-
-      #modes > mwc-icon[active] {
-        border-radius: 9px;
-        background-color: rgba(var(--primary-color-rgb), 0.05);
-        opacity: 1;
-        color: var(--secondary-text-color);
-        cursor: default;
-      }
-
-      #modes > mwc-icon:hover {
-        opacity: 1;
-        color: var(--secondary-text-color);
-      }
-
-      #add button {
-        background-color: var(--status-success-color);
-        border: 0;
-        border-radius: 50%;
-        padding: 5px;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-      }
-      #add button:hover {
-        background-color: var(--focus-background-color);
-        box-shadow: var(--box-shadow);
-      }
-      #add button mwc-icon {
-        font-size: 2em;
-        color: var(--theme-white-color);
-      }
-
-      #filters {
-        display: flex;
-        position: relative;
-        align-items: center;
-      }
-      #filters [type='text'] {
-        background-color: transparent;
-        border: 0;
-        border-bottom: var(--border-dark-color);
-        padding: var(--padding-narrow) var(--padding-narrow) 7px 25px;
-        font-size: var(--fontsize-large);
-      }
-      #filters [type='text']:focus {
-        outline: none;
-      }
-      #filters mwc-icon {
-        position: absolute;
-        top: 3px;
-        color: var(--secondary-color);
-      }
-
-      #filters * {
-        margin-right: var(--margin-default);
-      }
-
-      ox-select {
-        border: 0;
-        outline: none;
-      }
-
-      @media only screen and (max-width: 460px) {
-        #modes {
-          display: none;
-        }
-      }
-    `
+    return CommonListStyle
   }
 
   static get properties() {
@@ -160,11 +50,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   }
 
   get grist() {
-    return this.shadowRoot.querySelector('ox-grist')
-  }
-
-  get filtersForm() {
-    return this.renderRoot.querySelector('ox-filters-form')
+    return this.renderRoot.querySelector('ox-grist')
   }
 
   render() {
@@ -175,7 +61,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
       <ox-grist .config=${this.config} .mode=${mode} auto-fetch .fetchHandler=${this.fetchHandler.bind(this)}>
         <div slot="headroom" id="headroom">
           <div id="filters">
-            <ox-filters-form @change=${e => this.grist.fetch()}> </ox-filters-form>
+            <ox-filters-form> </ox-filters-form>
 
             <ox-select
               placeholder="${i18next.t('text.select-group')}"
@@ -196,12 +82,12 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
             </ox-select>
           </div>
 
-          <div>
+          <div id="sorters">
             <mwc-icon
               @click=${e => {
                 const target = e.currentTarget
                 this.renderRoot.querySelector('#sorter-control').open({
-                  left: target.offsetLeft,
+                  right: 0,
                   top: target.offsetTop + target.offsetHeight
                 })
               }}
@@ -226,13 +112,8 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     `
   }
 
-  async fetchHandler({ page, limit, sorters = [] }) {
-    const { items: records, total } = await this.getBoards({
-      filters: await this.filtersForm.getQueryFilters(),
-      page,
-      limit,
-      sorters
-    })
+  async fetchHandler() {
+    const { items: records, total } = await this.getBoards(...arguments)
 
     return {
       total,
@@ -502,44 +383,43 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
     }
   }
 
-  async getBoards({ filters = [], page = 1, limit = 30, sorters = [] } = {}) {
-    if (this.groupId && this.groupId == 'favor')
-      return await this.getFavoriteBoards({
-        filters,
-        page,
-        limit
-      })
-
-    var listParam = {
-      filters: this.groupId
-        ? [
-            ...filters,
-            {
-              name: 'group_id',
-              operator: 'eq',
-              value: this.groupId
-            }
-          ]
-        : filters,
-      sortings: sorters,
-      pagination: {
-        page,
-        limit
-      }
+  async getBoards({ filters = [], page = 1, limit = 30, sortings = [] } = {}) {
+    if (this.groupId && this.groupId == 'favor') {
+      return await this.getFavoriteBoards(...arguments)
     }
 
-    return (await fetchBoardList(listParam)).boards
+    return (
+      await fetchBoardList({
+        filters: this.groupId
+          ? [
+              ...filters,
+              {
+                name: 'group_id',
+                operator: 'eq',
+                value: this.groupId
+              }
+            ]
+          : filters,
+        sortings,
+        pagination: {
+          page,
+          limit
+        }
+      })
+    ).boards
   }
 
-  async getFavoriteBoards({ page = 1, limit = 30 } = {}) {
-    var listParam = {
-      pagination: {
-        page,
-        limit
-      }
-    }
-
-    return (await fetchFavoriteBoardList(listParam)).favoriteBoards
+  async getFavoriteBoards({ filters = [], page = 1, limit = 30, sortings = [] } = {}) {
+    return (
+      await fetchFavoriteBoardList({
+        filters,
+        pagination: {
+          page,
+          limit
+        },
+        sortings
+      })
+    ).favoriteBoards
   }
 
   async refreshBoards() {

@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "lib": ["dom", "esnext.asynciterable", "es2017"],
+    "strict": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node", "jest"],
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "typeRoots": ["../node_modules/@types"]
+}
