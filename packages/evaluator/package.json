@@ -28,16 +28,16 @@
   "dependencies": {
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
-    "@operato/board": "^0.3.26",
-    "@operato/graphql": "^0.3.26",
-    "@operato/i18n": "^0.3.26",
-    "@operato/layout": "^0.3.26",
-    "@operato/popup": "^0.3.26",
-    "@operato/shell": "^0.3.26",
-    "@operato/utils": "^0.3.26",
-    "@things-factory/board-service": "^4.0.43",
-    "@things-factory/env": "^4.0.43",
-    "@things-factory/fav-base": "^4.0.43",
-    "@things-factory/shell": "^4.0.43"
+    "@operato/board": "^0.3.27",
+    "@operato/graphql": "^0.3.27",
+    "@operato/i18n": "^0.3.27",
+    "@operato/layout": "^0.3.27",
+    "@operato/popup": "^0.3.27",
+    "@operato/shell": "^0.3.27",
+    "@operato/utils": "^0.3.27",
+    "@things-factory/board-service": "^4.0.44",
+    "@things-factory/env": "^4.0.44",
+    "@things-factory/fav-base": "^4.0.44",
+    "@things-factory/shell": "^4.0.44"
   }
 }

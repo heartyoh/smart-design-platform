@@ -1,8 +1,9 @@
 import '@material/mwc-icon'
-import '@operato/data-grist'
+import '@operato/data-grist/ox-grist.js'
+import '@operato/data-grist/ox-sorters-control.js'
+import '@operato/data-grist/ox-filters-form.js'
 import '@operato/input/ox-select.js'
 import '@operato/popup/ox-popup-list.js'
-import '@operato/data-grist/sorters-control.js'
 import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
@@ -13,6 +14,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js'
 import { i18next } from '@operato/i18n'
 import { openOverlay, openPopup } from '@operato/layout'
 import { navigate, PageView, store } from '@operato/shell'
+import { CommonGristStyles } from '@operato/styles'
 import { sleep } from '@operato/utils'
 import InfiniteScrollable from '@operato/utils/mixins/infinite-scrollable.js'
 
@@ -25,11 +27,22 @@ import {
   updateBoard
 } from '../graphql'
 import { notify } from '../utils/notify'
-import { CommonListStyle } from './common-list-style'
 
 class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
   static get styles() {
-    return CommonListStyle
+    return [
+      CommonGristStyles,
+      css`
+        :host {
+          display: flex;
+
+          width: 100%;
+
+          --grid-record-emphasized-background-color: red;
+          --grid-record-emphasized-color: yellow;
+        }
+      `
+    ]
   }
 
   static get properties() {
