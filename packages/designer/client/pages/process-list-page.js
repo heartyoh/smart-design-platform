@@ -8,7 +8,7 @@ import '@smart-design-platform/process-modeller'
 import '../viewparts/board-info'
 import '../viewparts/process-report'
 
-import { html } from 'lit'
+import { css, html } from 'lit'
 import { connect } from 'pwa-helpers/connect-mixin.js'
 
 import { i18next } from '@operato/i18n'
