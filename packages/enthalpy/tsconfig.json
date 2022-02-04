@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig-base-server.json",
+  "compilerOptions": {
+    "outDir": "./dist-server",
+    "baseUrl": "./"
+  },
+  "include": ["./server/**/*", "./client/**/*", "./tests/**/*"]
+}

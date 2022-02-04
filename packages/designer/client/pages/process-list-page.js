@@ -96,6 +96,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           </div>
 
           <div id="sorters">
+            Sort
             <mwc-icon
               @click=${e => {
                 const target = e.currentTarget
@@ -104,7 +105,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
                   top: target.offsetTop + target.offsetHeight
                 })
               }}
-              >sort</mwc-icon
+              >expand_more</mwc-icon
             >
             <ox-popup id="sorter-control">
               <ox-sorters-control> </ox-sorters-control>
