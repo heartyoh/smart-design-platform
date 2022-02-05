@@ -12,11 +12,11 @@ export class EnthalpyFlowImpl extends EnthalpyFlow {
   _molFraction: SubstanceProperties
   _massFraction: SubstanceProperties
   _molFlow: SubstanceProperties
-  _weightFlow: SubstanceProperties
+  _massFlow: SubstanceProperties
 
   _temperature: number
   _pressure: number
-  _totalWeightFlow: number
+  _totalMassFlow: number
   _totalMolFlow: number
   _enthalpy: number
 
@@ -39,12 +39,12 @@ export class EnthalpyFlowImpl extends EnthalpyFlow {
       temperature: this._temperature,
       pressure: this._pressure,
       totalMolFlow: this._totalMolFlow,
-      totalWeightFlow: this._totalWeightFlow,
+      totalMassFlow: this._totalMassFlow,
       enthalpy: this._enthalpy,
       molFraction: this._molFraction,
       massFraction: this._massFraction,
       molFlow: this._molFlow,
-      weightFlow: this._weightFlow,
+      massFlow: this._massFlow,
       ...this._constraints
     }
   }
@@ -53,16 +53,32 @@ export class EnthalpyFlowImpl extends EnthalpyFlow {
     return this.calculated.temperature
   }
 
+  set temperature(temperature: number) {
+    this._temperature = temperature
+  }
+
   get pressure(): number {
     return this.calculated.pressure
   }
 
-  get totalWeightFlow(): number {
-    return this.calculated.totalWeightFlow
+  set pressure(pressure: number) {
+    this._pressure = pressure
+  }
+
+  get totalMassFlow(): number {
+    return this.calculated.totalMassFlow
+  }
+
+  set totalMassFlow(totalMassFlow: number) {
+    this._totalMassFlow = totalMassFlow
   }
 
   get totalMolFlow(): number {
     return this.calculated.totalMolFlow
+  }
+
+  set totalMolFlow(totalMolFlow: number) {
+    this._totalMolFlow = totalMolFlow
   }
 
   get enthalpy(): number {
@@ -74,16 +90,32 @@ export class EnthalpyFlowImpl extends EnthalpyFlow {
     return this.calculated.molFraction
   }
 
+  set molFraction(molFraction: SubstanceProperties) {
+    this._molFraction = molFraction
+  }
+
   get massFraction() {
     return this.calculated.massFraction
+  }
+
+  set massFraction(massFraction: SubstanceProperties) {
+    this._massFraction = massFraction
   }
 
   get molFlow() {
     return this.calculated.molFlow
   }
 
-  get weightFlow() {
-    return this.calculated.weightFlow
+  set molFlow(molFlow: SubstanceProperties) {
+    this._molFlow = molFlow
+  }
+
+  get massFlow() {
+    return this.calculated.massFlow
+  }
+
+  set massFlow(massFlow: SubstanceProperties) {
+    this._massFlow = massFlow
   }
 
   async calculateEnthalpy(): Promise<number> {
@@ -103,41 +135,50 @@ export class EnthalpyFlowImpl extends EnthalpyFlow {
     }, 0)
   }
 
+  clear() {}
+
   async calculate(): Promise<void> {
-    // 다음 3가지가 확정된 경우.
-    const temperature = this.temperature
+    this.clear()
+
+    // 다음 2가지와 temperature가 확정된 경우.
+    // TODO 명세에 의한 계산룰이 필요하다.
+    // 고정 인풋 : temperature
+    // 가변 인풋 :
+    // - case 1 : molFraction 과 totalMolFlow이 명세인 경우 => molFlow를 구할 수 있음
+    // - case 2 : molFlow 가 명세인 경우 => totalMolFlow, molFraction 구할 수 있음
+
     const totalMolFlow = this.totalMolFlow
     const molFraction = this.molFraction
 
-    const keys = Object.keys(this.molFraction)
-    const flows = keys.map(substance => {
+    const substances = Object.keys(this.molFraction)
+    const flows = substances.map(substance => {
       const rate = molFraction[substance]
       return totalMolFlow * rate
     })
 
-    this._molFlow = keys.reduce((sum, substance, i) => {
+    this._molFlow = substances.reduce((sum, substance, i) => {
       sum[substance] = flows[i]
       return sum
     }, {})
 
     const weights = await Promise.all(
-      keys.map(async substance => {
-        return this.molFlow[substance] * (await getEnthalpyParameters(substance)).mol
+      substances.map(async substance => {
+        return this.molFlow[substance] * (await getEnthalpyParameters(substance)).molecularWeight
       })
     )
 
-    this._totalWeightFlow = weights.reduce((sum, weight) => {
+    this._totalMassFlow = weights.reduce((sum, weight) => {
       sum += weight
       return sum
     }, 0)
 
-    this._weightFlow = keys.reduce(async (sum, substance, i) => {
+    this._massFlow = substances.reduce((sum, substance, i) => {
       sum[substance] = weights[i]
       return sum
     }, {})
 
-    this._massFraction = keys.reduce((sum, substance, i) => {
-      sum[substance] = weights[i] * this._totalWeightFlow
+    this._massFraction = substances.reduce((sum, substance, i) => {
+      sum[substance] = weights[i] / this._totalMassFlow
       return sum
     }, {})
 

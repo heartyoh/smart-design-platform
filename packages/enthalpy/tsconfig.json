@@ -4,5 +4,5 @@
     "outDir": "./dist-server",
     "baseUrl": "./"
   },
-  "include": ["./server/**/*", "./client/**/*", "./tests/**/*"]
+  "include": ["./server/**/*", "./client/**/*", "test/**/*"]
 }

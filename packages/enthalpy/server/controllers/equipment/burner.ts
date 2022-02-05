@@ -1,7 +1,7 @@
 import { EnthalpyFlow } from '../'
 import { getEnthalpy } from '../enthalpy'
 import { getEnthalpyParameters } from '../enthalpy-parameters'
-import { Equipment } from '../models'
+import { Equipment, SubstanceProperties } from '../models'
 
 export class Burner extends Equipment {
   get LNGInput(): EnthalpyFlow {
@@ -13,7 +13,7 @@ export class Burner extends Equipment {
   }
 
   get burnedOutput(): EnthalpyFlow {
-    return this.outputs[1] as EnthalpyFlow
+    return this.outputs[0] as EnthalpyFlow
   }
 
   async getCombustionHeat() {
@@ -116,19 +116,65 @@ export class Burner extends Equipment {
   async calculate() {
     // LNG input의 totalMolFlow 를 설정한다.
     const totalMolFlow = await this.calcDemandLNGMolFlow()
-    this.LNGInput.totalMolFlow = totalMolFlow
+    this.LNGInput.constraints = {
+      ...this.LNGInput.constraints,
+      totalMolFlow: totalMolFlow
+    }
+
     await this.LNGInput.calculate()
 
     // preheatedInput의 totalMolFlow 를 설정한다.
     const calcEquivalentRatio = await this.calcEquivalentRatio()
-    this.preheatedInput.totalMolFlow = (9.52 / calcEquivalentRatio) * totalMolFlow
+    this.preheatedInput.constraints = {
+      ...this.preheatedInput.constraints,
+      totalMolFlow: (9.52 / calcEquivalentRatio) * totalMolFlow
+    }
     await this.preheatedInput.calculate()
 
     // fluegasOutput의 totalMolFlow 를 설정한다.
-    this.burnedOutput.totalMolFlow = this.LNGInput.totalMolFlow + this.preheatedInput.totalMolFlow
-    this.burnedOutput.totalWeightFlow = this.LNGInput.totalWeightFlow + this.preheatedInput.totalWeightFlow
+    const outputTotalMolFlow = this.LNGInput.totalMolFlow + this.preheatedInput.totalMolFlow
+    const outputTotalMassFlow = this.LNGInput.totalMassFlow + this.preheatedInput.totalMassFlow
+
     // this.burnedOutput.molFlow 을 연소반응식에 기반하여서 구성한다.
+    // CH4 + 2O2 + 7.52N2 → CO2 + 2H2O + 7.52N2 : CH4와 2O2 => CO2 + 2H2O
+    const fractions = this.inputs
+      .filter(input => input instanceof EnthalpyFlow)
+      .map((input: EnthalpyFlow) => input.molFlow)
+    const outputMolFlow = {} as SubstanceProperties
+
+    for (let fraction of fractions) {
+      for (let substance in fraction) {
+        let value = fraction[substance]
+        let base = outputMolFlow[substance] || 0
+        outputMolFlow[substance] = base + value
+      }
+    }
+
+    var ch4 = outputMolFlow['CH4'] || 0
+    var o2 = outputMolFlow['O2'] || 0
+    var co2 = outputMolFlow['CO2'] || 0
+    var h2o = outputMolFlow['H2O'] || 0
+
+    outputMolFlow['O2'] = o2 + 2 * ch4
+    outputMolFlow['CH4'] = 0
+    outputMolFlow['CO2'] = co2 + ch4
+    outputMolFlow['H2O'] = h2o + 2 * ch4
+
     // this.burnedOutput.molFraction molFlow에 기반해서 molFraction을 계산한다.
-    // 이후로는 this.burnedOuptpu.calculate() 를 실행한다.
+    this.burnedOutput.constraints = {
+      ...this.burnedOutput.constraints,
+      totalMolFlow: outputTotalMolFlow,
+      totalMassFlow: outputTotalMassFlow,
+      molFlow: outputMolFlow,
+      // totalMolFlow: Object.keys(outputMolFlow).reduce((sum, substance) => sum + outputMolFlow[substance], 0),
+      molFraction: Object.keys(outputMolFlow).reduce((sum, substance) => {
+        let molFlow = outputMolFlow[substance]
+        sum[substance] = molFlow / outputTotalMolFlow
+
+        return sum
+      }, {} as SubstanceProperties)
+    }
+
+    await this.burnedOutput.calculate()
   }
 }

@@ -6,12 +6,12 @@ export type FlowProperties = {
   temperature: number
   pressure: number
   totalMolFlow: number
-  totalWeightFlow: number
+  totalMassFlow: number
   enthalpy: number
 
   molFraction: SubstanceProperties
   molFlow: SubstanceProperties
-  weightFlow: SubstanceProperties
+  massFlow: SubstanceProperties
   massFraction: SubstanceProperties
 }
 
@@ -19,12 +19,12 @@ export type FlowConstraints = {
   temperature?: number
   pressure?: number
   totalMolFlow?: number
-  totalWeightFlow?: number
+  totalMassFlow?: number
   enthalpy?: number
 
   molFraction?: SubstanceProperties
   molFlow?: SubstanceProperties
-  weightFlow?: SubstanceProperties
+  massFlow?: SubstanceProperties
   massFraction?: SubstanceProperties
 }
 
@@ -54,8 +54,12 @@ export class Equipment {
   inputs: Flow[] = []
   outputs: Flow[] = []
 
-  spec(prop: string) {
-    return this.specs[prop] || 0
+  spec(prop: string, value?: any): any {
+    if (value !== undefined) {
+      this.specs[prop] = value
+    }
+
+    return this.specs[prop]
   }
 
   input(flow: Flow, index: number) {
@@ -100,28 +104,67 @@ export abstract class EnthalpyFlow extends Flow {
       temperature: this.temperature,
       pressure: this.pressure,
       totalMolFlow: this.totalMolFlow,
-      totalWeightFlow: this.totalWeightFlow,
+      totalMassFlow: this.totalMassFlow,
       enthalpy: this.enthalpy,
       molFraction: this.molFraction,
       molFlow: this.molFlow,
       massFraction: this.massFraction,
-      weightFlow: this.weightFlow
+      massFlow: this.massFlow
     }
   }
 
   /* abstract methods */
+  abstract get constraints(): FlowConstraints
+  abstract set constraints(constraints: FlowConstraints)
+
   abstract get temperature(): number
+  abstract set temperature(temperature: number)
+
   abstract get pressure(): number
-  abstract get totalWeightFlow(): number
+  abstract set pressure(pressure: number)
+
+  abstract get totalMassFlow(): number
+  abstract set totalMassFlow(totalMassFlow: number)
+
   abstract get totalMolFlow(): number
+  abstract set totalMolFlow(totalMolFlow: number)
+
   abstract get enthalpy(): number
 
   abstract get molFraction(): SubstanceProperties
+  abstract set molFraction(molFraction: SubstanceProperties)
+
   abstract get massFraction(): SubstanceProperties
+  abstract set massFraction(massFraction: SubstanceProperties)
+
   abstract get molFlow(): SubstanceProperties
-  abstract get weightFlow(): SubstanceProperties
+  abstract set molFlow(molFlow: SubstanceProperties)
+
+  abstract get massFlow(): SubstanceProperties
+  abstract set massFlow(massFlow: SubstanceProperties)
 
   abstract calculate(): void
+
+  printSubstance(name: string, substance: SubstanceProperties) {
+    console.log('( ', name, ' )')
+    for (let subs in substance) {
+      console.log(subs, ' : ', substance[subs])
+    }
+  }
+
+  print() {
+    console.log('[ EnthalpyFlow : ', this.name, '---')
+    console.log('\ttemperature: ', this.temperature)
+    console.log('\tpressure: ', this.pressure)
+    console.log('\ttotalMolFlow: ', this.totalMolFlow)
+    console.log('\ttotalMassFlow: ', this.totalMassFlow)
+    console.log('\tenthalpy: ', this.enthalpy)
+    this.printSubstance('molFraction', this.molFraction)
+    this.printSubstance('massFraction', this.massFraction)
+    this.printSubstance('molFlow', this.molFlow)
+    this.printSubstance('massFlow', this.massFlow)
+    console.log('--- EnthalpyFlow : ', this.name, ' ]')
+  }
 }
 
 export class HeatFlow extends Flow {
