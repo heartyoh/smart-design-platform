@@ -1,10 +1,11 @@
-import { EnthalpyOutputFlow } from '../../../server/controllers/'
 import { KELVIN_CONSTANT, ROOM_TEMPERATURE } from '../../../server/controllers/enthalpy'
 import { Burner } from '../../../server/controllers/equipment/burner'
 import { Furnace } from '../../../server/controllers/equipment/furnace'
 import { Preheater } from '../../../server/controllers/equipment/preheater'
 import { Recycler } from '../../../server/controllers/equipment/recycler'
+import { EnthalpyInoutFlow } from '../../../server/controllers/flow/inout-flow'
 import { EnthalpyInputFlow } from '../../../server/controllers/flow/input-flow'
+import { EnthalpyOutputFlow } from '../../../server/controllers/flow/output-flow'
 
 describe('heater estimation', () => {
   var burner
@@ -53,7 +54,7 @@ describe('heater estimation', () => {
       pressure: 1
     })
 
-    preheatedAirA = new EnthalpyInputFlow('예열공기A', {
+    preheatedAirA = new EnthalpyInoutFlow('예열공기A', {
       temperature: 850.243,
       pressure: 1,
       molFraction: {
@@ -62,7 +63,7 @@ describe('heater estimation', () => {
       }
     })
 
-    preheatedAirB = new EnthalpyOutputFlow('예열공기B', {
+    preheatedAirB = new EnthalpyInoutFlow('예열공기B', {
       pressure: 1
     })
 
@@ -74,13 +75,13 @@ describe('heater estimation', () => {
       }
     })
 
-    flueGas = new EnthalpyOutputFlow('Flue Gas', {
+    flueGas = new EnthalpyInoutFlow('Flue Gas', {
       temperature: 1950,
       pressure: 1
     })
 
-    wastedGas = new EnthalpyOutputFlow('Waste Gas', {
-      temperature: 1250.24323194903,
+    wastedGas = new EnthalpyInoutFlow('Waste Gas', {
+      // temperature: 1250.24323194903,
       pressure: 1
     })
 

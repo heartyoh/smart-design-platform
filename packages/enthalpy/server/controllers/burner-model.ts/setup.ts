@@ -1,9 +1,9 @@
-import { EnthalpyFlowImpl } from '../'
 import { KELVIN_CONSTANT, ROOM_TEMPERATURE } from '../enthalpy'
 import { Burner } from '../equipment/burner'
 import { Furnace } from '../equipment/furnace'
 import { Preheater } from '../equipment/preheater'
 import { Recycler } from '../equipment/recycler'
+import { EnthalpyInoutFlow } from '../flow/inout-flow'
 import { EnthalpyInputFlow } from '../flow/input-flow'
 import { EnthalpyOutputFlow } from '../flow/output-flow'
 import { Registry } from '../models'
@@ -21,7 +21,7 @@ const air = new EnthalpyInputFlow('공기', {
   }
 })
 
-const wastedGas = new EnthalpyFlowImpl('Wasted Gas', {
+const wastedGas = new EnthalpyInoutFlow('Wasted Gas', {
   temperature: 1250.24323194903,
   pressure: 1
 })
@@ -31,12 +31,12 @@ const dispose = new EnthalpyOutputFlow('배출', {
   pressure: 1
 })
 
-const preheatedAirA = new EnthalpyFlowImpl('예열공기B', {
+const preheatedAirA = new EnthalpyInoutFlow('예열공기B', {
   temperature: 477,
   pressure: 1
 })
 
-const preheatedAirB = new EnthalpyFlowImpl('예열공기A')
+const preheatedAirB = new EnthalpyInoutFlow('예열공기A')
 const lng = new EnthalpyInputFlow('LNG', {
   temperature: KELVIN_CONSTANT + ROOM_TEMPERATURE,
   pressure: 1,
@@ -44,7 +44,7 @@ const lng = new EnthalpyInputFlow('LNG', {
     CH4: 1
   }
 })
-const flueGas = new EnthalpyFlowImpl('Flue Gas')
+const flueGas = new EnthalpyInoutFlow('Flue Gas')
 
 /* equipment */
 const burner = new Burner('연소기', {
