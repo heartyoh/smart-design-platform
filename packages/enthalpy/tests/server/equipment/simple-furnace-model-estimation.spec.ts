@@ -55,7 +55,7 @@ describe('heater estimation', () => {
     })
 
     preheatedAirA = new EnthalpyInoutFlow('예열공기A', {
-      temperature: 850.243,
+      temperature: 750.243,
       pressure: 1,
       molFraction: {
         N2: 0.79,
@@ -111,7 +111,7 @@ describe('heater estimation', () => {
     await recycler.calculate()
     await preheater.calculate()
 
-    preheatedAirB.print()
+    flueGas.print()
 
     console.log(
       'Enthalpy GAP between preheatedAirs',

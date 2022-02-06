@@ -16,7 +16,6 @@ export class Furnace extends Equipment {
 
   seek(temperature: number, enthalpy: number, substances: any, molFlow: SubstanceProperties) {
     const fn = (temperature: number): number => {
-      // console.log('temperature', temperature)
       return Object.keys(molFlow)
         .map(substance => {
           const kmol = molFlow[substance]
@@ -32,11 +31,9 @@ export class Furnace extends Equipment {
     return goalSeek({
       fn,
       fnParams: [temperature],
-      percentTolerance: 1,
+      percentTolerance: 1 /* customToleranceFn 이 함수가 아니면, enthalpy 차이가 목표값의 1% 이내일 때까지의 적절한 온도값을 찾아낸다 */,
       customToleranceFn: (x: number): boolean => {
-        if (Math.abs(x - enthalpy) < 10) {
-          console.log('x', x, 'enthalpy', enthalpy, Math.abs(x - enthalpy))
-        }
+        /* enthalpy 차이가 10 보다 작아질 때까지의 적절한 온도값을 찾아낸다 */
         return Math.abs(x - enthalpy) < 10
       },
       maxIterations: 100000,
@@ -52,9 +49,11 @@ export class Furnace extends Equipment {
 
     /* output wasted gas 의 온도를 역계산하기 위해 해찾기를 수행한다. */
     const targetEnthalpy = input.enthalpy - this.demandEnerge * this.energeEfficiency
+
     const enthalpyParameters = await Promise.all(
       Object.keys(input.molFlow).map(async substance => await getEnthalpyParameters(substance))
     )
+
     const substances = enthalpyParameters.reduce((sum, parameter) => {
       sum[parameter.substance] = parameter
       return sum

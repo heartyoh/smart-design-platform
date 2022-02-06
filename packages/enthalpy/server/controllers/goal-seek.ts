@@ -1,3 +1,8 @@
+/*
+  inspired by https://github.com/adam-hanna/goal-seek
+  Importing the module did not go well, so I borrowed the original source
+*/
+
 export const goalSeek = ({
   fn,
   fnParams,
@@ -14,7 +19,9 @@ export const goalSeek = ({
   let oldGuess
   let newGuess
   let res
+
   const absoluteTolerance = ((percentTolerance || 0) / 100) * goal
+
   // iterate through the guesses
   for (let i = 0; i < maxIterations; i++) {
     // define the root of the function as the error
@@ -55,6 +62,7 @@ export const goalSeek = ({
     }
     fnParams[independentVariableIdx] = newGuess
   }
+
   // done with iterations, and we failed to converge
   throw new Error('failed to converge')
 }
