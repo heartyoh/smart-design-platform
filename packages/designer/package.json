@@ -46,6 +46,7 @@
     "@operato/shell": "^0.3.27",
     "@operato/utils": "^0.3.27",
     "@smart-design-platform/equipment": "^0.0.13",
+    "@smart-design-platform/enthalpy": "^0.0.13",
     "@smart-design-platform/evaluator": "^0.0.13",
     "@smart-design-platform/process-modeller": "^0.0.13",
     "@things-factory/api": "^4.0.44",
