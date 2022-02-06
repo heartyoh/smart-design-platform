@@ -22,7 +22,7 @@ const air = new EnthalpyInputFlow('공기', {
 })
 
 const wastedGas = new EnthalpyInoutFlow('Wasted Gas', {
-  temperature: 1250.24323194903,
+  // temperature: 1250.24323194903, -- 해찾기로 계산되어야 한다.
   pressure: 1
 })
 
@@ -31,12 +31,20 @@ const dispose = new EnthalpyOutputFlow('배출', {
   pressure: 1
 })
 
-const preheatedAirA = new EnthalpyInoutFlow('예열공기B', {
-  temperature: 477,
+const preheatedAirB = new EnthalpyInoutFlow('예열공기B', {
   pressure: 1
 })
 
-const preheatedAirB = new EnthalpyInoutFlow('예열공기A')
+const preheatedAirA = new EnthalpyInoutFlow('예열공기A', {
+  temperature: 750.243,
+  pressure: 1,
+  molFraction: {
+    // 이 값은 Air 로부터 유도할 수 있어야 한다. 왜냐면, Input타입이 아니니까.
+    N2: 0.79,
+    O2: 0.21
+  }
+})
+
 const lng = new EnthalpyInputFlow('LNG', {
   temperature: KELVIN_CONSTANT + ROOM_TEMPERATURE,
   pressure: 1,
@@ -44,7 +52,10 @@ const lng = new EnthalpyInputFlow('LNG', {
     CH4: 1
   }
 })
-const flueGas = new EnthalpyInoutFlow('Flue Gas')
+const flueGas = new EnthalpyInoutFlow('Flue Gas', {
+  temperature: 1950,
+  pressure: 1
+})
 
 /* equipment */
 const burner = new Burner('연소기', {
@@ -63,8 +74,8 @@ const preheater = new Preheater('예열기', {
 /* connecting */
 preheater.input(air, 0)
 preheater.input(wastedGas, 1)
-preheater.output(preheatedAirB, 0)
-preheater.output(dispose, 1)
+preheater.output(dispose, 0)
+preheater.output(preheatedAirB, 1)
 
 recycler.input(preheatedAirB, 0)
 recycler.output(preheatedAirA, 0)
@@ -81,3 +92,21 @@ registry.substances = ['O2', 'N2', 'CO2', 'CH4', 'H2O']
 
 registry.addEquipment([burner, furnace, recycler])
 registry.addFlow([air, wastedGas, dispose, preheatedAirA, preheatedAirB, lng, flueGas])
+
+export async function evaluate(init: number) {
+  preheatedAirA.constraints = {
+    temperature: init || 750.243,
+    pressure: 1,
+    molFraction: {
+      N2: 0.79,
+      O2: 0.21
+    }
+  }
+
+  await burner.calculate()
+  await furnace.calculate()
+  await recycler.calculate()
+  await preheater.calculate()
+
+  return [air, dispose, preheatedAirB, preheatedAirA, flueGas, wastedGas]
+}

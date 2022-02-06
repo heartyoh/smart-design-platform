@@ -1,16 +1,17 @@
 /* EXPORT ENTITY TYPES */
 
 /* IMPORT ENTITIES AND RESOLVERS */
-import { entities as EnthalpyParameterEntities, resolvers as EnthalpyParameterResolvers } from './enthalpy-parameter'
+import { resolvers as EnthalpyResolvers } from './enthalpy'
+import { resolvers as EvaluationResolvers } from './evaluation'
 
 export const entities = [
   /* ENTITIES */
-  ...EnthalpyParameterEntities
 ]
 
 export const schema = {
   resolverClasses: [
     /* RESOLVER CLASSES */
-    ...EnthalpyParameterResolvers
+    ...EnthalpyResolvers,
+    ...EvaluationResolvers
   ]
 }

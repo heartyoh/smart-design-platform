@@ -1,22 +1,13 @@
-import { Field, Float, Int, ObjectType } from 'type-graphql'
+import { Field, Float, ObjectType } from 'type-graphql'
 
 @ObjectType({ description: 'Enthalpy' })
 export class Enthalpy {
   @Field(type => String)
-  name: string
+  substance: string
 
-  @Field(type => Int)
+  @Field(type => Float)
   temperature: number
 
   @Field(type => Float)
-  enthaply: number
-}
-
-@ObjectType()
-export class EnthalpyList {
-  @Field(type => [Enthalpy])
-  items: Enthalpy[]
-
-  @Field(type => Int)
-  total: number
+  enthalpy: number
 }
