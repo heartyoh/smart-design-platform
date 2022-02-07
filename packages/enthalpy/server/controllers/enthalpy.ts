@@ -11,7 +11,7 @@ export async function getEnthalpy(substance: string, temperature: number) {
 
   if (temperature <= 200) {
     return 0
-  } else if (temperature > 200 || temperature <= 1000) {
+  } else if (temperature > 200 && temperature <= 1000) {
     return (
       IDEAL_GAS_RAW *
       (a +

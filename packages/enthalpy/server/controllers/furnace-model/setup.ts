@@ -108,5 +108,5 @@ export async function evaluate(init: number) {
   await recycler.calculate()
   await preheater.calculate()
 
-  return [air, dispose, preheatedAirB, preheatedAirA, flueGas, wastedGas]
+  return [air, dispose, preheatedAirB, preheatedAirA, flueGas, wastedGas, lng]
 }
