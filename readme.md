@@ -22,12 +22,14 @@
 
 ### Package Index
 
-"smart-design-platform" 리파지토리는 ***3***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
+"smart-design-platform" 리파지토리는 ***5***개의 NPM 모듈로 구성되어 모노리포(monorepo)로 관리됩니다.
 
 | Package | Version | Description |
 | ------- | ------- | ----------- |
 | [designer](packages/designer) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner.svg" width="200px" /></a> | process designer application |
-| [equip-base](packages/equip-base) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fequip-base"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fequip-base.svg" width="200px" /></a> | Equipment components for things-scene |
+| [enthalpy](packages/enthalpy) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
+| [equipment](packages/equipment) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fequipment"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fequipment.svg" width="200px" /></a> | Equipment components for things-scene |
+| [evaluator](packages/evaluator) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
 | [process-modeller](packages/process-modeller) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
 
 ## Want to contribute?

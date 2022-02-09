@@ -22,7 +22,6 @@
 현재는 커뮤니케이션을 위해 만들어진 단순 예시용 시안임을 이해하고 검토해주시기 바랍니다.
 ![github](https://user-images.githubusercontent.com/1257178/138845154-a114bc24-0c64-4e79-8a66-c4d444e83d06.png)
 
-
 - [공정 설계 UI Demo link](https://xd.adobe.com/view/40eb8487-d805-47d9-9b23-08c7ac71b904-15b8/)
 
 ## 공정 설계 모델 명세 협의 사항
