@@ -65,8 +65,6 @@ export class Burner extends Equipment {
     const co2_out = await getEnthalpy('CO2', outputTemperature)
     const h2o_out = await getEnthalpy('H2O', outputTemperature)
 
-    console.log('ch4_in', ch4_in)
-
     // CH4 + O2 => CO2 + 2H2O 로 변환된 이후의 엔탈피 차이로 이해됨.
     const a = ch4_in + 2 * o2_out - (co2_out + 2 * h2o_out)
 
@@ -94,21 +92,8 @@ export class Burner extends Equipment {
       (n2_rate * n2_preheatedIn + o2_rate * o2_preheatedIn - (n2_rate * n2_out + o2_rate * o2_out))
 
     const x = Math.sqrt(Math.pow(27 * Math.pow(a, 2) * d, 2) - 4 * Math.pow(-3 * a * c, 3))
-
-    /**** 원래 로직은 아래와 같지만, NaN이 나오는 결과가 있어서, 허수의 가능성을 두고 절대값을 씌움. 임시방편으로 원래의 로직을 점검할 필요가 있어보임.  */
-    // const A = Math.pow(0.5 * (27 * Math.pow(a, 2) * d + x), 1 / 3)
-    // const B = Math.pow(0.5 * (27 * Math.pow(a, 2) * d - x), 1 / 3)
-
-    // return -A / (3 * a) - B / (3 * a)
-    /**** 이상 원래의 로직임.  */
-
-    const A = Math.pow(0.5 * Math.abs(27 * Math.pow(a, 2) * d + x), 1 / 3)
-
-    console.log('A - ', A)
-
-    const B = Math.pow(0.5 * Math.abs(27 * Math.pow(a, 2) * d - x), 1 / 3)
-
-    console.log('B - ', x, B, -A / (3 * a) - B / (3 * a))
+    const A = Math.cbrt(0.5 * (27 * Math.pow(a, 2) * d + x))
+    const B = Math.cbrt(0.5 * (27 * Math.pow(a, 2) * d - x))
 
     return Math.abs(-A / (3 * a) - B / (3 * a))
   }
@@ -155,7 +140,7 @@ export class Burner extends Equipment {
     var co2 = outputMolFlow['CO2'] || 0
     var h2o = outputMolFlow['H2O'] || 0
 
-    outputMolFlow['O2'] = o2 + 2 * ch4
+    outputMolFlow['O2'] = o2 - 2 * ch4
     outputMolFlow['CH4'] = 0
     outputMolFlow['CO2'] = co2 + ch4
     outputMolFlow['H2O'] = h2o + 2 * ch4

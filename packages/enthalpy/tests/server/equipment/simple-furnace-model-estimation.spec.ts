@@ -105,7 +105,7 @@ describe('heater estimation', () => {
 
   beforeEach(async () => {})
 
-  it('equipment의 최종 계산된 preheated flow의 enthalpy는 xxxx 이어야 한다.', async () => {
+  it('equipment의 최종 계산된 preheated flow의 enthalpy는 260526 이어야 한다.', async () => {
     await burner.calculate()
     await furnace.calculate()
     await recycler.calculate()
@@ -127,7 +127,7 @@ describe('heater estimation', () => {
       preheatedAirA.temperature - preheatedAirB.temperature
     )
 
-    expect(preheatedAirA.enthalpy).toBe(0)
-    expect(preheatedAirB.enthalpy).toBe(0)
+    expect(Math.abs(260526 - preheatedAirA.enthalpy)).toBeLessThan(10)
+    expect(Math.abs(260526 - preheatedAirB.enthalpy)).toBeLessThan(10)
   })
 })
