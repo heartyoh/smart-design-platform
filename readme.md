@@ -27,9 +27,9 @@
 | Package | Version | Description |
 | ------- | ------- | ----------- |
 | [designer](packages/designer) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fdesigner.svg" width="200px" /></a> | process designer application |
-| [enthalpy](packages/enthalpy) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
+| [enthalpy](packages/enthalpy) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fenthalpy.svg" width="200px" /></a> | Energy calculation logic based on enthalpy flow. |
 | [equipment](packages/equipment) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fequipment"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fequipment.svg" width="200px" /></a> | Equipment components for things-scene |
-| [evaluator](packages/evaluator) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
+| [evaluator](packages/evaluator) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fevaluator.svg" width="200px" /></a> | TypeScript Codebase Client Template. |
 | [process-modeller](packages/process-modeller) | <a href="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller"><img src="https://badge.fury.io/js/%40smart-design-platform%2Fprocess-modeller.svg" width="200px" /></a> | Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard. |
 
 ## Want to contribute?

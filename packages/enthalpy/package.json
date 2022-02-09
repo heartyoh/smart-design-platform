@@ -6,7 +6,7 @@
   "things-factory": true,
   "license": "MIT",
   "author": "",
-  "description": "Consist of board modeller to design dashboard, board player to play dashboard and board viewer to view dashboard.",
+  "description": "Energy calculation logic based on enthalpy flow.",
   "publishConfig": {
     "access": "public",
     "@smart-design-platform:registry": "https://registry.npmjs.org"
