@@ -1,3 +1,7 @@
 {
-  "keyword": "[ms] keyword"
+  "keyword": "[ms] keyword",
+  "label.power-consumtion": "[ms] power",
+  "label.energy-efficiency": "[ms] energy efficiency",
+  "label.heat-loss": "[ms] heat loss",
+  "label.out-temperature": "[ms] target temperature"
 }

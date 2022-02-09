@@ -3,7 +3,7 @@ import { KELVIN_CONSTANT, ROOM_TEMPERATURE } from '../../../server/controllers/e
 import { Burner } from '../../../server/controllers/equipment/burner'
 import { EnthalpyInputFlow } from '../../../server/controllers/flow/input-flow'
 
-describe('heater estimation', () => {
+describe('burner estimation', () => {
   var burner
   var preheatedAir
   var lng

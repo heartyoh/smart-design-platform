@@ -10,7 +10,18 @@ const NATURE = {
   mutable: false,
   resizable: false,
   rotatable: false,
-  properties: []
+  properties: [
+    {
+      type: 'number',
+      label: 'energy-efficiency',
+      name: 'energyEfficiency'
+    },
+    {
+      type: 'number',
+      label: 'power-consumtion',
+      name: 'powerConsumtion'
+    }
+  ]
 }
 
 export default class Furnace extends RectPath(Shape) {

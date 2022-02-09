@@ -10,7 +10,13 @@ const NATURE = {
   mutable: false,
   resizable: false,
   rotatable: false,
-  properties: []
+  properties: [
+    {
+      type: 'number',
+      label: 'out-temperature',
+      name: 'outTemperature'
+    }
+  ]
 }
 
 export default class Burner extends RectPath(Shape) {

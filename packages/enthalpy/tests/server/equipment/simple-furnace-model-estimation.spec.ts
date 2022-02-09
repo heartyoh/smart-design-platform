@@ -7,7 +7,7 @@ import { EnthalpyInoutFlow } from '../../../server/controllers/flow/inout-flow'
 import { EnthalpyInputFlow } from '../../../server/controllers/flow/input-flow'
 import { EnthalpyOutputFlow } from '../../../server/controllers/flow/output-flow'
 
-describe('heater estimation', () => {
+describe('burner estimation', () => {
   var burner
   var furnace
   var preheater

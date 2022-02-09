@@ -1,3 +1,7 @@
 {
-  "keyword": "keyword"
+  "keyword": "keyword",
+  "label.power-consumtion": "power",
+  "label.energy-efficiency": "energy efficiency",
+  "label.heat-loss": "heat loss",
+  "label.out-temperature": "target temperature"
 }

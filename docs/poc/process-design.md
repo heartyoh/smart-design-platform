@@ -55,6 +55,8 @@ Process Design 모델구조, 모델러 UX 및 실행 엔진 개념 검증
 
 ### 공정 설계 케이스 #1 - 연소기 공정 설계
 
-![연소기 공정 설계 모델](./images/heater-process-model.png)
+![연소기 공정 설계 모델](./images/burner-process-model.png)
 
 - 연소반응식 : CH4 + 2O2 + 7.52N2 → CO2 + 2H2O + 7.52N2
+- [ ] 연소기 입력 LNG의 mol수를 구하는데 있어서 입출력 파라미터가 잘 적용되어있는가 ? 입력쪽의 Mol Fraction 만을 적용하는 것이 적절한가 ?
+- [ ] 연소기 열량 손실율이 계산에 영향을 미치지 않고 있는데, 확인 필요.

@@ -10,7 +10,13 @@ const NATURE = {
   mutable: false,
   resizable: false,
   rotatable: false,
-  properties: []
+  properties: [
+    {
+      type: 'number',
+      label: 'heat-loss',
+      name: 'heatLoss'
+    }
+  ]
 }
 
 export default class Heater extends RectPath(Shape) {
