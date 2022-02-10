@@ -7,16 +7,16 @@ import { EnthalpyFlowResult, EnthalpyFlowResultList } from './evaluation-type'
 export class EvaluationQuery {
   @Query(returns => EnthalpyFlowResultList, { description: 'To fetch multiple Enthalpies' })
   async evaluateEnergyConsumtion(
-    @Arg('name') name: string,
+    @Arg('id') id: string,
     @Arg('init') init: number,
     @Ctx() context: any
   ): Promise<EnthalpyFlowResultList> {
-    if (name !== 'furnace') {
-      return {
-        items: [],
-        total: 0
-      }
-    }
+    // if (id !== 'furnace') {
+    //   return {
+    //     items: [],
+    //     total: 0
+    //   }
+    // }
     const flows = await evaluate(init)
 
     return {

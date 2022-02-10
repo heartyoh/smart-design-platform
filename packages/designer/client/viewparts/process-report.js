@@ -10,7 +10,8 @@ export class ProcessReport extends LitElement {
   static get properties() {
     return {
       boardId: String,
-      board: Object
+      board: Object,
+      evaluation: Object
     }
   }
 
@@ -97,6 +98,15 @@ export class ProcessReport extends LitElement {
 
   render() {
     var board = this.board || { name: '' }
+    var evaluation = this.evaluation || []
+    var substances = []
+    evaluation.forEach(ev => {
+      Object.keys(ev.molFraction).forEach(fr => {
+        if (substances.indexOf(fr) === -1) {
+          substances.push(fr)
+        }
+      })
+    })
 
     return html`
       ${board.thumbnail ? html` <img src=${board.thumbnail} /> ` : html``}
@@ -105,334 +115,97 @@ export class ProcessReport extends LitElement {
         <tr>
           <th></th>
           <th></th>
-          <th>예열공기-A</th>
-          <th>LNG</th>
-          <th>Flue Gas</th>
-          <th>Waste Gas</th>
-          <th>공기</th>
-          <th>예열공기-B</th>
-          <th>배출</th>
+          ${evaluation.map(ev => html` <th>${ev.name}</th> `)}
         </tr>
         <tr total>
           <td subTh>온도</td>
           <td>K</td>
-          <td>750.234</td>
-          <td>298</td>
-          <td>1950</td>
-          <td>1250</td>
-          <td>298</td>
-          <td>750.243</td>
-          <td>928</td>
+          ${evaluation.map(ev => html` <td>${ev.temperature.toFixed(4)}</td> `)}
         </tr>
         <tr total>
           <td subTh>압력</td>
           <td>bar.a</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
+          ${evaluation.map(ev => html` <td>${ev.pressure.toFixed(4)}</td> `)}
         </tr>
         <tr total>
           <td subTh>총질량유량</td>
           <td>kg/hr</td>
-          <td>551.058</td>
-          <td>18.367</td>
-          <td>569.426</td>
-          <td>569.426</td>
-          <td>551.058</td>
-          <td>551.058</td>
-          <td>569.426</td>
+          ${evaluation.map(ev => html` <td>${ev.totalMassFlow.toFixed(4)}</td> `)}
         </tr>
         <tr total>
           <td subTh>총몰유량</td>
           <td>kmol/hr</td>
-          <td>19.107</td>
-          <td>1.148</td>
-          <td>20.255</td>
-          <td>20.255</td>
-          <td>19.107</td>
-          <td>19.107</td>
-          <td>20.255</td>
+          ${evaluation.map(ev => html` <td>${ev.totalMolFlow.toFixed(4)}</td> `)}
         </tr>
         <tr total doubleline>
           <td subTh>엔탈피</td>
           <td>kJ/hr</td>
-          <td>260,526</td>
-          <td>-85,641</td>
-          <td>174,188</td>
-          <td>-365,119</td>
-          <td>-61,917</td>
-          <td>260,526</td>
-          <td>-596,988</td>
+          ${evaluation.map(ev => html` <td>${ev.enthalpy.toFixed(4)}</td> `)}
         </tr>
 
         <tr molFrac>
           <td subTh>조성(mol. frac.)</td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          ${evaluation.map(ev => html` <td></td> `)}
         </tr>
+
+        ${substances.map(
+          (sub, idx) => html`
+            <tr molFrac ?doubleline=${idx === substances.length - 1}>
+              <td>${sub}</td>
+              <td></td>
+              ${evaluation.map(ev => html` <td>${(ev.molFraction[sub] || 0).toFixed(3)}</td> `)}
+            </tr>
+          `
+        )}
+
         <tr molFrac>
-          <td>N2</td>
-          <td></td>
-          <td>0.79</td>
-          <td>0</td>
-          <td>0.745</td>
-          <td>0.745</td>
-          <td>0.79</td>
-          <td>0.79</td>
-          <td>0.745</td>
-        </tr>
-        <tr molFrac>
-          <td>O2</td>
-          <td></td>
-          <td>0.21</td>
-          <td>0</td>
-          <td>0.084</td>
-          <td>0.084</td>
-          <td>0.21</td>
-          <td>0.21</td>
-          <td>0.084</td>
-        </tr>
-        <tr molFrac>
-          <td>CH4</td>
-          <td></td>
-          <td>0</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr molFrac>
-          <td>CO2</td>
-          <td></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-          <td>0.056</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-        </tr>
-        <tr molFrac doubleline>
-          <td>H2O(g)</td>
-          <td></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-          <td>0.113</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-        </tr>
-        <tr molFlow>
           <td subTh>성분별 몰유량</td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          ${evaluation.map(ev => html` <td></td> `)}
         </tr>
-        <tr molFlow>
-          <td>N2</td>
-          <td>kmol/hr</td>
-          <td>15.094</td>
-          <td>0</td>
-          <td>15.094</td>
-          <td>15.094</td>
-          <td>15.094</td>
-          <td>15.094</td>
-          <td>15.094</td>
-        </tr>
-        <tr molFlow>
-          <td>O2</td>
-          <td>kmol/hr</td>
-          <td>0.21</td>
-          <td>0</td>
-          <td>0.084</td>
-          <td>0.084</td>
-          <td>0.21</td>
-          <td>0.21</td>
-          <td>0.084</td>
-        </tr>
-        <tr molFlow>
-          <td>CH4</td>
-          <td>kmol/hr</td>
-          <td>0</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr molFlow>
-          <td>CO2</td>
-          <td>kmol/hr</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-          <td>0.056</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-        </tr>
-        <tr molFlow doubleline>
-          <td>H2O(g)</td>
-          <td>kmol/hr</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-          <td>0.113</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-        </tr>
+
+        ${substances.map(
+          (sub, idx) => html`
+            <tr molFlow ?doubleline=${idx === substances.length - 1}>
+              <td>${sub}</td>
+              <td>kmol/hr</td>
+              ${evaluation.map(ev => html` <td>${(ev.molFlow[sub] || 0).toFixed(3)}</td> `)}
+            </tr>
+          `
+        )}
+
         <tr massFrac>
           <td subTh>성분별 질량유량</td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          ${evaluation.map(ev => html` <td></td> `)}
         </tr>
+
+        ${substances.map(
+          (sub, idx) => html`
+            <tr massFrac ?doubleline=${idx === substances.length - 1}>
+              <td>${sub}</td>
+              <td>kmol/hr</td>
+              ${evaluation.map(ev => html` <td>${(ev.massFraction[sub] || 0).toFixed(3)}</td> `)}
+            </tr>
+          `
+        )}
+
         <tr massFrac>
-          <td>N2</td>
-          <td>kg/hr</td>
-          <td>0.79</td>
-          <td>0</td>
-          <td>0.745</td>
-          <td>0.745</td>
-          <td>0.79</td>
-          <td>0.79</td>
-          <td>0.745</td>
-        </tr>
-        <tr massFrac>
-          <td>O2</td>
-          <td>kg/hr</td>
-          <td>0.21</td>
-          <td>0</td>
-          <td>0.084</td>
-          <td>0.084</td>
-          <td>0.21</td>
-          <td>0.21</td>
-          <td>0.084</td>
-        </tr>
-        <tr massFrac>
-          <td>CH4</td>
-          <td>kg/hr</td>
-          <td>0</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr massFrac>
-          <td>CO2</td>
-          <td>kg/hr</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-          <td>0.056</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-        </tr>
-        <tr massFrac doubleline>
-          <td>H2O(g)</td>
-          <td>kg/hr</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-          <td>0.113</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-        </tr>
-        <tr massFlow>
           <td subTh>조성(mass frac.)</td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          ${evaluation.map(ev => html` <td></td> `)}
         </tr>
-        <tr massFlow>
-          <td>N2</td>
-          <td></td>
-          <td>0.79</td>
-          <td>0</td>
-          <td>0.745</td>
-          <td>0.745</td>
-          <td>0.79</td>
-          <td>0.79</td>
-          <td>0.745</td>
-        </tr>
-        <tr massFlow>
-          <td>O2</td>
-          <td></td>
-          <td>0.21</td>
-          <td>0</td>
-          <td>0.084</td>
-          <td>0.084</td>
-          <td>0.21</td>
-          <td>0.21</td>
-          <td>0.084</td>
-        </tr>
-        <tr massFlow>
-          <td>CH4</td>
-          <td></td>
-          <td>0</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr massFlow>
-          <td>CO2</td>
-          <td></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-          <td>0.056</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.056</td>
-        </tr>
-        <tr massFlow doubleline>
-          <td>H2O(g)</td>
-          <td></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-          <td>0.113</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0.113</td>
-        </tr>
+
+        ${substances.map(
+          (sub, idx) => html`
+            <tr massFlow ?doubleline=${idx === substances.length - 1}>
+              <td>${sub}</td>
+              <td>kmol/hr</td>
+              ${evaluation.map(ev => html` <td>${(ev.massFlow[sub] || 0).toFixed(3)}</td> `)}
+            </tr>
+          `
+        )}
       </table>
     `
   }
@@ -445,7 +218,7 @@ export class ProcessReport extends LitElement {
     var response = (
       await client.query({
         query: gql`
-          query FetchBoardById($id: String!) {
+          query FetchBoardById($id: String!, $init: Float!) {
             board(id: $id) {
               id
               name
@@ -487,13 +260,31 @@ export class ProcessReport extends LitElement {
               }
               total
             }
+
+            evaluateEnergyConsumtion(id: $id, init: $init) {
+              items {
+                name
+                temperature
+                pressure
+                totalMolFlow
+                totalMassFlow
+                enthalpy
+                molFlow
+                molFraction
+                massFlow
+                massFraction
+              }
+
+              total
+            }
           }
         `,
-        variables: { id: this.boardId }
+        variables: { id: this.boardId, init: 750.243 }
       })
     ).data
 
     this.board = response.board
+    this.evaluation = response.evaluateEnergyConsumtion.items
   }
 
   close() {

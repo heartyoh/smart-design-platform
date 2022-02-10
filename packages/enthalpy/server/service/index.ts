@@ -1,8 +1,9 @@
-/* EXPORT ENTITY TYPES */
-
 /* IMPORT ENTITIES AND RESOLVERS */
 import { resolvers as EnthalpyResolvers } from './enthalpy'
 import { resolvers as EvaluationResolvers } from './evaluation'
+
+/* EXPORT ENTITY TYPES */
+export * from './evaluation/evaluation-type'
 
 export const entities = [
   /* ENTITIES */

@@ -35,8 +35,8 @@
     "@operato/popup": "^0.3.28",
     "@operato/shell": "^0.3.28",
     "@operato/utils": "^0.3.28",
-    "@things-factory/env": "^4.0.45",
-    "@things-factory/shell": "^4.0.45",
+    "@things-factory/env": "^4.1.2",
+    "@things-factory/shell": "^4.1.2",
     "read-excel-file": "^5.2.26"
   },
   "devDependencies": {
