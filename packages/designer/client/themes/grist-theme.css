@@ -3,7 +3,6 @@ body {
   --grid-container-border-width: 1px 0;
 
   --grist-background-color: var(--main-section-background-color);
-  --grist-padding: var(--padding-wide);
   --grist-title-margin: 0 0 0 10px;
   --grist-title-border: none;
   --grist-title-font: bold 16px var(--theme-font);
@@ -33,6 +32,9 @@ body {
   --grid-header-splitter-border-hover: 1px solid var(--primary-color);
   --grid-header-color: rgba(var(--secondary-color-rgb), 0.8);
   --grid-header-font: bold var(--fontsize-small) var(--theme-font);
+  --grid-header-filter-title-color: var(--primary-text-color);
+  --grid-header-filter-title-font: normal 12px var(--theme-font);
+  --grid-header-filter-title-icon-color: var(--primary-color);
 
   --grid-record-background-color: var(--theme-white-color);
   --grid-record-odd-background-color: rgba(255, 255, 255, 0.4);
@@ -134,39 +136,15 @@ body {
   --record-view-edit-border-bottom: 2px solid var(--primary-color);
   --record-view-item-padding: var(--padding-default);
 
-  --record-view-footer-height: 36px;
   --record-view-footer-background: #586272;
   --record-view-footer-button-border: 1px solid rgba(0, 0, 0, 0.3);
   --record-view-footer-button-border-width: 0 0 0 1px;
-  --record-view-footer-button-height: 36px;
   --record-view-footer-button-font: 17px;
   --record-view-footer-button-color: var(--theme-white-color);
-  --record-view-footer-iconbutton-size: var(--fontsize-large);
+  --record-view-footer-iconbutton-size: 35px;
   --record-view-footer-focus-background: var(--primary-color);
-}
 
-@media only screen and (max-width: 460px) {
-  body {
-    --grist-padding: 0;
-    --record-view-font: normal 15px/32px var(--theme-font);
-    --record-view-footer-height: 50px;
-    --record-view-footer-button-height: var(--record-view-footer-height);
-    --record-view-footer-iconbutton-size: 35px;
-    --record-view-footer-iconbutton-margin: -2px;
-    --record-view-footer-iconbutton-display: block;
-  }
-}
-
-@media (min-width: 461px) and (max-width: 1024px) {
-  body {
-    --grist-padding: 0;
-
-    --record-view-footer-height: 50px;
-    --record-view-footer-button-height: var(--record-view-footer-height);
-    --record-view-footer-iconbutton-size: 35px;
-    --record-view-footer-iconbutton-margin: -2px;
-    --record-view-footer-iconbutton-display: block;
-  }
+  --ox-grist-padding: var(--padding-default) var(--padding-default) 0 var(--padding-default);
 }
 
 @media print {
@@ -177,12 +155,16 @@ body {
 
 @media only screen and (max-width: 460px) {
   body {
+    --record-view-label-font: bold 15px/32px var(--theme-font);
+    --record-view-font: normal 15px/32px var(--theme-font);
     --data-card-template: repeat(1, minmax(auto, 100%));
+    --ox-grist-padding: 0;
   }
 }
 @media (min-width: 461px) and (max-width: 700px) {
   body {
     --data-card-template: repeat(2, minmax(auto, 100%));
+    --ox-grist-padding: 0;
   }
 }
 @media (min-width: 461px) and (max-width: 1024px) {
