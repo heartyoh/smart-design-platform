@@ -29,14 +29,14 @@
   "dependencies": {
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
-    "@operato/graphql": "^1.0.0-alpha.41",
-    "@operato/i18n": "^1.0.0-alpha.41",
-    "@operato/layout": "^1.0.0-alpha.41",
-    "@operato/popup": "^1.0.0-alpha.41",
-    "@operato/shell": "^1.0.0-alpha.41",
-    "@operato/utils": "^1.0.0-alpha.41",
-    "@things-factory/env": "5.0.0-alpha.20",
-    "@things-factory/shell": "5.0.0-alpha.20",
+    "@operato/graphql": "^1.0.0-alpha.51",
+    "@operato/i18n": "^1.0.0-alpha.51",
+    "@operato/layout": "^1.0.0-alpha.51",
+    "@operato/popup": "^1.0.0-alpha.51",
+    "@operato/shell": "^1.0.0-alpha.51",
+    "@operato/utils": "^1.0.0-alpha.51",
+    "@things-factory/env": "5.0.0-alpha.28",
+    "@things-factory/shell": "5.0.0-alpha.28",
     "read-excel-file": "^5.2.26"
   },
   "devDependencies": {
