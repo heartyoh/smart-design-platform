@@ -28,16 +28,16 @@
   "dependencies": {
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
-    "@operato/board": "^1.0.0-alpha.51",
-    "@operato/graphql": "^1.0.0-alpha.51",
-    "@operato/i18n": "^1.0.0-alpha.51",
-    "@operato/layout": "^1.0.0-alpha.51",
-    "@operato/popup": "^1.0.0-alpha.51",
-    "@operato/shell": "^1.0.0-alpha.51",
-    "@operato/utils": "^1.0.0-alpha.51",
-    "@things-factory/board-service": "5.0.0-alpha.28",
-    "@things-factory/env": "5.0.0-alpha.28",
-    "@things-factory/fav-base": "5.0.0-alpha.28",
-    "@things-factory/shell": "5.0.0-alpha.28"
+    "@operato/board": "^1.0.0-alpha.53",
+    "@operato/graphql": "^1.0.0-alpha.53",
+    "@operato/i18n": "^1.0.0-alpha.53",
+    "@operato/layout": "^1.0.0-alpha.53",
+    "@operato/popup": "^1.0.0-alpha.53",
+    "@operato/shell": "^1.0.0-alpha.53",
+    "@operato/utils": "^1.0.0-alpha.53",
+    "@things-factory/board-service": "5.0.0-alpha.29",
+    "@things-factory/env": "5.0.0-alpha.29",
+    "@things-factory/fav-base": "5.0.0-alpha.29",
+    "@things-factory/shell": "5.0.0-alpha.29"
   }
 }
