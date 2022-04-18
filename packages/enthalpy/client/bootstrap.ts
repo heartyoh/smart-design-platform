@@ -1,3 +1,1 @@
-export default function bootstrap() {
-  console.log('HAHAHAHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHHAHAAH')
-}
+export default function bootstrap() {}

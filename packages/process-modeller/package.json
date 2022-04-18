@@ -24,7 +24,7 @@
     "migration:create": "node ../../node_modules/typeorm/cli.js migration:create -d ./server/migrations"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^3.0.0",
+    "@hatiolab/things-scene": "^3.0.1",
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
     "@operato/board": "^1.0.0-beta.5",

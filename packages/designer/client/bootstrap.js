@@ -1,26 +1,25 @@
 import '@things-factory/notification' /* for notification-badge */
 import '@things-factory/auth-ui' /* for domain-switch */
 
-import { html } from 'lit-html'
-
-import { appendViewpart, toggleOverlay, TOOL_POSITION, VIEWPART_POSITION } from '@operato/layout'
+import { TOOL_POSITION, VIEWPART_POSITION, appendViewpart, toggleOverlay } from '@operato/layout'
 import { navigate, store } from '@operato/shell'
-import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
-import { auth } from '@things-factory/auth-base'
-import { setAuthManagementMenus } from '@things-factory/auth-ui'
 import { setupMenuPart, updateMenuTemplate } from '@things-factory/lite-menu'
+
 import { ADD_MORENDA } from '@things-factory/more-base'
 import { ADD_SETTING } from '@things-factory/setting-base'
-
+import { APPEND_APP_TOOL } from '@things-factory/apptool-base'
+import { auth } from '@things-factory/auth-base'
 import { getMenuTemplate } from './menu'
+import { html } from 'lit-html'
+import { setAuthManagementMenus } from '@things-factory/auth-ui'
 
 console.log(
   `%c
-   ▄▄▄  ▄▄▄▄  ▄▄▄  ▄    ▄▄  ▄▄▄ ▄▄▄  ▄▄  ▄▄▄  ▄     ▄    
-  ▓   ▀ ▓   ▓ ▓  ▓ ▓   ▓  ▓  ▓  ▓   ▓  ▓ ▓  ▓ ▓▀▄ ▄▀▓    
-  ▀▀▄▄  ▓   ▓ ▓▀▀  ▓   ▓▀▀▓  ▓  ▓▀▀ ▓  ▓ ▓▀▀▄ ▓  ▀  ▓    
-  ▄   ▓ ▓   ▓ ▓    ▓   ▓  ▓  ▓  ▓   ▓  ▓ ▓  ▓ ▓     ▓    
-   ▀▀▀  ▀▀▀▀  ▀    ▀▀▀ ▀  ▀  ▀  ▀    ▀▀  ▀  ▀ ▀     ▀    
+   ▄▄▄      ▄▄▄ ▄▄▄  ▄    ▄▄  ▄▄▄ ▄▄▄  ▄▄  ▄▄▄  ▄     ▄    
+  ▓   ▀ ▄   ▓   ▓  ▓ ▓   ▓  ▓  ▓  ▓   ▓  ▓ ▓  ▓ ▓▀▄ ▄▀▓    
+  ▀▀▄▄ ▀▓▀  ▓▀▀ ▓▀▀  ▓   ▓▀▀▓  ▓  ▓▀▀ ▓  ▓ ▓▀▀▄ ▓  ▀  ▓    
+  ▄   ▓ ▓   ▓   ▓    ▓   ▓  ▓  ▓  ▓   ▓  ▓ ▓  ▓ ▓     ▓    
+   ▀▀▀  ▀▀▀ ▀▀▀ ▀    ▀▀▀ ▀  ▀  ▀  ▀    ▀▀  ▀  ▀ ▀     ▀    
 `,
   'background: #222; color: #bada55'
 )
