@@ -66,8 +66,6 @@ export class Furnace extends Equipment {
       input.molFlow
     )
 
-    console.log('------- temperature ----------', temperature)
-
     output.constraints = {
       ...output.constraints,
       temperature,
