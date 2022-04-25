@@ -33,7 +33,7 @@
     "migration:revert": "node ../../node_modules/typeorm/cli.js migration:revert",
     "stop:dev": "kill $(lsof -t -i:3000,3001)",
     "stop": "things-factory-stop sdp",
-    "docker": "things-factory-dockerize hatiolab/sdp:latest hatiolab/sdp:$npm_package_version",
+    "docker": "things-factory-dockerize hatiolab/sdp:latest hatiolab/sdp:$npm_package_version linux/amd64",
     "docker:push": "docker image push hatiolab/sdp:latest && docker image push hatiolab/sdp:$npm_package_version",
     "docker:run": "docker run -it -p 4000:3000 hatiolab/sdp:latest"
   },
