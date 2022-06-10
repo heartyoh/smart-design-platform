@@ -408,7 +408,7 @@ class ProcessListPage extends connect(store)(InfiniteScrollable(PageView)) {
           ? [
               ...filters,
               {
-                name: 'group_id',
+                name: 'groupId',
                 operator: 'eq',
                 value: this.groupId
               }

@@ -277,7 +277,7 @@ export class BoardSelector extends InfiniteScrollable(localize(i18next)(LitEleme
 
     if (this.group)
       filters.push({
-        name: 'group_id',
+        name: 'groupId',
         operator: 'eq',
         value: this.group
       })
