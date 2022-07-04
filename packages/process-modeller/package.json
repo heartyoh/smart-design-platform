@@ -24,16 +24,16 @@
     "migration:create": "node ../../node_modules/typeorm/cli.js migration:create -d ./server/migrations"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^3.0.15",
+    "@hatiolab/things-scene": "^3.0.18",
     "@material/mwc-list": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
-    "@operato/board": "^1.0.0-beta.39",
-    "@operato/graphql": "^1.0.0-beta.39",
-    "@operato/help": "^1.0.0-beta.39",
-    "@operato/i18n": "^1.0.0-beta.39",
-    "@operato/layout": "^1.0.0-beta.39",
-    "@operato/popup": "^1.0.0-beta.39",
-    "@operato/shell": "^1.0.0-beta.39",
-    "@operato/utils": "^1.0.0-beta.39"
+    "@operato/board": "^1.0.0-beta.43",
+    "@operato/graphql": "^1.0.0-beta.43",
+    "@operato/help": "^1.0.0-beta.43",
+    "@operato/i18n": "^1.0.0-beta.43",
+    "@operato/layout": "^1.0.0-beta.43",
+    "@operato/popup": "^1.0.0-beta.43",
+    "@operato/shell": "^1.0.0-beta.43",
+    "@operato/utils": "^1.0.0-beta.43"
   }
 }
