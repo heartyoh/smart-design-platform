@@ -27,13 +27,13 @@
     "@hatiolab/things-scene": "^3.0.18",
     "@material/mwc-list": "^0.26.1",
     "@material/mwc-select": "^0.26.1",
-    "@operato/board": "^1.0.0-beta.49",
-    "@operato/graphql": "^1.0.0-beta.49",
-    "@operato/help": "^1.0.0-beta.49",
-    "@operato/i18n": "^1.0.0-beta.49",
-    "@operato/layout": "^1.0.0-beta.49",
-    "@operato/popup": "^1.0.0-beta.49",
-    "@operato/shell": "^1.0.0-beta.49",
-    "@operato/utils": "^1.0.0-beta.49"
+    "@operato/board": "^1.0.0-beta.50",
+    "@operato/graphql": "^1.0.0-beta.50",
+    "@operato/help": "^1.0.0-beta.50",
+    "@operato/i18n": "^1.0.0-beta.50",
+    "@operato/layout": "^1.0.0-beta.50",
+    "@operato/popup": "^1.0.0-beta.50",
+    "@operato/shell": "^1.0.0-beta.50",
+    "@operato/utils": "^1.0.0-beta.50"
   }
 }

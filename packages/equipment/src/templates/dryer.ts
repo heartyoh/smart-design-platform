@@ -13,5 +13,5 @@ export default {
     height: 100,
     fillStyle: '#08347f'
   },
-  about: '/helps/board-modeller/effects/shadow.md'
+  about: '/helps/equipment/dryer/dryer.md'
 }

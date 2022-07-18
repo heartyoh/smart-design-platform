@@ -19,9 +19,9 @@ const icon = `
 </svg>
 `
 
-export const burner = {
-  name: 'burner',
-  description: 'a group of various burners',
+export const combuster = {
+  name: 'combuster',
+  description: 'a group of various combusters',
   icon,
   templates: []
 }
