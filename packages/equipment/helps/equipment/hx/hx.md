@@ -1,5 +1,8 @@
 # Heat exchanger
 
+![Heat exchanger](./hx-01.png)
+![Heat exchanger](./hx-02.png)
+
 - Brief summary
 
 A heat exchanger is a device that efficiently transfers heat from a high-temperature fluid to a low-temperature fluid, and generally handles fluids such as liquids or gases. Heat exchangers are used for heating and cooling purposes depending on the intended use.
