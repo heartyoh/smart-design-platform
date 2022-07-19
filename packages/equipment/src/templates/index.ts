@@ -14,6 +14,8 @@ import dryer from './dryer'
 import dryerBand from './dryer-band'
 import dryerDrum from './dryer-drum'
 import dryerRotary from './dryer-rotary'
+import fmix from './fmix'
+import fsplit from './fsplit'
 import furnace from './furnace'
 import heater from './heater'
 import hpump from './hpump'
@@ -21,7 +23,10 @@ import hx from './hx'
 import hxFT from './hx-ft'
 import hxPlate from './hx-plate'
 import hxST from './hx-st'
+import msLPG from './ms-lpg'
+import msNG from './ms-ng'
 import plc from './plc'
+import postTrBf from './post-tr-bf'
 import postTrCyc from './post-tr-cyc'
 import pump from './pump'
 import recycle from './recycle'
@@ -55,5 +60,10 @@ export default [
   plc,
   heater,
   postTrCyc,
-  recycle
+  postTrBf,
+  recycle,
+  fsplit,
+  fmix,
+  msNG,
+  msLPG
 ]
